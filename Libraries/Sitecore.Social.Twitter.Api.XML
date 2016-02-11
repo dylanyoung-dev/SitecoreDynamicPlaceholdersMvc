@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Twitter.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Twitter.Api.Builders.TwitterMessageDataBuilder">
+            <summary>
+            Represents <see cref="T:Sitecore.Social.Twitter.Api.Model.TwitterMessageData"/> builder.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Api.Builders.TwitterMessageDataBuilder.BuildFrom(Sitecore.Social.MessagePosting.Items.MessageItemBase)">
+            <summary>
+            Builds from message item base.
+            </summary>
+            <param name="messageItemBase">The message item base.</param>
+            <returns>
+            The <seealso cref="T:Sitecore.Social.Domain.Model.MessageData"/>
+            </returns>
+            <exception cref="T:System.InvalidCastException">The 'messageItemBase' argument is not a TwitterMessageItem object.</exception>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Api.Builders.TwitterMessageDataBuilder.BuildFrom(Sitecore.Social.Domain.Model.MessageData)">
+            <summary>
+            Builds from message data.
+            </summary>
+            <param name="messageData">The message data.</param>
+            <returns>
+            The <seealso cref="T:Sitecore.Social.NetworkProviders.Messages.Message"/>
+            </returns>
+            <exception cref="T:System.InvalidCastException">"The 'messageData' argument is not a TwitterMessageData object."</exception>
+        </member>
+        <member name="T:Sitecore.Social.Twitter.Api.Model.TweetsCounter">
+            <summary>
+            Represents the tweets counter
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Api.Model.TweetsCounter.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Twitter.Api.Model.TweetsCounter"/> class.
+            </summary>
+            <param name="displayName">The display name.</param>
+            <param name="number">The number.</param>
+        </member>
+        <member name="T:Sitecore.Social.Twitter.Api.Model.TwitterMessageData">
+            <summary>
+            Represents Twitter message data.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.Message.MessageData"/>
+        </member>
+    </members>
+</doc>

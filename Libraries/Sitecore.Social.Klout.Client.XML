@@ -1,0 +1,285 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Klout.Client</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Klout.Client.EventHandlers.ISocialConnectorEventsHelper">
+            <summary>
+            Defines helper methods to handle social connector events.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.EventHandlers.ISocialConnectorEventsHelper.ProcessKloutProfileUpdateAsync(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Client.Api.EventArgs.SocialConnectorEventArgs)">
+            <summary>
+            Processes the Klout profile update asynchronous.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="socialConnectorEventArgs">The <see cref="T:Sitecore.Social.Client.Api.EventArgs.SocialConnectorEventArgs"/> instance containing the event data.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> to run it asynchronously.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Klout.Client.EventHandlers.SocialConnectorEventsHelper">
+            <summary>
+            Defines helper methods to handle social connector events.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Klout.Client.EventHandlers.SocialConnectorEventsHelper.KloutApplicationParameterName">
+            <summary>
+            The Klout application parameter name
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.EventHandlers.SocialConnectorEventsHelper.#ctor(Sitecore.Social.Klout.Client.IKloutProfileClientManager,Sitecore.Social.Klout.Api.Domain.IKloutProfileManager,Sitecore.Social.Klout.Api.Domain.IKloutApplicationManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Klout.Client.EventHandlers.SocialConnectorEventsHelper"/> class.
+            </summary>
+            <param name="kloutProfileClientManager">The Klout profile client manager.</param>
+            <param name="kloutProfileManager">The Klout profile manager.</param>
+            <param name="kloutApplicationManager">The Klout application manager.</param>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.EventHandlers.SocialConnectorEventsHelper.ProcessKloutProfileUpdateAsync(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Client.Api.EventArgs.SocialConnectorEventArgs)">
+            <summary>
+            Processes the Klout profile update asynchronous.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="socialConnectorEventArgs">The <see cref="T:Sitecore.Social.Client.Api.EventArgs.SocialConnectorEventArgs"/> instance containing the event data.</param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/> to run it asynchronously.
+            </returns>
+        </member>
+        <member name="P:Sitecore.Social.Klout.Client.EventHandlers.SocialConnectorEventsHelper.KloutApplicationManager">
+            <summary>
+            Gets the Klout application manager.
+            </summary>
+            <value>
+            The Klout application manager.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Klout.Client.EventHandlers.SocialConnectorEventsHelper.KloutProfileManager">
+            <summary>
+            Gets the Klout profile manager.
+            </summary>
+            <value>
+            The Klout profile manager.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Klout.Client.EventHandlers.SocialConnectorEventsHelper.KloutProfileClientManager">
+            <summary>
+            Gets the Klout profile client manager.
+            </summary>
+            <value>
+            The Klout profile client manager.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Klout.Client.EventHandlers.SocialNetworkUserLoggedInHandler">
+            <summary>
+            Represents a handler of "social:connector:user:loggedin" event.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.EventHandlers.SocialNetworkUserLoggedInHandler.OnSocialNetworkUserLoggedIn(System.Object,System.EventArgs)">
+            <summary>
+            Called when the user is logged in via social connector.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Sitecore.Social.Klout.Client.EventHandlers.SocialProfileAttachedHandler">
+            <summary>
+            Represents a handler of "social:connector:user:socialprofileattached" event.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.EventHandlers.SocialProfileAttachedHandler.OnSocialProfileAttached(System.Object,System.EventArgs)">
+            <summary>
+            Called when the social profile has been attached to a user.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Sitecore.Social.Klout.Client.EventHandlers.UserDeletedHandler">
+            <summary>
+            Represents a handler of "user:deleted" event.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.EventHandlers.UserDeletedHandler.OnUserDeleted(System.Object,System.EventArgs)">
+            <summary>
+            Called when an user has been deleted.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.EventHandlers.UserDeletedHandler.DoOnUserDeleted(System.EventArgs)">
+            <summary>
+            Executes the on user deleted event.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Sitecore.Social.Klout.Client.IKloutProfileClientManager">
+            <summary>
+            Define methods to manage Klout profile.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.IKloutProfileClientManager.RefreshKloutProfileAsync(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Klout.Api.Domain.Model.SourceNetworkIdentity)">
+            <summary>
+            Refreshes the Klout profile asynchronous.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="kloutApplicationId">The Klout application identifier.</param>
+            <param name="sourceNetworkIdentity">The source network identity.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> to run it asynchronously.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Klout.Client.IoC.Modules.HelpersModule">
+            <summary>
+            Ninject module for binding helpers.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.IoC.Modules.HelpersModule.Load">
+            <summary>
+            Loads the module into the kernel.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Klout.Client.IoC.Modules.ManagersModule">
+            <summary>
+            Ninject module for binding managers.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.IoC.Modules.ManagersModule.Load">
+            <summary>
+            Loads the module into the kernel.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Klout.Client.KloutProfileClientManager">
+            <summary>
+            Define methods to manage Klout profile.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.KloutProfileClientManager.#ctor(Sitecore.Social.Klout.Api.Domain.IKloutProfileManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Klout.Client.KloutProfileClientManager"/> class.
+            </summary>
+            <param name="kloutProfileManager">The Klout profile manager.</param>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.KloutProfileClientManager.RefreshKloutProfileAsync(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Klout.Api.Domain.Model.SourceNetworkIdentity)">
+            <summary>
+            Refreshes the Klout profile asynchronous.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="kloutApplicationId">The Klout application identifier.</param>
+            <param name="sourceNetworkIdentity">The source network identity.</param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/> to run it asynchronously.
+            </returns>
+        </member>
+        <member name="P:Sitecore.Social.Klout.Client.KloutProfileClientManager.KloutProfileManager">
+            <summary>
+            Gets the Klout profile manager.
+            </summary>
+            <value>
+            The Klout profile manager.
+            </value>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.Rules.Conditions.KloutScoreCondition`1.Execute(`0)">
+            <summary>
+            Executes the specified rule context.
+            </summary>
+            <param name="ruleContext">The rule context.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sitecore.Social.Klout.Client.Rules.Conditions.KloutScoreCondition`1.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>
+            The value.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores">
+            <summary>
+            Syncrhonizes Klout Scores.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores.ErrorText">
+            <summary>
+            The error text
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores.kloutApplicationManager">
+            <summary>
+            Gets or sets the Klout application manager.
+            </summary>
+            <value>
+            The Klout application manager.
+            </value>
+        </member>
+        <member name="F:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores.kloutScoreUtils">
+            <summary>
+            Gets or sets the Klout Score utils.
+            </summary>
+            <value>
+            The Klout score utils.
+            </value>
+        </member>
+        <member name="F:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores.membershipWrapper">
+            <summary>
+            Gets or sets the membership wrapper.
+            </summary>
+            <value>
+            The membership wrapper.
+            </value>
+        </member>
+        <member name="F:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores.siteContextSwitcherWrapper">
+            <summary>
+            Gets or sets the switcher wrapper.
+            </summary>
+            <value>
+            The switcher wrapper.
+            </value>
+        </member>
+        <member name="F:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores.kloutProfileManager">
+            <summary>
+            Gets or sets the Klout profile manager.
+            </summary>
+            <value>
+            The Klout profile manager.
+            </value>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores.#ctor(Sitecore.Social.Klout.Api.Domain.IKloutProfileManager,Sitecore.Social.Klout.Api.Domain.IKloutApplicationManager,Sitecore.Social.Infrastructure.Logging.ILogManager,Sitecore.Social.Klout.Api.Domain.IKloutScoreUtils,Sitecore.Social.Infrastructure.Wrappers.System.IMembershipWrapper,Sitecore.Social.Infrastructure.Wrappers.Sitecore.ISiteContextSwitcherWrapper,Sitecore.Social.Configuration.IConfigurationFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores"/> class.
+            </summary>
+            <param name="kloutProfileManager">The Klout profile manager.</param>
+            <param name="kloutApplicationManager">The Klout application manager.</param>
+            <param name="logManager">The log manager.</param>
+            <param name="kloutScoreUtils">The Klout Score utils.</param>
+            <param name="membershipWrapper">The membership wrapper.</param>
+            <param name="switcherWrapper">The switcher wrapper.</param>
+            <param name="configurationFactory">The configuration factory.</param>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores.RefreshKloutProfiles(System.Collections.Generic.IList{Sitecore.Social.Klout.Api.Domain.Model.KloutProfile})">
+            <summary>
+            Synchronizes the Klout Scores for Klout profiles.
+            </summary>
+            <param name="kloutProfiles">The Klout profiles.</param>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores.ProcessKloutProfiles(System.Collections.Generic.IEnumerable{Sitecore.Social.Klout.Api.Domain.Model.KloutProfile},Sitecore.Social.Klout.Api.Domain.Model.KloutApplication)">
+            <summary>
+            Processes the <see cref="T:Sitecore.Social.Klout.Api.Domain.Model.KloutProfile"/>s.
+            </summary>
+            <param name="kloutProfiles">The Klout profiles.</param>
+            <param name="kloutApplication">The Klout application.</param>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores.ClearKloutScore(Sitecore.Social.Klout.Api.Domain.Model.KloutProfile)">
+            <summary>
+            Sets the Klout Score to <see cref="F:Sitecore.Social.Klout.Api.Domain.Model.KloutScore.Empty"/>.
+            </summary>
+            <param name="kloutProfile">The Klout profile.</param>
+        </member>
+        <member name="M:Sitecore.Social.Klout.Client.Tasks.SynchronizeKloutScores.DoRun">
+            <summary>
+            Contains task implementation.
+            </summary>
+        </member>
+    </members>
+</doc>

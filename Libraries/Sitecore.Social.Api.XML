@@ -1,0 +1,2348 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Api.AccountManager">
+            <summary>
+            Defines the methods that are used to get and create social accounts.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.AccountManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.#ctor(Sitecore.Social.Domain.INetworkManager,Sitecore.Social.IAccountBusinessManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.AccountManager"/> class.
+            </summary>
+            <param name="networkManager">The network manager.</param>
+            <param name="accountBusinessManager">The account business manager.</param>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.GetAccount(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Gets an account by id.
+             </summary>
+             <param name="accountId">The account id.</param>
+             <returns>
+             The account. If the account is not found, an empty account is returned.
+             </returns>
+             <example>
+             <code>
+             var account = accountManager.GetAccount(accountId);
+            
+             if (!account.IsEmpty)
+             {
+               this.ShowAccount(account);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.GetAccounts(System.String)">
+             <summary>
+             Gets all accounts by network name. Returns a collection of accounts.
+             </summary>
+             <param name="networkName">The name of the network (case-sensitive).</param>
+             <returns>
+             The account list. If no accounts are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var accounts = accountManager.GetAccounts("Facebook");
+            
+             foreach (var account in accounts)
+             {
+               this.ShowAccount(account);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.GetAccounts(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Gets all accounts by network id. Returns a collection of accounts.
+             </summary>
+             <param name="networkId">The network id.</param>
+             <returns>
+             The account list. If no accounts are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var accounts = accountManager.GetAccounts(facebookNetworkId);
+            
+             foreach (var account in accounts)
+             {
+               this.ShowAccount(account);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.GetAccountsByApplication(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Gets all accounts by application id. Returns a collection of accounts.
+             </summary>
+             <param name="applicationId">The application id.</param>
+             <returns>
+             The account list. If no accounts are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var accounts = accountManager.GetAccountsByApplication(applicationId);
+            
+             foreach (var account in accounts)
+             {
+               this.ShowAccount(account);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.GetAccountsByContainer(System.String)">
+            <summary>
+            Gets the accounts by container.
+            </summary>
+            <param name="accountContainer">The account container.</param>
+            <returns>
+            The account list. If no accounts are found an empty list is returned.
+            </returns>
+            <example>
+            <code>
+            var accounts = accountManager.GetAccountsByContainer("/sitecore/system/Social/Accounts");
+            
+            foreach (var account in accounts)
+            {
+              this.ShowAccount(account);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.GetAccountsByContainer(System.String,System.Boolean)">
+             <summary>
+             Gets the accounts by container.
+             </summary>
+             <param name="accountContainer">The account container.</param>
+             <param name="searchForDescendants">if set to <c>true</c> sub-containers are included to the search.</param>
+             <returns>
+             The account list. If no accounts are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var accounts = accountManager.GetAccountsByContainer("/sitecore/system/Social/Accounts", true);
+            
+             foreach (var account in accounts)
+             {
+               this.ShowAccount(account);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.AccountExists(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Checks if account exist.
+             </summary>
+             <param name="accountId">The account id.</param>
+             <returns>
+             If account exists True else False.
+             </returns>
+             <example>
+             <code>
+             var accountExists = accountManager.AccountExists(accountId);
+            
+             if (accountExists)
+             {
+               ShowMessage(string.Format("Account {0} exists", accountId));
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.CreateAccount(Sitecore.Social.Domain.Model.Account)">
+             <summary>
+             Creates an account.
+             </summary>
+             <param name="account">The account to create.</param>
+             <remarks>The <see cref="P:Sitecore.Social.Domain.Model.Account.Id"/> field will contain identifier of the new account.</remarks>
+             <exception cref="T:Sitecore.Social.Exceptions.AccountContainerIsNotFoundException">Account container is not found.</exception>
+             <exception cref="T:Sitecore.Social.Exceptions.CannotReadAccountException">Account was created, but could not be read.</exception>
+             <example>
+             <code>
+             var facebookAccount = new NetworkAccount
+             {
+               ApplicationId = facebookApplicationId,
+               Name = "John Smith",
+               AccountCredentials = new AccountCredentials
+               {
+                 AccessToken = "sldkfgj23423-===12",
+                 AccessTokenSecret = "12312kkwerkqw"
+               },
+               AccountContainer = "/sitecore/system/social/accounts",
+               LastRenewalDate = DateTime.UtcNow,
+               Description = "Facebook wall of John Smith",
+               MessageLanguage = "English",
+               ReviewingWorkflowId = socialMessageWorkflowId
+             };
+            
+             facebookAccount.ReviewingRoles.Add(@"sitecore\Facebook Message Reviewer");
+            
+             accountManager.CreateAccount(facebookAccount);
+            
+             this.ShowAccount(facebookAccount);
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.GetNetworkAccountDisplayName(Sitecore.Social.Domain.Model.AccountCredentials,Sitecore.Social.Domain.Model.ApplicationCredentials,Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Gets an account display name in a social network.
+             </summary>
+             <param name="accountCredentials">The account credentials.</param>
+             <param name="applicationCredentials">The application credentials.</param>
+             <param name="networkId">The network id.</param>
+             <returns>
+             The account display name.
+             </returns>
+             <example>
+             <code>
+             if (networkManager.CanGetAccountInfo(facebookNetworkId))
+             {
+               var accountDisplayName = accountManager.GetNetworkAccountDisplayName(
+                 new AccountCredentials("8823491234+", "2384921348923====123432"),
+                 new ApplicationCredentials("jdfhaksu777232", "qieirqiwe83283"),
+                 facebookNetworkId);
+            
+               Console.WriteLine("The account's display name in Facebook: {0}", accountDisplayName);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.GetNetworkAccountDisplayName(Sitecore.Social.Domain.Model.AccountCredentials,Sitecore.Social.Domain.Model.ApplicationCredentials,System.String)">
+             <summary>
+             Gets an account display name in a social network.
+             </summary>
+             <param name="accountCredentials">The account credentials.</param>
+             <param name="applicationCredentials">The application credentials.</param>
+             <param name="networkName">Name of the network.</param>
+             <returns>
+             The account display name.
+             </returns>
+             <example>
+             <code>
+             if (networkManager.CanGetAccountInfo("Facebook"))
+             {
+               var accountDisplayName = accountManager.GetNetworkAccountDisplayName(
+                 new AccountCredentials("8823491234+", "2384921348923====123432"),
+                 new ApplicationCredentials("jdfhaksu777232", "qieirqiwe83283"),
+                 "Facebook");
+            
+               Console.WriteLine("The account's display name in Facebook: {0}", accountDisplayName);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.AccountManager.GetDaysUntilRenewalRequired(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the number of days before the required renewal of an account.
+            </summary>
+            <param name="accountId">The account id.</param>
+            <returns>The number of days. If negative then account expired, if null then account renewal disabled or not needed.</returns>
+            <example>
+            <code>
+            var numberOfDays = accountManager.DaysBeforeRenewalRequired(accountId);
+            
+            if (numberOfDays != null)
+            {
+              Console.WriteLine("Number of days before the required renewal of account: {0}", numberOfDays);        
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:Sitecore.Social.Api.AccountManager.NetworkManager">
+            <summary>
+            Gets or sets the network manager.
+            </summary>
+            <value>
+            The network manager.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Api.AccountManager.AccountBusinessManager">
+            <summary>
+            Gets or sets the account business manager.
+            </summary>
+            <value>
+            The account business manager.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Api.ApplicationManager">
+            <summary>
+            Defines the methods that are used to manage social network applications.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.ApplicationManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.ApplicationManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.ApplicationManager.#ctor(Sitecore.Social.Domain.INetworkManager,Sitecore.Social.IApplicationBusinessManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.ApplicationManager"/> class.
+            </summary>
+            <param name="networkManager">The network manager.</param>
+            <param name="applicationBusinessManager">The application business manager.</param>
+        </member>
+        <member name="M:Sitecore.Social.Api.ApplicationManager.GetApplication(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets an application by id.
+            </summary>
+            <param name="applicationId">The application id.</param>
+            <returns>
+            The application. If the application is not found <see cref="F:Sitecore.Social.Domain.Model.Application.Empty"/> is returned.
+            </returns>
+            <example>
+            <code>
+            var application = applicationManager.GetApplication(applicationId);
+            if (!application.IsEmpty)
+            {
+              this.ShowApplication(application);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.ApplicationManager.GetApplications(System.String)">
+            <summary>
+            Gets the applications by network name.
+            </summary>
+            <param name="networkName">The name of the network (case-sensitive).</param>
+            <returns>
+            The application list. If no applications are found an empty list is returned.
+            </returns>
+            <example>
+            <code>
+            var applications = applicationManager.GetApplications("Facebook");
+            foreach (var application in applications)
+            {
+              this.ShowApplication(application);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.ApplicationManager.GetApplications(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the applications by network id.
+            </summary>
+            <param name="networkId">Id of the network.</param>
+            <returns>
+            The application list. If no applications are found an empty list is returned.
+            </returns>
+            <example>
+            <code>
+            var facebookNetwork = networkManager.GetNetwork("Facebook");
+            var applications = applicationManager.GetApplications(facebookNetwork.Id);
+            foreach (var application in applications)
+            {
+              this.ShowApplication(application);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.ApplicationManager.GetApplicationContainer(System.String)">
+             <summary>
+             Gets the application container by account container.
+             </summary>
+             <param name="accountContainer">The account container.</param>
+             <returns>
+             The application container. If the application container is not found <c>string.Empty</c> is returned.
+             </returns>
+             <example>
+             <code>
+             var applicationContainer = applicationManager.GetApplicationContainer("/sitecore/system/Social/Accounts");
+            
+             Console.WriteLine("The application container for the account container /sitecore/system/Social/Accounts is: {0}", applicationContainer);
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.ApplicationManager.GetApplicationsByContainer(System.String)">
+            <summary>
+            Gets the applications by container.
+            </summary>
+            <param name="applicationContainer">The application container.</param>
+            <returns>
+            The application list. If no applications are found an empty list is returned.
+            </returns>
+            <example>
+            <code>
+            var applications = applicationManager.GetApplicationsByContainer("/sitecore/system/Social/Applications/Default");
+            foreach (var application in applications)
+            {
+              this.ShowApplication(application);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.ApplicationManager.GetApplicationsByContainer(System.String,System.Boolean)">
+             <summary>
+             Gets the applications by container.
+             </summary>
+             <param name="applicationContainer">The application container.</param>
+             <param name="searchForDescendants">if set to <c>true</c> sub-containers are included to the search.</param>
+             <returns>
+             The application list. If no applications are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var applications = applicationManager.GetApplicationsByContainer("/sitecore/system/Social/Applications/Default", true);
+            
+             foreach (var application in applications)
+             {
+               this.ShowApplication(application);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.ApplicationManager.GetApplicationsByContainer(System.String,System.String)">
+            <summary>
+            Gets the applications of a specific network by the container.
+            </summary>
+            <param name="applicationContainer">The application container.</param>
+            <param name="networkName">The name of the network (case-sensitive).</param>
+            <returns>
+            The application list. If no applications are found an empty list is returned.
+            </returns>
+            <example>
+            <code>
+            var applications = applicationManager.GetApplicationsByContainer("/sitecore/system/Social/Applications/Default", "Facebook");
+            foreach (var application in applications)
+            {
+              this.ShowApplication(application);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.ApplicationManager.GetApplicationsByContainer(System.String,System.String,System.Boolean)">
+             <summary>
+             Gets the applications by container.
+             </summary>
+             <param name="applicationContainer">The application container.</param>
+             <param name="networkName">The name of the network.</param>
+             <param name="searchForDescendants">if set to <c>true</c> sub-containers are included to the search.</param>
+             <returns>
+             The application list. If no applications are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var applications = applicationManager.GetApplicationsByContainer("/sitecore/system/Social/Applications/Default", "Facebook", true);
+            
+             foreach (var application in applications)
+             {
+               this.ShowApplication(application);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.ApplicationManager.GetApplicationsByContainer(System.String,Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the applications of a specific network by the container.
+            </summary>
+            <param name="applicationContainer">The application container.</param>
+            <param name="networkId">Id of the network.</param>
+            <returns>
+            The application list. If no applications are found an empty list is returned.
+            </returns>
+            <example>
+            <code>
+            var facebookNetwork = networkManager.GetNetwork("Facebook");
+            var applications = applicationManager.GetApplicationsByContainer("/sitecore/system/Social/Applications/Default", facebookNetwork.Id);
+            foreach (var application in applications)
+            {
+              this.ShowApplication(application);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.ApplicationManager.GetApplicationsByContainer(System.String,Sitecore.Social.Domain.Model.Identifier,System.Boolean)">
+             <summary>
+             Gets the applications by container.
+             </summary>
+             <param name="applicationContainer">The application container.</param>
+             <param name="networkId">Id of the network.</param>
+             <param name="searchForDescendants">if set to <c>true</c> sub-containers are included to the search.</param>
+             <returns>
+             The application list. If no applications are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var facebookNetwork = networkManager.GetNetwork("Facebook");
+             var applications = applicationManager.GetApplicationsByContainer("/sitecore/system/Social/Applications/Default", facebookNetwork.Id, true);
+            
+             foreach (var application in applications)
+             {
+               this.ShowApplication(application);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="P:Sitecore.Social.Api.ApplicationManager.NetworkManager">
+            <summary>
+            Gets or sets the network manager.
+            </summary>
+            <value>
+            The network manager.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Api.ApplicationManager.ApplicationBusinessManager">
+            <summary>
+            Gets or sets the application business manager.
+            </summary>
+            <value>
+            The application business manager.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Api.EventArgs.SocialMessageCreatedEventArgs">
+            <summary>
+            Event arguments, which are passed to the "social:message:created" event.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Api.EventArgs.SocialMessageEventArgs">
+            <summary>
+            Base class for social message event args.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.EventArgs.SocialMessageEventArgs.#ctor(Sitecore.Social.Domain.Model.Message)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.EventArgs.SocialMessageEventArgs"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="P:Sitecore.Social.Api.EventArgs.SocialMessageEventArgs.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="M:Sitecore.Social.Api.EventArgs.SocialMessageCreatedEventArgs.#ctor(Sitecore.Social.Domain.Model.Message)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.EventArgs.SocialMessageCreatedEventArgs"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="T:Sitecore.Social.Api.EventArgs.SocialMessageDeletedEventArgs">
+            <summary>
+            Event arguments, which are passed to the "social:message:deleted" event.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.EventArgs.SocialMessageDeletedEventArgs.#ctor(Sitecore.Social.Domain.Model.Message)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.EventArgs.SocialMessageDeletedEventArgs"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="T:Sitecore.Social.Api.EventArgs.SocialMessageUpdatedEventArgs">
+            <summary>
+            Event arguments, which are passed to the "social:message:updated" event.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.EventArgs.SocialMessageUpdatedEventArgs.#ctor(Sitecore.Social.Domain.Model.Message)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.EventArgs.SocialMessageUpdatedEventArgs"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="T:Sitecore.Social.Api.Extensions.UserExtensions">
+            <summary>
+            Provides a set of static methods that are used to get extended user information.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.Extensions.UserExtensions.GetSocialProfiles(System.Security.Principal.IPrincipal)">
+            <summary>
+            Gets all social profiles of the user.
+            </summary>
+            <param name="user">
+            The user.
+            </param>
+            <returns>
+            The social profiles list. If there are no profiles, an empty list is returned.
+            </returns>
+            <example>
+            <code>
+            var socialProfiles = Sitecore.Context.User.GetSocialProfiles();
+            
+            foreach (var socialProfile in socialProfiles)
+            {
+              this.ShowSocialProfile(socialProfile);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.Extensions.UserExtensions.GetSocialProfile(System.Security.Principal.IPrincipal,System.String)">
+            <summary>
+            Gets a social profile of the user in the specified network.
+            </summary>
+            <param name="user">
+            The user.
+            </param>
+            <param name="networkName">
+            The network name.
+            </param>
+            <returns>
+            The social profile. If there are no profiles, an empty profile is returned.
+            </returns>
+            <example>
+            <code>
+            var facebookSocialProfile = Sitecore.Context.User.GetSocialProfile("Facebook");
+            
+            if (!facebookSocialProfile.IsEmpty)
+            {
+              this.ShowSocialProfile(facebookSocialProfile);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.Extensions.UserExtensions.SocialProfileExists(System.Security.Principal.IPrincipal,System.String)">
+            <summary>
+            Defines if there is a social profile in the specified network.
+            </summary>
+            <param name="user">
+            The user.
+            </param>
+            <param name="networkName">
+            The network name.
+            </param>
+            <returns>
+            <c>true</c> if the social profile exists; otherwise, <c>false</c>.
+            </returns>
+            <example>
+            <code>
+            var result = Sitecore.Context.User.SocialProfileExists("Facebook");
+            
+            Console.WriteLine("The social profile exists: {0}", result);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.Extensions.UserExtensions.AttachSocialProfile(System.Security.Principal.IPrincipal,Sitecore.Social.Domain.Model.SocialProfile)">
+            <summary>
+            Attaches a social profile to the specified user.
+            </summary>
+            <param name="user">
+            The user.
+            </param>
+            <param name="socialProfile">
+            The social profile.
+            </param>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AccountInUserDuplicatedException">Following user already has another attached account of the same network.</exception>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AccountInDomainDuplicatedException">There is another user with the same account in domain.</exception>
+            <example>
+            <code>
+            try 
+            {
+              var facebookProfile = new SocialProfile
+              {
+                AccountCredentials = new AccountCredentials
+                {
+                  AccessToken = "239842+-02399==",
+                  AccessTokenSecret = "8282271371232=-29382855"
+                },
+                Email = "john.smith@fakedomain.com",
+                FullName = "John Smith",
+                NetworkAccountId = "888127718888463",
+                ApplicationCredentials = new ApplicationCredentials
+                {
+                  ApplicationKey = "jkdsf90392===399",
+                  ApplicationSecret = "128281--==39939"
+                },
+                NetworkName = "Facebook",
+                Fields = new Dictionary&lt;string, string&gt;
+                {
+                  {
+                    "timezone", "UTC+8"
+                  },
+                  {
+                    "gender", "male"
+                  }
+                }
+              };
+            
+              Sitecore.Context.User.AttachSocialProfile(facebookProfile);
+              this.ShowSocialProfile(facebookProfile);
+            }
+            catch (AccountInUserDuplicatedException)
+            {
+              // Following user already has another attached account of the same network.
+            }
+            catch (AccountInDomainDuplicatedException)
+            {
+              // There is another user with the same account in domain.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.Extensions.UserExtensions.DetachSocialProfile(System.Security.Principal.IPrincipal,System.String)">
+            <summary>
+            Removes a social profile from the specified user.
+            </summary>
+            <param name="user">
+            The user.
+            </param>
+            <param name="networkName">
+            The network name.
+            </param>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AccountIsNotExistException">Following user has not account in this network.</exception>
+            <example>
+            <code>
+            try 
+            {
+              Sitecore.Context.User.DetachSocialProfile("Facebook");
+            }
+            catch (AccountIsNotExistException)
+            {
+              // Following user has not account in this network.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.Extensions.UserExtensions.UpdateSocialProfile(System.Security.Principal.IPrincipal,Sitecore.Social.Domain.Model.SocialProfile)">
+            <summary>
+            Updates a social profile of the specified user.
+            </summary>
+            <param name="user">
+            The user.
+            </param>
+            <param name="socialProfile">
+            The social profile.
+            </param>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AccountIsNotExistException">Following user has not account in this network.</exception>
+            <example>
+            <code>
+            try 
+            {
+              var facebookSocialProfile = Sitecore.Context.User.GetSocialProfile("Facebook");
+            
+              if (!facebookSocialProfile.IsEmpty)
+              {
+                facebookSocialProfile.Email = facebookSocialProfile.Email + "updated";
+                Sitecore.Context.User.UpdateSocialProfile(facebookSocialProfile);
+              }
+            
+              facebookSocialProfile = Sitecore.Context.User.GetSocialProfile("Facebook");
+              this.ShowSocialProfile(facebookSocialProfile);
+            }
+            catch (AccountIsNotExistException)
+            {
+              // Following user has not account in this network.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.Extensions.UserExtensions.GetPostingPreferences(System.Security.Principal.IPrincipal,System.String)">
+             <summary>
+             Gets user's posting preferences for all the messages attached to the specific container.
+             </summary>
+             <param name="user">The user.</param>
+             <param name="container">The container.</param>
+             <returns>
+             The posting preference list. If no preferences are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var postingPreferences = Sitecore.Context.User.GetPostingPreferences("sitecore://master/{968897F1-328A-489D-88E8-BE78F4370958}?lang=en&amp;ver=1");
+            
+             foreach (var postingPreference in postingPreferences)
+             {
+               Console.WriteLine("Message Id: {0}, Automatic Posting Preference: {1}", postingPreference.MessageId, postingPreference.AutomaticPostingPreference);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.Extensions.UserExtensions.GetPostingPreference(System.Security.Principal.IPrincipal,Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Gets user's posting preferences for the specific message.
+             </summary>
+             <param name="user">The user.</param>
+             <param name="messageId">The message id.</param>
+             <returns>
+             The posting preference. If the posting preference is not found the <see cref="F:Sitecore.Social.Domain.Model.AutomaticPostingPreference.Default"/> value is used.
+             </returns>
+             <seealso cref="P:Sitecore.Social.Domain.Model.PostingPreference.AutomaticPostingPreference"/>
+             <example>
+             <code>
+             var postingPreference = Sitecore.Context.User.GetPostingPreference(messageId);
+            
+             Console.WriteLine("Message Id: {0}, Automatic Posting Preference: {1}", postingPreference.MessageId, postingPreference.AutomaticPostingPreference);
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.Extensions.UserExtensions.SetPostingPreference(System.Security.Principal.IPrincipal,Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.AutomaticPostingPreference)">
+            <summary>
+            Sets user's posting preferences to the specific message.
+            </summary>
+            <param name="user">The user.</param>
+            <param name="messageId">The message id.</param>
+            <param name="automaticPostingPreference">The automatic posting preference.</param>
+            <exception cref="T:System.Exception">Message is not found.</exception>
+            <exception cref="T:System.Exception">Invalid message template.</exception>
+            <exception cref="T:System.Exception">Unable to set preference to the anonymous user.</exception>
+            <example>
+            <code>
+            Sitecore.Context.User.SetPostingPreference(messageId, AutomaticPostingPreference.Denied);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.Extensions.UserExtensions.SetPostingPreference(System.Security.Principal.IPrincipal,System.String,Sitecore.Social.Domain.Model.AutomaticPostingPreference)">
+            <summary>
+            Sets user's posting preferences to all the messages found by arguments.
+            </summary>
+            <param name="user">The user.</param>
+            <param name="container">The container.</param>
+            <param name="automaticPostingPreference">The automatic posting preference.</param>
+            <exception cref="T:System.Exception">Unable to set preference to the anonymous user.</exception>
+            <example>
+            <code>
+            Sitecore.Context.User.SetPostingPreference("sitecore://master/{968897F1-328A-489D-88E8-BE78F4370958}?lang=en&amp;ver=1", AutomaticPostingPreference.Denied);
+            </code>
+            </example>
+        </member>
+        <member name="T:Sitecore.Social.Api.IoC.Modules.ManagersModule">
+            <summary>
+            Defines bindings of managers implementations.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.IoC.Modules.ManagersModule.Load">
+            <summary>
+            Loads the module into the kernel.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Api.MessageManager">
+            <summary>
+            Defines the methods that are used to manage social network messages.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.MessageManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.#ctor(Sitecore.Social.IMessageBusinessManager,Sitecore.Social.Infrastructure.Logging.ILogManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.MessageManager"/> class.
+            </summary>
+            <param name="messageBusinessManager">The message business manager.</param>
+            <param name="logManager">The log manager.</param>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.GetMessage(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the message by id.
+            </summary>
+            <param name="messageId">The message id.</param>
+            <returns>
+            The message. If message is not found <see cref="F:Sitecore.Social.Domain.Model.Message.Empty"/> is returned.
+            </returns>
+            <exception cref="T:Sitecore.Social.Exceptions.MessageDataBuilderIsNotFoundException">Message data builder is not found.</exception>
+            <exception cref="T:System.InvalidCastException">Invalid casts occured.</exception>
+            <exception cref="T:Sitecore.Social.Exceptions.PostingConfigurationBuilderIsNotFoundException">Posting configuration builder is not found.</exception>
+            <exception cref="T:Sitecore.Exceptions.ItemNotFoundException">Item is not found.</exception>
+            <example>
+            <code>
+            var message = messageManager.GetMessage(messageId);
+            
+            if (!message.IsEmpty)
+            {
+              this.ShowMessage(message);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.GetMessagesByContainer(System.String)">
+             <summary>
+             Gets messages by container.
+             </summary>
+             <param name="container">The container.</param>
+             <returns>
+             The messages list. If no messages are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var homeItemMessages = messageManager.GetMessagesByContainer("sitecore://master/{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}?lang=en&amp;ver=1");
+            
+             foreach (var message in homeItemMessages)
+             {
+               this.ShowMessage(message);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.GetMessagesByAccount(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Gets messages by account.
+             </summary>
+             <param name="accountId">The account id.</param>
+             <returns>
+             The messages list. If no messages are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var messages = messageManager.GetMessagesByAccount(facebookAccountId);
+            
+             foreach (var message in messages)
+             {
+               this.ShowMessage(message);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.GetMessagesByWorkflowState(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Gets messages by workflow state.
+             </summary>
+             <param name="workflowStateId">The workflow state id.</param>
+             <returns>
+             The messages list. If no messages are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var draftMessages = messageManager.GetMessagesByWorkflowState(draftStateId);
+            
+             foreach (var draftMessage in draftMessages)
+             {
+               this.ShowMessage(draftMessage);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.GetMessagesByCreatedDate(System.DateTime)">
+             <summary>
+             Gets messages created on a specific date.
+             </summary>
+             <param name="createdDate">The created date.</param>
+             <returns>
+             The messages list. If no messages are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var yesterdayMessages = messageManager.GetMessagesByCreatedDate(DateTime.UtcNow.AddDays(-1).Date);
+            
+             foreach (var message in yesterdayMessages)
+             {
+               this.ShowMessage(message);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.GetPostedMessages">
+             <summary>
+             Gets all messages posted to a social network.
+             </summary>
+             <returns>
+             The messages list. If no messages are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var postedMessages = messageManager.GetPostedMessages();
+            
+             foreach (var postedMessage in postedMessages)
+             {
+               this.ShowMessage(postedMessage);
+            
+               messageStatisticsManager.RefreshMessageStatistics(postedMessage.Id);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.GetPostedMessages(System.DateTime)">
+             <summary>
+             Gets messages posted to a social network on a specific date.
+             </summary>
+             <param name="postedDate">The posted date.</param>
+             <returns>
+             The messages list. If no messages are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var postedMessages = messageManager.GetPostedMessages(DateTime.UtcNow.Date);
+            
+             foreach (var postedMessage in postedMessages)
+             {
+               this.ShowMessage(postedMessage);
+            
+               messageStatisticsManager.RefreshMessageStatistics(postedMessage.Id);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.GetNotPostedMessages">
+             <summary>
+             Gets all messages that are not posted to a social network.
+             </summary>
+             <returns>
+             The messages list. If no messages are found an empty list is returned.
+             </returns>
+             <example>
+             <code>
+             var pendingMessages = messageManager.GetNotPostedMessages();
+            
+             foreach (var message in pendingMessages)
+             {
+               this.ShowMessage(message);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.GetMessagesReadyToPostAutomatically(System.Collections.Generic.IEnumerable{Sitecore.Social.Domain.Model.Identifier})">
+             <summary>
+             Gets messages that are ready to be posted automatically.
+             </summary>
+             <param name="accountIds">The account ids.</param>
+             <returns>
+             The messages list. If no messages are found an empty list is returned.
+             </returns>
+             <remarks>
+             This method will search messages by the following parameters:
+             <list type="bullet">
+             <item><description>Content posting configuration.</description></item>
+             <item><description>Content item is published.</description></item>
+             <item><description>"Post automatically" is checked.</description></item>
+             <item><description>Message is not in a workflow. Or message is in a final workflow state.</description></item>
+             <item><description>Message is not posted.</description></item>
+             </list>
+             </remarks>
+             <example>
+             <code>
+             var readyToPostAutomaticallyMessages = messageManager.GetMessagesReadyToPostAutomatically(accountIds);
+            
+             foreach (var message in readyToPostAutomaticallyMessages)
+             {
+               messageManager.PostMessage(message.Id);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.GetMessagesCount(System.String)">
+             <summary>
+             Gets number of messages attached to specific container.
+             </summary>
+             <param name="container">The container.</param>
+             <returns>
+             The number of messages attached to the specific container.
+             </returns>
+             <example>
+             <code>
+             var homeItemMessagesCount = messageManager.GetMessagesCount("sitecore://master/{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}?lang=en&amp;ver=1");
+            
+             Console.WriteLine("There are {0} messages attached to /sitecore/content/home item.", homeItemMessagesCount);
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.CreateMessage(Sitecore.Social.Domain.Model.Message)">
+             <summary>
+             Creates a message.
+             </summary>
+             <param name="message">The message to create.</param>
+             <remarks>
+             <list type="bullet">
+             <item>
+             <description>The <see cref="P:Sitecore.Social.Domain.Model.Message.Id"/> field will contain identifier of the created message.</description>
+             </item>
+             <item>
+             <description>
+             To post messages automatically on a goal triggering the following rule should be configured for the goal:
+             <list type="bullet">
+             <item>
+             <term>condition</term>
+             <description>System: where true (actions always execute)</description>
+             </item>
+             <item>
+             <term>action</term>
+             <description>Social: post associated messages</description>
+             </item>
+             </list>
+             </description>
+             </item>
+             </list>
+             </remarks>
+             <exception cref="T:Sitecore.Social.Exceptions.PostingConfigurationBuilderIsNotFoundException">Posting configuration builder is not found.</exception>
+             <exception cref="T:System.InvalidCastException">Invalid casts occured.</exception>
+             <exception cref="T:System.FormatException">Invalid values are presented.</exception>
+             <exception cref="T:Sitecore.Exceptions.ItemNotFoundException">Item is not found.</exception>
+             <exception cref="T:Sitecore.Social.Exceptions.MessageDataBuilderIsNotFoundException">Message data builder is not found.</exception>
+             <example>
+             <code>
+             var facebookMessageData = new FacebookMessageData
+             {
+               CampaignId = campaignId,
+               Link = "&lt;link linktype=\"internal\" url=\"/Home.aspx\" querystring=\"sc_lang=en\" target=\"\" id=\"{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}\" /&gt;",
+               LinkTitle = ".NET 4.5 is released",
+               LinkDescription = "Latest news from .NET World",
+               LinkImage = "&lt;image mediaid=\"{EBA7F6D5-8C28-4304-B976-12E9DDBCF32A}\" mediapath=\"/Images/hero3\" src=\"~/media/EBA7F6D58C284304B97612E9DDBCF32A.ashx\" /&gt;",
+               Text = ".NET 4.5 is released. Enjoy it!"
+             };
+            
+             var contentPostingConfiguration = new ContentPostingConfiguration("sitecore://master/{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}?lang=en&amp;ver=1", facebookAccountId);
+            
+             var facebookMessage = new Message(facebookNetworkId, facebookMessageData, contentPostingConfiguration);
+            
+             messageManager.CreateMessage(facebookMessage);
+             
+             this.ShowMessage(facebookMessage);
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.UpdateMessage(Sitecore.Social.Domain.Model.Message)">
+             <summary>
+             Updates the message.
+             </summary>
+             <param name="message">The message to update.</param>
+             <exception cref="T:Sitecore.Social.Exceptions.PostingConfigurationBuilderIsNotFoundException">Posting configuration builder is not found.</exception>
+             <exception cref="T:System.InvalidCastException">Invalid casts occured.</exception>
+             <exception cref="T:System.FormatException">Invalid values are presented.</exception>
+             <exception cref="T:Sitecore.Exceptions.ItemNotFoundException">Item is not found.</exception>
+             <exception cref="T:Sitecore.Social.Exceptions.MessageDataBuilderIsNotFoundException">Message data builder is not found.</exception>
+             <example>
+             <code>
+             var facebookMessage = messageManager.GetMessage(facebookMessageId);
+            
+             if (!facebookMessage.IsEmpty)
+             {
+               var facebookMessageData = (FacebookMessageData)facebookMessage.MessageData;
+               facebookMessageData.Text += "updated";
+               facebookMessageData.LinkDescription += "updated";
+            
+               messageManager.UpdateMessage(facebookMessage);
+            
+               this.ShowMessage(facebookMessage);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.DeleteMessage(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Deletes the message.
+             </summary>
+             <param name="messageId">The message id.</param>
+             <exception cref="T:Sitecore.Exceptions.ItemNotFoundException">Item is not found.</exception>
+             <example>
+             <code>
+             messageManager.DeleteMessage(messageId);
+            
+             Console.WriteLine("Deleted!");
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.PostMessage(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Posts the message to a social network.
+             </summary>
+             <param name="messageId">The message id.</param>
+             <exception cref="T:Sitecore.Exceptions.ItemNotFoundException">Item is not found.</exception>
+             <exception cref="T:Sitecore.Social.Exceptions.PostingConfigurationBuilderIsNotFoundException">Posting configuration builder is not found.</exception>
+             <exception cref="T:System.InvalidCastException">Invalid casts occured.</exception>
+             <exception cref="T:System.FormatException">Invalid values are presented.</exception>
+             <example>
+             <code>
+             messageManager.PostMessage(messageId);
+            
+             var messageStatus = messageManager.GetMessageStatus(messageId);
+             if (!messageStatus.IsEmpty &amp;&amp; (messageStatus.AccountStatus.PostingStatus is FailedPostingStatus))
+             {
+               Console.WriteLine("Account Id: {0}, ErrorText: {1}", messageStatus.AccountStatus.AccountId, ((FailedPostingStatus)messageStatus.AccountStatus.PostingStatus).ErrorText);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.PostMessage(Sitecore.Social.Domain.Model.Identifier,System.Collections.Generic.IDictionary{System.String,System.String})">
+             <summary>
+             Posts the message.
+             </summary>
+             <param name="messageId">The message id.</param>
+             <param name="tokensToReplace">The tokens to be replaced with the values during posting.</param>
+             <exception cref="T:Sitecore.Exceptions.ItemNotFoundException">Item is not found.</exception>
+             <exception cref="T:Sitecore.Social.Exceptions.PostingConfigurationBuilderIsNotFoundException">Posting configuration builder is not found.</exception>
+             <exception cref="T:System.InvalidCastException">Invalid casts occured.</exception>
+             <exception cref="T:System.FormatException">Invalid values are presented.</exception>
+             <example>
+             <code>
+             var tokensToReplace = new Dictionary&lt;string, string&gt; { { "image", "http://domain/img.png" } };
+             
+             messageManager.PostMessage(messageId, tokensToReplace);
+            
+             var messageStatus = messageManager.GetMessageStatus(messageId);
+             if (!messageStatus.IsEmpty &amp;&amp; (messageStatus.AccountStatus.PostingStatus is FailedPostingStatus))
+             {
+               Console.WriteLine("Account Id: {0}, ErrorText: {1}", messageStatus.AccountStatus.AccountId, ((FailedPostingStatus)messageStatus.AccountStatus.PostingStatus).ErrorText);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.PostMessage(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.ApplicationCredentials,Sitecore.Social.Domain.Model.AccountCredentials,Sitecore.Social.Domain.Model.MessageData)">
+            <summary>
+            Posts a message directly to a social network.
+            </summary>
+            <param name="networkId">The network id.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="accountCredentials">The account credentials.</param>
+            <param name="messageData">The message data.</param>
+            <returns>The message id at the social network.</returns>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AuthException">Some problems during posting.</exception>
+            <exception cref="T:Sitecore.Social.Exceptions.PostingIsNotMaintainedByProviderException">Posting is not maintained by provider.</exception>
+            <example>
+            <code>
+            var facebookMessageData = new FacebookMessageData
+            {
+              CampaignId = campaignId,
+              Link = "http://social-local.com/?sc_lang=en&amp;sc_camp=110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9",
+              LinkTitle = ".NET 4.5 is released",
+              LinkDescription = "Latest news from .NET World",
+              LinkImage = "http://social-local.com/~/media/EBA7F6D58C284304B97612E9DDBCF32A.ashx",
+              Text = ".NET 4.5 is released. Enjoy it!"
+            };
+            
+            var messageId = messageManager.PostMessage(facebookNetworkId, facebookApplicationCredentials, facebookAccountCredentials, facebookMessageData);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.PostMessage(System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,Sitecore.Social.Domain.Model.AccountCredentials,Sitecore.Social.Domain.Model.MessageData)">
+            <summary>
+            Posts a message directly to a social network.
+            </summary>
+            <param name="networkName">The network name. Case sensitive.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="accountCredentials">The account credentials.</param>
+            <param name="messageData">The message data.</param>
+            <returns>The message id at the social network.</returns>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AuthException">Some problems during posting.</exception>
+            <example>
+            <code>
+            var facebookMessageData = new FacebookMessageData
+            {
+              CampaignId = campaignId,
+              Link = "http://social-local.com/?sc_lang=en&amp;sc_camp=110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9",
+              LinkTitle = ".NET 4.5 is released",
+              LinkDescription = "Latest news from .NET World",
+              LinkImage = "http://social-local.com/~/media/EBA7F6D58C284304B97612E9DDBCF32A.ashx",
+              Text = ".NET 4.5 is released. Enjoy it!"
+            };
+            
+            var messageId = messageManager.PostMessage("Facebook", facebookApplicationCredentials, facebookAccountCredentials, facebookMessageData);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.GetMessageStatus(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Gets the message status.
+             </summary>
+             <param name="messageId">The message id.</param>
+             <returns>
+             The <see cref="T:Sitecore.Social.Domain.Model.MessageStatus"/>. If the status is not defined <see cref="F:Sitecore.Social.Domain.Model.MessageStatus.Empty"/> is returned.
+             </returns>
+             <exception cref="T:Sitecore.Social.Exceptions.MessageStatusBuilderIsNotFoundException">Message status builder is not found.</exception>
+             <example>
+             <code>
+             var messageStatus = messageManager.GetMessageStatus(messageId);
+            
+             if (!messageStatus.IsEmpty &amp;&amp; (messageStatus.AccountStatus.PostingStatus is FailedPostingStatus))
+             {
+               Console.WriteLine("Account Id: {0}, ErrorText: {1}", messageStatus.AccountStatus.AccountId, ((FailedPostingStatus)messageStatus.AccountStatus.PostingStatus).ErrorText);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageManager.GetMessageComments(System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,Sitecore.Social.Domain.Model.AccountCredentials,System.String)">
+             <summary>
+             Gets the message comments.
+             </summary>
+             <param name="networkName">Name of the network.</param>
+             <param name="applicationCredentials">The application credentials.</param>
+             <param name="accountCredentials">The account credentials.</param>
+             <param name="networkMessageId">The network message id.</param>
+             <returns>The message comments list. If no comments are found an empty list is returned.</returns>
+             <exception cref="T:System.InvalidOperationException">If any of the input parameters is null or empty.</exception>
+             <exception cref="T:System.InvalidCastException">Invalid casts occured.</exception>
+             <exception cref="T:Sitecore.Social.Exceptions.PostingConfigurationBuilderIsNotFoundException">Posting configuration builder is not found.</exception>
+             <exception cref="T:Sitecore.Exceptions.ItemNotFoundException">Item is not found.</exception>
+             <example>
+             <code>
+              var messageComments = messageManager.GetMessageComments("Facebook", facebookApplicationCredentials, facebookAccountCredentials, "1282068888_4295686592014");
+            
+              foreach (var messageComment in messageComments)
+              {
+                this.ShowMessageComment(messageComment);
+              }
+             </code>
+             </example>
+        </member>
+        <member name="P:Sitecore.Social.Api.MessageManager.MessageBusinessManager">
+            <summary>
+            Gets or sets the message business manager.
+            </summary>
+            <value>
+            The message business manager.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Api.MessageManager.LogManager">
+            <summary>
+            Gets or sets the log manager.
+            </summary>
+            <value>
+            The log manager.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Api.MessageStatisticsManager">
+            <summary>
+            Defines the methods that are used to manage social network message statistics.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Api.MessageStatisticsManager.messageStatisticsBusinessManager">
+            <summary>
+            The message statistics business manager.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageStatisticsManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.MessageStatisticsManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageStatisticsManager.#ctor(Sitecore.Social.IMessageStatisticsBusinessManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.MessageStatisticsManager"/> class.
+            </summary>
+            <param name="messageStatisticsBusinessManager">The message statistics business manager.</param>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageStatisticsManager.GetMessageStatistics(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Gets message statistics.
+             </summary>
+             <param name="messageId">The message id.</param>
+             <returns>
+             The message statistics.
+             </returns>
+             <example>
+             <code>
+             var messageStatistics = messageStatisticsManager.GetMessageStatistics(facebookMessageId);
+            
+             if (!messageStatistics.IsEmpty)
+             {
+               Console.WriteLine(
+                "MessageId: {0}, StartRefreshDate: {1}, LastRefreshDate: {2}", 
+                messageStatistics.MessageId, 
+                messageStatistics.StartRefreshDate.ToNullableServerTimeZone(),
+                messageStatistics.LastRefreshDate.ToNullableServerTimeZone());
+             
+               Console.WriteLine("AccountId: {0}", messageStatistics.AccountsStatistics.AccountId);
+            
+               foreach (var statisticsCounter in messageStatistics.AccountsStatistics.StatisticsCounters)
+               {
+                 Console.WriteLine("Name: {0}, Number: {1}", statisticsCounter.Name, ((NumberCounter)statisticsCounter).Number);
+               }
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageStatisticsManager.RefreshMessageStatistics(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Refreshes message statistics.
+             </summary>
+             <param name="messageId">The message id.</param>
+             <example>
+             <code>
+             messageStatisticsManager.RefreshMessageStatistics(messageId);
+            
+             var messageStatistics = messageStatisticsManager.GetMessageStatistics(messageId);
+            
+             if (!messageStatistics.IsEmpty &amp;&amp; (messageStatistics.AccountsStatistics.StatisticsStatus is UpdatedStatisticsStatus))
+             {
+              Console.WriteLine("Account #{0} statistics is updated.", messageStatistics.AccountsStatistics.AccountId);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageStatisticsManager.RefreshMessageStatistics(Sitecore.Social.Domain.Model.Identifier,System.Boolean)">
+             <summary>
+             Refreshes message statistics. You can reset statistics refreshing.
+             </summary>
+             <param name="messageId">The message id.</param>
+             <param name="resetStatisticsRefreshing"><c>true</c> if it needs to reset the statistics refreshing; otherwise, <c>false</c>.</param>
+             <example>
+             <code>
+             const bool ResetStatisticsRefreshing = true;
+             messageStatisticsManager.RefreshMessageStatistics(messageId, ResetStatisticsRefreshing);
+            
+             var messageStatistics = messageStatisticsManager.GetMessageStatistics(messageId);
+             
+             Console.WriteLine("A StartRefreshDate is changed: {0}", messageStatistics.StartRefreshDate.ToNullableServerTimeZone());
+            
+             if (!messageStatistics.IsEmpty &amp;&amp; (messageStatistics.AccountsStatistics.StatisticsStatus is UpdatedStatisticsStatus))
+             {
+               Console.WriteLine("Account #{0} statistics is updated.", messageStatistics.AccountsStatistics.AccountId);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageStatisticsManager.GetStatisticsCounterNames(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the statistics counters for the specific social network.
+            </summary>
+            <param name="networkId">The network id.</param>
+            <returns>The collection of statistics counters.</returns>
+            <example>
+            <code>
+            var counterNames = messageStatisticsManager.GetStatisticsCounterNames(networkId);
+            foreach (var counterName in counterNames)
+            {
+               Console.WriteLine("Counter name: {0}, Counter display name: {1}", counterName.Name, counterName.DisplayName);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.MessageStatisticsManager.GetStatisticsCounterNames(System.String)">
+            <summary>
+            Gets the statistics counters for the specific social network.
+            </summary>
+            <param name="networkName">The network name.</param>
+            <returns>
+            The collection of statistics counters.
+            </returns>
+            <example>
+            <code>
+            var counterNames = messageStatisticsManager.GetStatisticsCounterNames(networkId);
+            foreach (var counterName in counterNames)
+            {
+               Console.WriteLine("Counter name: {0}, Counter display name: {1}", counterName.Name, counterName.DisplayName);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:Sitecore.Social.Api.NetworkManager">
+            <summary>
+            Defines the methods that are used to manage social networks.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.NetworkManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.NetworkManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.NetworkManager.#ctor(Sitecore.Social.INetworkBusinessManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.NetworkManager"/> class.
+            </summary>
+            <param name="networkBusinessManager">The network business manager.</param>
+        </member>
+        <member name="M:Sitecore.Social.Api.NetworkManager.GetNetworks">
+             <summary>
+             Gets all registered networks.
+             </summary>
+             <returns>The network list. If there are no networks, an empty list is returned.</returns>
+             <example>
+             <code>
+             var networks = networkManager.GetNetworks();
+            
+             foreach (var network in networks)
+             {
+               this.ShowNetwork(network);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.NetworkManager.GetNetwork(System.String)">
+            <summary>
+            Gets a network by name.
+            </summary>
+            <param name="networkName">The name of the network (case-sensitive).</param>
+            <returns>The network. If the network is not found <see cref="F:Sitecore.Social.Domain.Model.Network.Empty"/> is returned.</returns>
+            <example>
+            <code>
+            var facebookNetwork = networkManager.GetNetwork("Facebook");
+            if (!facebookNetwork.IsEmpty)
+            {
+              this.ShowNetwork(facebookNetwork);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.NetworkManager.GetNetwork(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets a network by id.
+            </summary>
+            <param name="networkId">Id of the network.</param>
+            <returns>The network. If the network is not found <see cref="F:Sitecore.Social.Domain.Model.Network.Empty"/> is returned.</returns>
+            <example>
+            <code>
+            var facebookNetwork = networkManager.GetNetwork(facebookNetworkId);
+            if (!facebookNetwork.IsEmpty)
+            {
+              this.ShowNetwork(facebookNetwork);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.NetworkManager.CanPostTo(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Determines whether it is possible to post messages to the network.
+             </summary>
+             <param name="networkId">The network id.</param>
+             <returns>
+               <c>true</c> if it is possible to post messages to the network; otherwise, <c>false</c>.
+               <remarks><c>false</c> is returned, if the network is not found.</remarks>
+             </returns>
+             <example>
+             <code>
+             var result = networkManager.CanPostTo(facebookId);
+            
+             Console.WriteLine("Can post to network: {0}", result);
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.NetworkManager.CanPostTo(System.String)">
+             <summary>
+             Determines whether it is possible to post messages to the network.
+             </summary>
+             <param name="networkName">The network name.</param>
+             <returns>
+               <c>true</c> if it is possible to post messages to the network; otherwise, <c>false</c>.
+               <remarks><c>false</c> is returned, if the network is not found.</remarks>
+             </returns>
+             <example>
+             <code>
+             var result = networkManager.CanPostTo("Facebook");
+            
+             Console.WriteLine("Can post to network: {0}", result);
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.NetworkManager.CanRenewAccount(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Determines whether it is possible to renew a network account.
+             </summary>
+             <param name="networkId">The network id.</param>
+             <returns>
+               <c>true</c> if it is possible to renew the network account; otherwise, <c>false</c>.
+               <remarks><c>false</c> is returned, if the network is not found.</remarks>
+             </returns>
+             <example>
+             <code>
+             var result = networkManager.CanRenewAccount(facebookId);
+            
+             Console.WriteLine("Can renew network account: {0}", result);
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.NetworkManager.CanRenewAccount(System.String)">
+             <summary>
+             Determines whether it is possible to renew a network account.
+             </summary>
+             <param name="networkName">The network name (case-sensitive).</param>
+             <returns>
+               <c>true</c> if it is possible to renew the network account; otherwise, <c>false</c>.
+               <remarks><c>false</c> is returned, if the network is not found.</remarks>
+             </returns>
+             <example>
+             <code>
+             var result = networkManager.CanRenewAccount("Facebook");
+            
+             Console.WriteLine("Can renew network account: {0}", result);
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.NetworkManager.CanGetAccountInfo(Sitecore.Social.Domain.Model.Identifier)">
+             <summary>
+             Determines whether it is possible to get a network account info.
+             </summary>
+             <param name="networkId">The network id.</param>
+             <returns>
+               <c>true</c> if it is possible to get the network account info; otherwise, <c>false</c>.
+               <remarks><c>false</c> is returned, if the network is not found.</remarks>
+             </returns>
+             <example>
+             <code>
+             var result = networkManager.CanGetAccountInfo(facebookId);
+            
+             Console.WriteLine("Can get a network account info: {0}", result);
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.NetworkManager.CanGetAccountInfo(System.String)">
+             <summary>
+             Determines whether it is possible to get a network account info.
+             </summary>
+             <param name="networkName">The network name (case-sensitive).</param>
+             <returns>
+               <c>true</c> if it is possible to get the network account info; otherwise, <c>false</c>.
+               <remarks><c>false</c> is returned, if the network is not found.</remarks>
+             </returns>
+             <example>
+             <code>
+             var result = networkManager.CanGetAccountInfo("Facebook");
+            
+             Console.WriteLine("Can get a network account info: {0}", result);
+             </code>
+             </example>
+        </member>
+        <member name="P:Sitecore.Social.Api.NetworkManager.NetworkBusinessManager">
+            <summary>
+            Gets or sets the network business manager.
+            </summary>
+            <value>
+            The network business manager.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Api.PostingPreferenceManager">
+            <summary>
+            Defines the methods that are used to manage user’s posting preferences.
+            </summary>
+            <remarks>
+            Use it to manage posting preferences of the website visitors (whether or not they want messages to be posted automatically 
+            on their social network walls, for example, when you have configured Sitecore to post messages to the social network when 
+            a visitor achieves a goal on the website).
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Api.PostingPreferenceManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.PostingPreferenceManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.PostingPreferenceManager.#ctor(Sitecore.Social.IPostingPreferenceBusinessManager,Sitecore.Social.Domain.IMessageManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.PostingPreferenceManager"/> class.
+            </summary>
+            <param name="postingPreferenceBusinessManager">The posting preference business manager.</param>
+            <param name="messageManager">The message manager.</param>
+        </member>
+        <member name="M:Sitecore.Social.Api.PostingPreferenceManager.GetPostingPreferences(System.String,System.String)">
+             <summary>
+             Gets user's posting preferences for all messages attached to the specific container.
+             </summary>
+             <param name="userName">Name of the user.</param>
+             <param name="container">The container.</param>
+             <returns>
+             The posting preference list. If no preferences are found an empty list is returned.
+             </returns>
+             <seealso cref="M:Sitecore.Social.Api.Extensions.UserExtensions.GetPostingPreferences(System.Security.Principal.IPrincipal,System.String)"/>
+             <exception cref="T:System.NotSupportedException">Automatic posting preference is not supported.</exception>
+             <example>
+             <code>
+             var postingPreferences = postingPreferenceManager.GetPostingPreferences(@"extranet\johnsmith", "sitecore://master/{968897F1-328A-489D-88E8-BE78F4370958}?lang=en&amp;ver=1");
+            
+             foreach (var postingPreference in postingPreferences)
+             {
+               Console.WriteLine("Message Id: {0}, Automatic Posting Preference: {1}", postingPreference.MessageId, postingPreference.AutomaticPostingPreference);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.PostingPreferenceManager.GetPostingPreference(System.String,Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets user's posting preferences for the specific message.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="messageId">The message id.</param>
+            <returns>
+            The posting preference. If the posting preference is not found the <see cref="F:Sitecore.Social.Domain.Model.AutomaticPostingPreference.Default"/> value is used.
+            </returns>
+            <seealso cref="P:Sitecore.Social.Domain.Model.PostingPreference.AutomaticPostingPreference"/>
+            <seealso cref="M:Sitecore.Social.Api.Extensions.UserExtensions.GetPostingPreference(System.Security.Principal.IPrincipal,Sitecore.Social.Domain.Model.Identifier)"/>
+            <example>
+            <code>
+            var postingPreference = postingPreferenceManager.GetPostingPreference(@"extranet\johnsmith", messageId);
+            Console.WriteLine("Message Id: {0}, Automatic Posting Preference: {1}", postingPreference.MessageId, postingPreference.AutomaticPostingPreference);
+            </code>
+            </example>
+            <exception cref="T:System.NotSupportedException">Automatic posting preference is not supported.</exception>
+        </member>
+        <member name="M:Sitecore.Social.Api.PostingPreferenceManager.SetPostingPreference(System.String,Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.AutomaticPostingPreference)">
+            <summary>
+            Sets user's posting preferences to the specific message.
+            </summary>
+            <param name="userName">The user name.</param>
+            <param name="messageId">The message id.</param>
+            <param name="automaticPostingPreference">The automatic posting preference.</param>
+            <exception cref="T:System.Exception">Message is not found.</exception>
+            <exception cref="T:System.Exception">Invalid message template.</exception>
+            <exception cref="T:System.Exception">Unable to set preference to the anonymous user.</exception>
+            <exception cref="T:System.NotSupportedException">Automatic posting preference is not supported.</exception>
+            <seealso cref="M:Sitecore.Social.Api.Extensions.UserExtensions.SetPostingPreference(System.Security.Principal.IPrincipal,Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.AutomaticPostingPreference)"/>
+            <example>
+            <code>
+            postingPreferenceManager.SetPostingPreference(@"extranet\johnsmith", messageId, AutomaticPostingPreference.Denied);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.PostingPreferenceManager.SetPostingPreference(System.String,System.String,Sitecore.Social.Domain.Model.AutomaticPostingPreference)">
+            <summary>
+            Sets user's posting preferences for all messages attached to the specific container.
+            </summary>
+            <param name="userName">The user name.</param>
+            <param name="container">The container.</param>
+            <param name="automaticPostingPreference">The automatic posting preference.</param>
+            <seealso cref="M:Sitecore.Social.Api.Extensions.UserExtensions.SetPostingPreference(System.Security.Principal.IPrincipal,System.String,Sitecore.Social.Domain.Model.AutomaticPostingPreference)"/>
+            <exception cref="T:System.Exception">Unable to set preference to the anonymous user.</exception>
+            <exception cref="T:System.NotSupportedException">Automatic posting preference is not supported.</exception>
+            <example>
+            <code>
+            postingPreferenceManager.SetPostingPreference(@"extranet\johnsmith", "sitecore://master/{968897F1-328A-489D-88E8-BE78F4370958}?lang=en&amp;ver=1", AutomaticPostingPreference.Denied);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.PostingPreferenceManager.AllowAutomaticPostingByDefault">
+             <summary>
+             Determines if automatic posting is allowed by default.
+             </summary>
+             <remarks>
+             The value is set in the [website_root]\app_config\include\social\sitecore.social.config file, in the "Social.AllowMessageGoalPostingByDefault" setting
+             </remarks>
+             <returns>
+               <c>true</c> if automatic posting is allowed by default, otherwise <c>false</c>.
+             </returns>
+             <example>
+             <code>
+             var allowAutomaticPostingByDefault = postingPreferenceManager.AllowAutomaticPostingByDefault();
+            
+             Console.WriteLine("Allow automatic posting by default: {0}", allowAutomaticPostingByDefault);
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.PostingPreferenceManager.AllowAutomaticPosting(Sitecore.Social.Domain.Model.Identifier,System.String)">
+             <summary>
+             Allows automatic message posting.
+             </summary>
+             <param name="messageId">The message id.</param>
+             <param name="userName">The user name.</param>
+             <returns><c>true</c> if automatic posting is allowed, otherwise <c>false</c>.</returns>
+             <exception cref="T:System.NotSupportedException">AutomaticPostingPreference is not supported</exception>
+             <example>
+             <code>
+             var allowAutomaticPosting = postingPreferenceManager.AllowAutomaticPosting(messageId, @"extranet\johnsmith");
+            
+             Console.WriteLine("Allow automatic posting: {0}", allowAutomaticPosting);
+             </code>
+             </example>
+        </member>
+        <member name="P:Sitecore.Social.Api.PostingPreferenceManager.MessageManager">
+            <summary>
+            Gets or sets the message manager.
+            </summary>
+            <value>
+            The message manager.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Api.PostingPreferenceManager.PostingPreferenceBusinessManager">
+            <summary>
+            Gets or sets the posting preference business manager.
+            </summary>
+            <value>
+            The posting preference business manager.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Api.SocialProfileManager">
+            <summary>
+            Defines the methods that are used to manage a social profile.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.SocialProfileManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.#ctor(Sitecore.Social.ISocialProfileBusinessManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Api.SocialProfileManager"/> class.
+            </summary>
+            <param name="socialProfileBusinessManager">
+            The social profile business manager.
+            </param>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.GetSocialProfiles(System.String)">
+            <summary>
+            Gets social profiles.
+            </summary>
+            <param name="userName">
+            The user name.
+            </param>
+            <returns>
+            The list of social profiles.
+            </returns>
+            <example>
+            <code>
+            var socialProfiles = socialProfileManager.GetSocialProfiles(@"extranet\johnsmith");
+            
+            foreach (var socialProfile in socialProfiles)
+            {
+              this.ShowSocialProfile(socialProfile);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.GetSocialProfiles(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets social profiles.
+            </summary>
+            <param name="contactId">
+            The contact identifier.
+            </param>
+            <returns>
+            The list of social profiles.
+            </returns>
+            <example>
+            <code>
+            var socialProfiles = socialProfileManager.GetSocialProfiles(contactId);
+            
+            foreach (var socialProfile in socialProfiles)
+            {
+              this.ShowSocialProfile(socialProfile);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.GetSocialProfile(System.String,System.String)">
+            <summary>
+            Gets a social profile.
+            </summary>
+            <param name="userName">
+            The user name.
+            </param>
+            <param name="networkName">
+            The network name.
+            </param>
+            <returns>
+            The social profile. If there are no profiles, an empty profile is returned.
+            </returns>
+            <example>
+            <code>
+            var facebookSocialProfile = socialProfileManager.GetSocialProfile(@"extranet\johnsmith", "Facebook");
+            
+            if (!facebookSocialProfile.IsEmpty)
+            {
+              this.ShowSocialProfile(facebookSocialProfile);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.GetSocialProfile(Sitecore.Social.Domain.Model.Identifier,System.String)">
+            <summary>
+            Gets a social profile.
+            </summary>
+            <param name="contactId">
+            The contact identifier.
+            </param>
+            <param name="networkName">
+            The network name.
+            </param>
+            <returns>
+            The social profile. If there are no profiles, an empty profile is returned.
+            </returns>
+            <example>
+            <code>
+            var facebookSocialProfile = socialProfileManager.GetSocialProfile(contactId, "Facebook");
+            
+            if (!facebookSocialProfile.IsEmpty)
+            {
+              this.ShowSocialProfile(facebookSocialProfile);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.GetPrimarySocialProfile(System.String)">
+            <summary>
+            Gets a primary social profile.
+            </summary>
+            <param name="userName">
+            The user name.
+            </param>
+            <returns>
+            The primary social profile. If there are no profiles, an empty profile is returned.
+            </returns>
+            <example>
+            <code>
+            var primarySocialProfile = socialProfileManager.GetPrimarySocialProfile(@"extranet\johnsmith");
+            
+            if (!primarySocialProfile.IsEmpty)
+            {
+              this.ShowSocialProfile(primarySocialProfile);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.GetPrimarySocialProfile(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets a primary social profile.
+            </summary>
+            <param name="contactId">
+            The contact identifier.
+            </param>
+            <returns>
+            The primary social profile. If there are no profiles, an empty profile is returned.
+            </returns>
+            <example>
+            <code>
+            var primarySocialProfile = socialProfileManager.GetPrimarySocialProfile(contactId);
+            
+            if (!primarySocialProfile.IsEmpty)
+            {
+              this.ShowSocialProfile(primarySocialProfile);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.SocialProfileExists(System.String,System.String)">
+            <summary>
+            Defines if there is a social profile in the specified network.
+            </summary>
+            <param name="userName">The user name.</param>
+            <param name="networkName">The network name.</param>
+            <returns>
+              <c>true</c> if the social profile exists; otherwise, <c>false</c>.
+            </returns>
+            <example>
+            <code>
+            var result = socialProfileManager.SocialProfileExists(@"extranet\johnsmith", "Facebook");
+            
+            Console.WriteLine("The social profile exists: {0}", result);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.SocialProfileExists(Sitecore.Social.Domain.Model.Identifier,System.String)">
+            <summary>
+            Defines if there is a social profile in the specified network.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="networkName">The network name.</param>
+            <returns>
+              <c>true</c> if the social profile exists; otherwise, <c>false</c>.
+            </returns>
+            <example>
+            <code>
+            var result = socialProfileManager.SocialProfileExists(contactId, "Facebook");
+            
+            Console.WriteLine("The social profile exists: {0}", result);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.AttachSocialProfile(System.String,Sitecore.Social.Domain.Model.SocialProfile)">
+            <summary>
+            Attaches a social profile to the specified user.
+            </summary>
+            <param name="userName">
+            The user name.
+            </param>
+            <param name="socialProfile">
+            The social profile.
+            </param>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AccountInUserDuplicatedException">Following user already has another attached account of the same network.</exception>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AccountInDomainDuplicatedException">There is another user with the same account in domain.</exception>
+            <example>
+            <code>
+            try 
+            {
+              var facebookProfile = new SocialProfile
+              {
+                IdentityData =
+                {
+                  ApplicationCredentials = 
+                  {
+                    ApplicationKey = "jkdsf90392===399",
+                    ApplicationSecret = "128281--==39939"
+                  },
+                  AccountCredentials = 
+                  {
+                    AccessToken = "239842+-02399==",
+                    AccessTokenSecret = "8282271371232=-29382855"
+                  },
+                  Email = "john.smith@fakedomain.com",
+                  FullName = "John Smith",
+                  NetworkAccountId = "888127718888463"
+                },
+                NetworkName = "Facebook",
+                Fields = new Dictionary&lt;string, string&gt;
+                {
+                  {
+                    "timezone", "UTC+8"
+                  },
+                  {
+                    "gender", "male"
+                  }
+                }
+              };
+            
+              socialProfileManager.AttachSocialProfile(@"extranet\johnsmith", facebookProfile);
+              this.ShowSocialProfile(facebookProfile);
+            }
+            catch (AccountInUserDuplicatedException)
+            {
+              // Following user already has another attached account of the same network.
+            }
+            catch (AccountInDomainDuplicatedException)
+            {
+              // There is another user with the same account in domain.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.AttachSocialProfile(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.SocialProfile)">
+            <summary>
+            Attaches a social profile to the specified contact.
+            </summary>
+            <param name="contactId">
+            The contact identifier.
+            </param>
+            <param name="socialProfile">
+            The social profile.
+            </param>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AccountInUserDuplicatedException">Following user already has another attached account of the same network.</exception>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AccountInDomainDuplicatedException">There is another user with the same account in domain.</exception>
+            <example>
+            <code>
+            try 
+            {
+              var facebookProfile = new SocialProfile
+              {
+                IdentityData =
+                {
+                  ApplicationCredentials = 
+                  {
+                    ApplicationKey = "jkdsf90392===399",
+                    ApplicationSecret = "128281--==39939"
+                  },
+                  AccountCredentials = 
+                  {
+                    AccessToken = "239842+-02399==",
+                    AccessTokenSecret = "8282271371232=-29382855"
+                  },
+                  Email = "john.smith@fakedomain.com",
+                  FullName = "John Smith",
+                  NetworkAccountId = "888127718888463"
+                },
+                NetworkName = "Facebook",
+                Fields = new Dictionary&lt;string, string&gt;
+                {
+                  {
+                    "timezone", "UTC+8"
+                  },
+                  {
+                    "gender", "male"
+                  }
+                }
+              };
+            
+              socialProfileManager.AttachSocialProfile(contactId, facebookProfile);
+              this.ShowSocialProfile(facebookProfile);
+            }
+            catch (AccountInUserDuplicatedException)
+            {
+              // Following user already has another attached account of the same network.
+            }
+            catch (AccountInDomainDuplicatedException)
+            {
+              // There is another user with the same account in domain.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.DetachSocialProfile(System.String,System.String)">
+            <summary>
+            Removes a social profile from the specified user.
+            </summary>
+            <param name="userName">
+            The user name.
+            </param>
+            <param name="networkName">
+            The network name.
+            </param>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AccountIsNotExistException">Following user has not account in this network.</exception>
+            <example>
+            <code>
+            try 
+            {
+              socialProfileManager.DetachSocialProfile(@"extranet\johnsmith", "Facebook");
+            }
+            catch (AccountIsNotExistException)
+            {
+              // Following user has not account in this network.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.DetachSocialProfile(Sitecore.Social.Domain.Model.Identifier,System.String)">
+            <summary>
+            Removes a social profile from the specified contact.
+            </summary>
+            <param name="contactId">
+            The contact identifier.
+            </param>
+            <param name="networkName">
+            The network name.
+            </param>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AccountIsNotExistException">Following user has not account in this network.</exception>
+            <example>
+            <code>
+            try 
+            {
+              socialProfileManager.DetachSocialProfile(contactId, "Facebook");
+            }
+            catch (AccountIsNotExistException)
+            {
+              // Following user has not account in this network.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.UpdateSocialProfile(System.String,Sitecore.Social.Domain.Model.SocialProfile)">
+            <summary>
+            Updates a social profile of the specified user.
+            </summary>
+            <param name="userName">
+            The user name.
+            </param>
+            <param name="socialProfile">
+            The social profile.
+            </param>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AccountIsNotExistException">Following user has not account in this network.</exception>
+            <example>
+            <code>
+            try 
+            {
+              var facebookSocialProfile = socialProfileManager.GetSocialProfile(@"extranet\johnsmith", "Facebook");
+            
+              if (!facebookSocialProfile.IsEmpty)
+              {
+                facebookSocialProfile.IdentityData.Email = facebookSocialProfile.IdentityData.Email + "updated";
+                socialProfileManager.UpdateSocialProfile(@"extranet\johnsmith", facebookSocialProfile);
+              }
+            
+              facebookSocialProfile = socialProfileManager.GetSocialProfile(@"extranet\johnsmith", "Facebook");
+              this.ShowSocialProfile(facebookSocialProfile);
+            }
+            catch (AccountIsNotExistException)
+            {
+              // Following user has not account in this network.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.UpdateSocialProfile(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.SocialProfile)">
+            <summary>
+            Updates a social profile of the specified contact.
+            </summary>
+            <param name="contactId">
+            The contact identifier.
+            </param>
+            <param name="socialProfile">
+            The social profile.
+            </param>
+            <exception cref="!:Sitecore.Social.NetworkProviders.Exceptions.AccountIsNotExistException">Following user has not account in this network.</exception>
+            <example>
+            <code>
+            try 
+            {
+              var facebookSocialProfile = socialProfileManager.GetSocialProfile(contactId, "Facebook");
+            
+              if (!facebookSocialProfile.IsEmpty)
+              {
+                facebookSocialProfile.IdentityData.Email = facebookSocialProfile.IdentityData.Email + "updated";
+                socialProfileManager.UpdateSocialProfile(contactId, facebookSocialProfile);
+              }
+            
+              facebookSocialProfile = socialProfileManager.GetSocialProfile(contactId, "Facebook");
+              this.ShowSocialProfile(facebookSocialProfile);
+            }
+            catch (AccountIsNotExistException)
+            {
+              // Following user has not account in this network.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.RetrieveSocialProfile(System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,Sitecore.Social.Domain.Model.AccountCredentials)">
+             <summary>
+             Retrieves a social profile from the social network.
+             </summary>
+             <param name="networkName">The name of the network (case-sensitive).</param>
+             <param name="applicationCredentials">The application credentials.</param>
+             <param name="accountCredentials">The account credentials.</param>
+             <returns>
+             The social profile. If the request couldn't be executed, an <see cref="F:Sitecore.Social.Domain.Model.SocialProfile.Empty"/> is returned.
+             </returns>
+             <exception cref="T:System.InvalidCastException">The network provider is not implemented IGetAccountInfo interface.</exception>
+             <example>
+             <code>
+             if (!socialProfileManager.SocialProfileExists(@"extranet\johnsmith", "Facebook"))
+             {
+               var applicationCredentials = new ApplicationCredentials
+               {
+                 ApplicationKey = "sdhjkfvskdwe0001-23-=3",
+                 ApplicationSecret = "212dujjdasnkjdna38383"
+               };
+            
+               var accountCredentials = new AccountCredentials
+               {
+                 AccessToken = "nnvxmncvmzxcv,sdd002-304",
+                 AccessTokenSecret = "213980f90fsdfjhwqjwqeru093--1=2039="
+               };
+            
+               var socialProfile = socialProfileManager.RetrieveSocialProfile("Facebook", applicationCredentials, accountCredentials);
+            
+               if (!socialProfile.IsEmpty)
+               {
+                 socialProfileManager.AttachSocialProfile(@"extranet\johnsmith", socialProfile);
+            
+                 this.ShowSocialProfile(socialProfile);
+               }
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.RefreshSocialProfiles(System.String,System.Boolean)">
+             <summary>
+             Refreshes all social profiles attached to a user from social networks.
+             </summary>
+             <param name="userName">The user name.</param>
+             <param name="refreshAsync">if set to <c>true</c> the social profiles will be refreshed asynchronously.</param>
+             <remarks>
+             Only expired social profiles will be refreshed. 
+             The expiration configuration is defined in "Social.ProfileUpdating.DaysBeforeExpiration" setting.
+             </remarks>
+             <example>
+             <code>
+             socialProfileManager.RefreshSocialProfiles(@"extranet\johnsmith", false);
+            
+             foreach (var socialProfile in socialProfileManager.GetSocialProfiles(@"extranet\johnsmith"))
+             {
+               this.ShowSocialProfile(socialProfile);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.RefreshSocialProfiles(Sitecore.Social.Domain.Model.Identifier,System.Boolean)">
+             <summary>
+             Refreshes all social profiles attached to a contact from social networks.
+             </summary>
+             <param name="contactId">The contact identifier.</param>
+             <param name="refreshAsync">if set to <c>true</c> the social profiles will be refreshed asynchronously.</param>
+             <remarks>
+             Only expired social profiles will be refreshed. 
+             The expiration configuration is defined in "Social.ProfileUpdating.DaysBeforeExpiration" setting.
+             </remarks>
+             <example>
+             <code>
+             socialProfileManager.RefreshSocialProfiles(contactId, false);
+            
+             foreach (var socialProfile in socialProfileManager.GetSocialProfiles(contactId))
+             {
+               this.ShowSocialProfile(socialProfile);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.RefreshSocialProfiles(System.String,System.Boolean,System.Boolean)">
+             <summary>
+             Refreshes all social profiles attached to a user from social networks.
+             </summary>
+             <param name="userName">The user name.</param>
+             <param name="refreshAsync">if set to <c>true</c> the social profiles will be refreshed asynchronously.</param>
+             <param name="forceRefresh">if set to <c>true</c> the expiration configuration of the social profile will be ignored and the social profiles will be refreshed in any case.</param>
+             <example>
+             <code>
+             socialProfileManager.RefreshSocialProfiles(@"extranet\johnsmith", false, true);
+            
+             foreach (var socialProfile in socialProfileManager.GetSocialProfiles(@"extranet\johnsmith"))
+             {
+               this.ShowSocialProfile(socialProfile);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.RefreshSocialProfiles(Sitecore.Social.Domain.Model.Identifier,System.Boolean,System.Boolean)">
+             <summary>
+             Refreshes all social profiles attached to a contact from social networks.
+             </summary>
+             <param name="contactId">The contact identifier.</param>
+             <param name="refreshAsync">if set to <c>true</c> the social profiles will be refreshed asynchronously.</param>
+             <param name="forceRefresh">if set to <c>true</c> the expiration configuration of the social profile will be ignored and the social profiles will be refreshed in any case.</param>
+             <example>
+             <code>
+             socialProfileManager.RefreshSocialProfiles(contactId, false, true);
+            
+             foreach (var socialProfile in socialProfileManager.GetSocialProfiles(contactId))
+             {
+               this.ShowSocialProfile(socialProfile);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.RefreshSocialProfile(System.String,System.String)">
+            <summary>
+            Refreshes the social profile attached to a user from the specified network.
+            </summary>
+            <param name="userName">The user name.</param>
+            <param name="networkName">The network name.</param>
+            <remarks>
+            The expiration configuration of the social profile will be ignored and the social profile will be refreshed in any case.
+            </remarks>
+            <example>
+            <code>
+            if (socialProfileManager.SocialProfileExists(@"extranet\johnsmith", "Facebook"))
+            {
+              socialProfileManager.RefreshSocialProfile(@"extranet\johnsmith", "Facebook");
+              this.ShowSocialProfile(socialProfileManager.GetSocialProfile(@"extranet\johnsmith", "Facebook"));
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.RefreshSocialProfile(Sitecore.Social.Domain.Model.Identifier,System.String)">
+            <summary>
+            Refreshes the social profile attached to a contact from the specified network.
+            </summary>
+            <param name="contactId">The contact identifiers.</param>
+            <param name="networkName">The network name.</param>
+            <remarks>
+            The expiration configuration of the social profile will be ignored and the social profile will be refreshed in any case.
+            </remarks>
+            <example>
+            <code>
+            if (socialProfileManager.SocialProfileExists(contactId, "Facebook"))
+            {
+              socialProfileManager.RefreshSocialProfile(contactId, "Facebook");
+              this.ShowSocialProfile(socialProfileManager.GetSocialProfile(contactId, "Facebook"));
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.RefreshSocialProfile(System.String,System.String,System.Boolean)">
+            <summary>
+            Refreshes the social profile attached to a user from the specified network.
+            </summary>
+            <param name="userName">The user name.</param>
+            <param name="networkName">The network name.</param>
+            <param name="refreshAsync">if set to <c>true</c> the social profile will be refreshed asynchronously.</param>
+            <remarks>
+            The expiration configuration of the social profile will be ignored and the social profile will be refreshed in any case.
+            </remarks>
+            <example>
+            <code>
+            if (socialProfileManager.SocialProfileExists(@"extranet\johnsmith", "Facebook"))
+            {
+              socialProfileManager.RefreshSocialProfile(@"extranet\johnsmith", "Facebook", true);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Api.SocialProfileManager.RefreshSocialProfile(Sitecore.Social.Domain.Model.Identifier,System.String,System.Boolean)">
+            <summary>
+            Refreshes the social profile attached to a contact from the specified network.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="networkName">The network name.</param>
+            <param name="refreshAsync">if set to <c>true</c> the social profile will be refreshed asynchronously.</param>
+            <remarks>
+            The expiration configuration of the social profile will be ignored and the social profile will be refreshed in any case.
+            </remarks>
+            <example>
+            <code>
+            if (socialProfileManager.SocialProfileExists(contactId, "Facebook"))
+            {
+              socialProfileManager.RefreshSocialProfile(contactId, "Facebook", true);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:Sitecore.Social.Api.SocialProfileManager.SocialProfileBusinessManager">
+            <summary>
+            Gets or sets the social profile business manager.
+            </summary>
+        </member>
+    </members>
+</doc>

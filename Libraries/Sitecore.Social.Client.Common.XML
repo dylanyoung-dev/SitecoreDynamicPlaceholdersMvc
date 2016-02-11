@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Client.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Client.Common.Helpers.ILoginHelper">
+            <summary>
+            Defines methods for logging in users
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Common.Helpers.ILoginHelper.Login(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+            <summary>
+            Logins user with the specified <paramref name="networkName" />.
+            </summary>
+            <param name="networkName">Name of the network.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> social profile will be updated asynchronously during login.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+        </member>
+        <member name="T:Sitecore.Social.Client.Common.Helpers.SharingHelper">
+            <summary>
+            Helper methods for sharing
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Common.Helpers.SharingHelper.ServicePagePath">
+            <summary>
+            Path to social events handler.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Common.Helpers.SharingHelper.RequestScript">
+            <summary>
+            The request script
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Common.Helpers.SharingHelper.GetSharePageUrl">
+            <summary>
+            Gets the share page URL.
+            </summary>
+            <returns>The share page url.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Client.Common.Helpers.SharingHelper.GetSharePageUrlWithAnalyticsParameters(System.String)">
+            <summary>
+            Gets the share page URL with analytics parameters.
+            </summary>
+            <param name="campaignIdString">The campaign identifier string.</param>
+            <returns>
+            The share page url.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Client.Common.Helpers.SharingHelper.GetShareCallbackScript(System.String,System.String)">
+            <summary>
+            Gets the callback script.
+            </summary>
+            <param name="goalName">Name of the goal.</param>
+            <param name="defaultGoalName">Default name of the goal.</param>
+            <returns>
+            The callback script.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Client.Common.Helpers.SharingHelper.TriggerGoal(System.String,System.String,System.String)">
+            <summary>
+            Triggers the goal.
+            </summary>
+            <param name="goalName">Name of the goal.</param>
+            <param name="itemId">The Id of an item.</param>
+            <param name="defaultGoalName">Name of default goal.</param>
+        </member>
+        <member name="T:Sitecore.Social.Client.Common.IoC.HelpersModule">
+            <summary>
+            IoC module to bind client helpers related implementations.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Common.IoC.HelpersModule.Load">
+            <summary>
+            Loads the module into the kernel.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Client.Common.Helpers.LoginHelper">
+            <summary>
+            Defines methods for logging in users
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Common.Helpers.LoginHelper.ApplicationIdParameterName">
+            <summary>
+            The application identifier parameter name
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Common.Helpers.LoginHelper.connectorClientManager">
+            <summary>
+            The connector client manager
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Common.Helpers.LoginHelper.applicationManager">
+            <summary>
+            The application manager
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Common.Helpers.LoginHelper.membershipWrapper">
+            <summary>
+            The membership wrapper
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Common.Helpers.LoginHelper.logManager">
+            <summary>
+            The log manager
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Common.Helpers.LoginHelper.#ctor(Sitecore.Social.Client.Domain.IConnectorClientManager,Sitecore.Social.Domain.IApplicationManager,Sitecore.Social.Infrastructure.Wrappers.System.IMembershipWrapper,Sitecore.Social.Infrastructure.Logging.ILogManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Common.Helpers.LoginHelper"/> class.
+            </summary>
+            <param name="connectorClientManager">The connector client manager.</param>
+            <param name="applicationManager">The application manager.</param>
+            <param name="membershipWrapper">The membership wrapper.</param>
+            <param name="logManager">The log manager.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Common.Helpers.LoginHelper.Login(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+            <summary>
+            Logins user with the specified <paramref name="networkName" />.
+            If user is not authenticated, login is performed, else attach is performed.
+            </summary>
+            <param name="networkName">Name of the network.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> social profile will be updated asynchronously during login.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.
+            If Social application ID is specified in the "Application" parameter, the appropriate application will be utilized during the login process.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+        </member>
+    </members>
+</doc>

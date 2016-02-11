@@ -1,0 +1,2135 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Domain.Exceptions.ISocialException">
+            <summary>
+            Represents an interface of the Social exception.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Exceptions.ISocialException.SimpleMessage">
+            <summary>
+            The simple message.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Exceptions.ISocialException.DetailedMessage">
+            <summary>
+            The detailed message.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.EmptyIdentifier">
+            <summary>
+            Represents an empty non-typed identifier.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.Identifier">
+            <summary>
+            Represents an abstract class of identifiers.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Domain.IEmptyable">
+            <summary>
+            Defines the property that is used to check if an entity is empty.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.IEmptyable.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Identifier.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.Identifier"/> class.
+            </summary>
+            <param name="value">The string value.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Identifier.op_Equality(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Compares two identifiers.
+            </summary>
+            <param name="id1">The id1.</param>
+            <param name="id2">The id2.</param>
+            <returns><c>true</c> if id1 is equal to id2, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Identifier.op_Inequality(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Compares two identifiers.
+            </summary>
+            <param name="id1">The id1.</param>
+            <param name="id2">The id2.</param>
+            <returns><c>true</c> if id1 is not equal to id2, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Identifier.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Identifier.Equals(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Checks if the current identifier is equal to another one.
+            </summary>
+            <param name="other">The other identifier.</param>
+            <returns><c>true</c> if the current identifier is equal to another one, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Identifier.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+            <exception cref="T:System.InvalidCastException">The 'obj' argument is not an Identifier object.</exception>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Identifier.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Identifier.CheckEquality(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Checks the equality.
+            </summary>
+            <param name="id1">The id1.</param>
+            <param name="id2">The id2.</param>
+            <returns><c>true</c> if id1 is equal to id2, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Identifier.StringValue">
+            <summary>
+            Gets the string value.
+            </summary>
+            <value>
+            The string value.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Identifier.OriginalType">
+            <summary>
+            Gets the original type.
+            </summary>
+            <value>
+            The original type.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Identifier.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.EmptyIdentifier.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.EmptyIdentifier"/> class.
+            </summary>
+            <remarks>
+            <list type="bullet">
+            <item><description>The <see cref="P:Sitecore.Social.Domain.Model.Identifier.StringValue"/> field will be initialized with <see cref="F:System.String.Empty"/>.</description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.EmptyIdentifier.OriginalType">
+            <summary>
+            Gets the original type.
+            </summary>
+            <value>
+            The <see cref="T:Sitecore.Social.Domain.Model.EmptyIdentifier"/>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.EmptyIdentifier.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.SocialMarketerAccount">
+            <summary>
+            Represents the social marketer account entity.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.Account">
+            <summary>
+            Represents the abstract account entity.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Account.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.Account"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Account.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Account.Id">
+            <summary>
+            Gets or sets the id.
+            </summary>
+            <value>
+            The id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Account.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Account.AccountContainer">
+            <summary>
+            Gets or sets the account container.
+            </summary>
+            <value>
+            The account container.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Account.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>
+            The description.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Account.MessageLanguage">
+            <summary>
+            Gets or sets the message language.
+            </summary>
+            <value>
+            The message language.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Account.ReviewingWorkflowId">
+            <summary>
+            Gets or sets the reviewing workflow id.
+            </summary>
+            <value>
+            The reviewing workflow id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Account.ReviewingRoles">
+            <summary>
+            Gets the reviewing roles.
+            </summary>
+            <value>
+            The reviewing roles.
+            </value>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.SocialMarketerAccount.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Domain.Model.SocialMarketerAccount"/> class whose value represents not found social marketer account.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialMarketerAccount.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.MessageComment">
+            <summary>
+            Represents a social network message comment.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.MessageComment.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Domain.Model.MessageComment"/> class whose value represents not found message.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageComment.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageComment.NetworkCommentId">
+            <summary>
+            Gets or sets the social network comment id.
+            </summary>
+            <value>
+            The social network comment id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageComment.Text">
+            <summary>
+            Gets or sets the message text.
+            </summary>
+            <value>
+            The text.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageComment.CreatedDate">
+            <summary>
+            Gets or sets the comment created date.
+            </summary>
+            <value>
+            The message created date.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageComment.AuthorName">
+            <summary>
+            Gets or sets the name of the author.
+            </summary>
+            <value>
+            The name of the author.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.IAccountManager">
+            <summary>
+            Defines the methods that are used to get and create social accounts.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IAccountManager.GetAccount(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets an account by id.
+            </summary>
+            <param name="accountId">The account id.</param>
+            <returns>The account. If the account is not found, an empty instance is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IAccountManager.GetAccounts(System.String)">
+            <summary>
+            Gets all accounts by network name. Returns a collection of accounts.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <returns>The account list. If no accounts are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IAccountManager.GetAccounts(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets all accounts by network id. Returns a collection of accounts.
+            </summary>
+            <param name="networkId">The network id.</param>
+            <returns>The account list. If no accounts are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IAccountManager.GetAccountsByApplication(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets all accounts by application id. Returns a collection of accounts.
+            </summary>
+            <param name="applicationId">The application id.</param>
+            <returns>The account list. If no accounts are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IAccountManager.GetAccountsByContainer(System.String)">
+            <summary>
+            Gets the accounts by container.
+            </summary>
+            <param name="accountContainer">The account container.</param>
+            <returns>The account list. If no accounts are found an empty list is returned.</returns>
+            <remarks>The sub-containers are not included to the search. To search in the sub-containers use <see cref="M:Sitecore.Social.Domain.IAccountManager.GetAccountsByContainer(System.String,System.Boolean)"/>.</remarks>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IAccountManager.GetAccountsByContainer(System.String,System.Boolean)">
+            <summary>
+            Gets the accounts by container.
+            </summary>
+            <param name="accountContainer">The account container.</param>
+            <param name="searchForDescendants">if set to <c>true</c> sub-containers are included to the search.</param>
+            <returns>The account list. If no accounts are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IAccountManager.AccountExists(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Checks if account exist.
+            </summary>
+            <param name="accountId">The account id.</param>
+            <returns>If account exists True else False.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IAccountManager.CreateAccount(Sitecore.Social.Domain.Model.Account)">
+            <summary>
+            Creates an account.
+            </summary>
+            <param name="account">The account to create.</param>
+            <remarks>The <see cref="P:Sitecore.Social.Domain.Model.Account.Id"/> field will contain identifier of the new account after creation.</remarks>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IAccountManager.GetNetworkAccountDisplayName(Sitecore.Social.Domain.Model.AccountCredentials,Sitecore.Social.Domain.Model.ApplicationCredentials,Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets an account display name in a social network.
+            </summary>
+            <param name="accountCredentials">The account credentials.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="networkId">The network id.</param>
+            <returns>The account display name.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IAccountManager.GetNetworkAccountDisplayName(Sitecore.Social.Domain.Model.AccountCredentials,Sitecore.Social.Domain.Model.ApplicationCredentials,System.String)">
+            <summary>
+            Gets an account display name in a social network.
+            </summary>
+            <param name="accountCredentials">The account credentials.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="networkName">Name of the network.</param>
+            <returns>The account display name.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IAccountManager.GetDaysUntilRenewalRequired(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the number of days before the required renewal of an account.
+            </summary>
+            <param name="accountId">The account id.</param>
+            <returns>The number of days. If negative then account expired, if null then account renewal disabled or not needed.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Domain.IApplicationManager">
+            <summary>
+            Defines the methods that are used to manage social network applications.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IApplicationManager.GetApplication(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets an application by id.
+            </summary>
+            <param name="applicationId">The application id.</param>
+            <returns>The application. If the application is not found <see cref="F:Sitecore.Social.Domain.Model.Application.Empty"/> is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IApplicationManager.GetApplications(System.String)">
+            <summary>
+            Gets the applications by network name.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <returns>The application list. If no applications are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IApplicationManager.GetApplications(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the applications by network id.
+            </summary>
+            <param name="networkId">Id of the network.</param>
+            <returns>The application list. If no applications are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IApplicationManager.GetApplicationContainer(System.String)">
+            <summary>
+            Gets the application container by account container.
+            </summary>
+            <param name="accountContainer">The account container.</param>
+            <returns>The application container. If the application container is not found <c>string.Empty</c> is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IApplicationManager.GetApplicationsByContainer(System.String)">
+            <summary>
+            Gets the applications by container.
+            </summary>
+            <param name="applicationContainer">The application container.</param>
+            <returns>The application list. If no applications are found an empty list is returned.</returns>
+            <remarks>The sub-containers are not included to the search. To search in the sub-containers use <see cref="M:Sitecore.Social.Domain.IApplicationManager.GetApplicationsByContainer(System.String,System.Boolean)"/>.</remarks>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IApplicationManager.GetApplicationsByContainer(System.String,System.Boolean)">
+            <summary>
+            Gets the applications by container.
+            </summary>
+            <param name="applicationContainer">The application container.</param>
+            <param name="searchForDescendants">if set to <c>true</c> sub-containers are included to the search.</param>
+            <returns>The application list. If no applications are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IApplicationManager.GetApplicationsByContainer(System.String,System.String)">
+            <summary>
+            Gets the applications of a specific network by the container.
+            </summary>
+            <param name="applicationContainer">The application container.</param>
+            <param name="networkName">The name of the network.</param>
+            <returns>The application list. If no applications are found an empty list is returned.</returns>
+            <remarks>The sub-containers are not included to the search. To search in the sub-containers use <see cref="M:Sitecore.Social.Domain.IApplicationManager.GetApplicationsByContainer(System.String,System.String,System.Boolean)"/>.</remarks>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IApplicationManager.GetApplicationsByContainer(System.String,System.String,System.Boolean)">
+            <summary>
+            Gets the applications by container.
+            </summary>
+            <param name="applicationContainer">The application container.</param>
+            <param name="networkName">The name of the network.</param>
+            <param name="searchForDescendants">if set to <c>true</c> sub-containers are included to the search.</param>
+            <returns>The application list. If no applications are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IApplicationManager.GetApplicationsByContainer(System.String,Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the applications of a specific network by the container.
+            </summary>
+            <param name="applicationContainer">The application container.</param>
+            <param name="networkId">Id of the network.</param>
+            <returns>The application list. If no applications are found an empty list is returned.</returns>
+            <remarks>The sub-containers are not included to the search. To search in the sub-containers use <see cref="M:Sitecore.Social.Domain.IApplicationManager.GetApplicationsByContainer(System.String,Sitecore.Social.Domain.Model.Identifier,System.Boolean)"/>.</remarks>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IApplicationManager.GetApplicationsByContainer(System.String,Sitecore.Social.Domain.Model.Identifier,System.Boolean)">
+            <summary>
+            Gets the applications by container.
+            </summary>
+            <param name="applicationContainer">The application container.</param>
+            <param name="networkId">Id of the network.</param>
+            <param name="searchForDescendants">if set to <c>true</c> sub-containers are included to the search.</param>
+            <returns>The application list. If no applications are found an empty list is returned.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Domain.IMessageManager">
+            <summary>
+            Defines the methods that are used to manage social network messages.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.GetMessage(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the message by id.
+            </summary>
+            <param name="messageId">The message id.</param>
+            <returns>The message. If message is not found <see cref="F:Sitecore.Social.Domain.Model.Message.Empty"/> is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.GetMessagesByContainer(System.String)">
+            <summary>
+            Gets messages by container.
+            </summary>
+            <param name="container">The container.</param>
+            <returns>The messages list. If no messages are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.GetMessagesByAccount(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets messages by account.
+            </summary>
+            <param name="accountId">The account id.</param>
+            <returns>The messages list. If no messages are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.GetMessagesByWorkflowState(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets messages by workflow state.
+            </summary>
+            <param name="workflowStateId">The workflow state id.</param>
+            <returns>The messages list. If no messages are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.GetMessagesByCreatedDate(System.DateTime)">
+            <summary>
+            Gets messages created on a specific date.
+            </summary>
+            <param name="createdDate">The created date.</param>
+            <returns>The messages list. If no messages are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.GetPostedMessages">
+            <summary>
+            Gets all messages posted to a social network.
+            </summary>
+            <returns>The messages list. If no messages are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.GetPostedMessages(System.DateTime)">
+            <summary>
+            Gets messages posted to a social network on a specific date.
+            </summary>
+            <param name="postedDate">The posted date.</param>
+            <returns>The messages list. If no messages are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.GetNotPostedMessages">
+            <summary>
+            Gets all messages that are not posted to a social network.
+            </summary>
+            <returns>The messages list. If no messages are found an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.GetMessagesReadyToPostAutomatically(System.Collections.Generic.IEnumerable{Sitecore.Social.Domain.Model.Identifier})">
+            <summary>
+            Gets messages that are ready to be posted automatically.
+            </summary>
+            <param name="accountIds">The account ids.</param>
+            <returns>The messages list. If no messages are found an empty list is returned.</returns>
+            <remarks>
+            This method will search messages by the following parameters:
+            <list type="bullet">
+            <item><description>Content posting configuration.</description></item>
+            <item><description>Content item is published.</description></item>
+            <item><description>"Post automatically" is checked.</description></item>
+            <item><description>Message is not in a workflow. Or message is in a final workflow state.</description></item>
+            <item><description>Message is not posted.</description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.GetMessagesCount(System.String)">
+            <summary>
+            Gets number of messages attached to specific container.
+            </summary>
+            <param name="container">The container.</param>
+            <returns>The number of messages attached to the specific container.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.CreateMessage(Sitecore.Social.Domain.Model.Message)">
+            <summary>
+            Creates a message.
+            </summary>
+            <param name="message">The message to create.</param>
+            <remarks>The <see cref="P:Sitecore.Social.Domain.Model.Message.Id"/> field will contain identifier of the created message.</remarks>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.UpdateMessage(Sitecore.Social.Domain.Model.Message)">
+            <summary>
+            Updates the message.
+            </summary>
+            <param name="message">The message to update.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.DeleteMessage(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Deletes the message.
+            </summary>
+            <param name="messageId">The message id.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.PostMessage(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Posts the message to a social network.
+            </summary>
+            <param name="messageId">The message id.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.PostMessage(Sitecore.Social.Domain.Model.Identifier,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Posts the message to a social network.
+            </summary>
+            <param name="messageId">The message id.</param>
+            <param name="tokensToReplace">The tokens to be replaced with the values during posting.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.GetMessageStatus(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the message status.
+            </summary>
+            <param name="messageId">The message id.</param>
+            <returns>The <see cref="T:Sitecore.Social.Domain.Model.MessageStatus"/>. If the status is not defined <see cref="F:Sitecore.Social.Domain.Model.MessageStatus.Empty"/> is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.PostMessage(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.ApplicationCredentials,Sitecore.Social.Domain.Model.AccountCredentials,Sitecore.Social.Domain.Model.MessageData)">
+            <summary>
+            Posts a message directly to a social network.
+            </summary>
+            <param name="networkId">The network id.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="accountCredentials">The account credentials.</param>
+            <param name="messageData">The message data.</param>
+            <returns>The message id at the social network.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.PostMessage(System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,Sitecore.Social.Domain.Model.AccountCredentials,Sitecore.Social.Domain.Model.MessageData)">
+            <summary>
+            Posts a message directly to a social network.
+            </summary>
+            <param name="networkName">The network name.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="accountCredentials">The account credentials.</param>
+            <param name="messageData">The message data.</param>
+            <returns>The message id at the social network.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageManager.GetMessageComments(System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,Sitecore.Social.Domain.Model.AccountCredentials,System.String)">
+            <summary>
+            Gets the message comments.
+            </summary>
+            <param name="networkName">Name of the network.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="accountCredentials">The account credentials.</param>
+            <param name="networkMessageId">The network message id.</param>
+            <returns>The message comments list. If no comments are found an empty list is returned.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Domain.IMessageStatisticsManager">
+            <summary>
+            Defines the methods that are used to manage social network message statistics.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageStatisticsManager.GetMessageStatistics(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets message statistics.
+            </summary>
+            <param name="messageId">The message id.</param>
+            <returns>The message statistics.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageStatisticsManager.RefreshMessageStatistics(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Refreshes message statistics.
+            </summary>
+            <param name="messageId">The message id.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageStatisticsManager.RefreshMessageStatistics(Sitecore.Social.Domain.Model.Identifier,System.Boolean)">
+            <summary>
+            Refreshes message statistics.
+            </summary>
+            <param name="messageId">The message id.</param>
+            <param name="resetStatisticsRefreshing"><c>true</c> if it needs to reset the statistics refreshing; otherwise, <c>false</c>.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageStatisticsManager.GetStatisticsCounterNames(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the statistics counters for the specific social network.
+            </summary>
+            <param name="networkId">The network id.</param>
+            <returns>The collection of statistics counters.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IMessageStatisticsManager.GetStatisticsCounterNames(System.String)">
+            <summary>
+            Gets the statistics counters for the specific social network.
+            </summary>
+            <param name="networkName">The network name.</param>
+            <returns>The collection of statistics counters.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Domain.INetworkManager">
+            <summary>
+            Defines the methods that are used to manage social networks.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.INetworkManager.GetNetworks">
+            <summary>
+            Gets all registered networks.
+            </summary>
+            <returns>The network list. If there are no networks, an empty list is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.INetworkManager.GetNetwork(System.String)">
+            <summary>
+            Gets a network by name.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <returns>The network. If the network is not found <see cref="F:Sitecore.Social.Domain.Model.Network.Empty"/> is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.INetworkManager.GetNetwork(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets a network by id.
+            </summary>
+            <param name="networkId">Id of the network.</param>
+            <returns>The network. If the network is not found <see cref="F:Sitecore.Social.Domain.Model.Network.Empty"/> is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.INetworkManager.CanPostTo(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Determines whether it is possible to post messages to the network.
+            </summary>
+            <param name="networkId">The network id.</param>
+            <returns>
+              <c>true</c> if it is possible to post messages to the network; otherwise, <c>false</c>.
+            <remarks><c>false</c> is returned, if the network is not found.</remarks>
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.INetworkManager.CanPostTo(System.String)">
+            <summary>
+            Determines whether it is possible to post messages to the network.
+            </summary>
+            <param name="networkName">The network name.</param>
+            <returns>
+              <c>true</c> if it is possible to post messages to the network; otherwise, <c>false</c>.
+            <remarks><c>false</c> is returned, if the network is not found.</remarks>
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.INetworkManager.CanRenewAccount(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Determines whether it is possible to renew a network account.
+            </summary>
+            <param name="networkId">The network id.</param>
+            <returns>
+              <c>true</c> if it is possible to renew the network account; otherwise, <c>false</c>.
+            <remarks><c>false</c> is returned, if the network is not found.</remarks>
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.INetworkManager.CanRenewAccount(System.String)">
+            <summary>
+            Determines whether it is possible to renew a network account.
+            </summary>
+            <param name="networkName">The network name.</param>
+            <returns>
+              <c>true</c> if it is possible to renew the network account; otherwise, <c>false</c>.
+              <remarks><c>false</c> is returned, if the network is not found.</remarks>
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.INetworkManager.CanGetAccountInfo(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Determines whether it is possible to get a network account info.
+            </summary>
+            <param name="networkId">The network id.</param>
+            <returns>
+              <c>true</c> if it is possible to get the network account info; otherwise, <c>false</c>.
+            <remarks><c>false</c> is returned, if the network is not found.</remarks>
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.INetworkManager.CanGetAccountInfo(System.String)">
+            <summary>
+            Determines whether it is possible to get a network account info.
+            </summary>
+            <param name="networkName">The network name.</param>
+            <returns>
+              <c>true</c> if it is possible to get the network account info; otherwise, <c>false</c>.
+              <remarks><c>false</c> is returned, if the network is not found.</remarks>
+            </returns>
+        </member>
+        <member name="T:Sitecore.Social.Domain.IPostingPreferenceManager">
+            <summary>
+            Defines the methods that are used to manage user’s posting preferences.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IPostingPreferenceManager.GetPostingPreferences(System.String,System.String)">
+            <summary>
+            Gets user's posting preferences for all messages attached to the specific container.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="container">The container.</param>
+            <returns>
+            The posting preference list. If no preferences are found an empty list is returned.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IPostingPreferenceManager.GetPostingPreference(System.String,Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets user's posting preferences for the specific message.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="messageId">The message id.</param>
+            <returns>
+            The posting preference. If the posting preference is not found the <see cref="F:Sitecore.Social.Domain.Model.AutomaticPostingPreference.Default"/> value is used.
+            </returns>
+            <seealso cref="P:Sitecore.Social.Domain.Model.PostingPreference.AutomaticPostingPreference"/>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IPostingPreferenceManager.SetPostingPreference(System.String,Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.AutomaticPostingPreference)">
+            <summary>
+            Sets user's posting preferences to the specific message.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="messageId">The message id.</param>
+            <param name="automaticPostingPreference">The automatic posting preference.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IPostingPreferenceManager.SetPostingPreference(System.String,System.String,Sitecore.Social.Domain.Model.AutomaticPostingPreference)">
+            <summary>
+            Sets user's posting preferences for all messages attached to the specific container.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="container">The container.</param>
+            <param name="automaticPostingPreference">The automatic posting preference.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IPostingPreferenceManager.AllowAutomaticPostingByDefault">
+            <summary>
+            Determines if automatic posting is allowed by default.
+            </summary>
+            <returns><c>true</c> if automatic posting is allowed by default, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.IPostingPreferenceManager.AllowAutomaticPosting(Sitecore.Social.Domain.Model.Identifier,System.String)">
+            <summary>
+            Allows automatic message posting.
+            </summary>
+            <param name="messageId">The message id.</param>
+            <param name="userName">Name of the user.</param>
+            <returns>
+              <c>true</c> if automatic posting is allowed, otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Sitecore.Social.Domain.ISocialProfileManager">
+            <summary>
+            Defines the methods that are used to manage a social profile.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.GetSocialProfiles(System.String)">
+            <summary>
+            Gets all social profiles of the user.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <returns>
+            The social profiles list. If there are no profiles, an empty list is returned.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.GetSocialProfiles(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets all social profiles of the contact.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <returns>
+            The social profiles list. If there are no profiles, an empty list is returned.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.GetSocialProfile(System.String,System.String)">
+            <summary>
+            Gets a social profile of the user in the specified network.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="networkName">The network name.</param>
+            <returns>
+            The social profile. If there are no profiles, an empty profile is returned.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.GetSocialProfile(Sitecore.Social.Domain.Model.Identifier,System.String)">
+            <summary>
+            Gets a social profile of the contact in the specified network.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="networkName">The network name.</param>
+            <returns>
+            The social profile. If there are no profiles, an empty profile is returned.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.GetPrimarySocialProfile(System.String)">
+            <summary>
+            Gets a primary social profile of the user.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <returns>
+            The social profile. If there are no profiles, an empty profile is returned.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.GetPrimarySocialProfile(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets a primary social profile of the contact.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <returns>
+            The social profile. If there are no profiles, an empty profile is returned.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.SocialProfileExists(System.String,System.String)">
+            <summary>
+            Defines if there is a social profile in the specified network.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="networkName">The network name.</param>
+            <returns>
+              <c>true</c> if the social profile exists; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.SocialProfileExists(Sitecore.Social.Domain.Model.Identifier,System.String)">
+            <summary>
+            Defines if there is a social profile in the specified network.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="networkName">The network name.</param>
+            <returns>
+              <c>true</c> if the social profile exists; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.AttachSocialProfile(System.String,Sitecore.Social.Domain.Model.SocialProfile)">
+            <summary>
+            Attaches a social profile to the specified user.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="socialProfile">The social profile.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.AttachSocialProfile(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.SocialProfile)">
+            <summary>
+            Attaches a social profile to the specified contact.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="socialProfile">The social profile.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.DetachSocialProfile(System.String,System.String)">
+            <summary>
+            Removes a social profile from the specified user.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="networkName">The network name.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.DetachSocialProfile(Sitecore.Social.Domain.Model.Identifier,System.String)">
+            <summary>
+            Removes a social profile from the specified contact.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="networkName">The network name.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.UpdateSocialProfile(System.String,Sitecore.Social.Domain.Model.SocialProfile)">
+            <summary>
+            Updates a social profile of the specified user.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="socialProfile">The social profile.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.UpdateSocialProfile(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.SocialProfile)">
+            <summary>
+            Updates a social profile of the specified contact.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="socialProfile">The social profile.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.RetrieveSocialProfile(System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,Sitecore.Social.Domain.Model.AccountCredentials)">
+            <summary>
+            Retrieves a social profile from the social network.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="accountCredentials">The account credentials.</param>
+            <returns>The social profile. If the request couldn't be executed, an <see cref="F:Sitecore.Social.Domain.Model.SocialProfile.Empty"/> is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.RefreshSocialProfiles(System.String,System.Boolean)">
+            <summary>
+            Refreshes all social profiles attached to a user from social networks.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="refreshAsync">if set to <c>true</c> the social profiles will be refreshed asynchronously.</param>
+            <remarks>
+            Only expired social profiles will be refreshed.
+            The expiration configuration is defined in "Social.ProfileUpdating.DaysBeforeExpiration" setting.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.RefreshSocialProfiles(Sitecore.Social.Domain.Model.Identifier,System.Boolean)">
+            <summary>
+            Refreshes all social profiles attached to a contact from social networks.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="refreshAsync">if set to <c>true</c> the social profiles will be refreshed asynchronously.</param>
+            <remarks>
+            Only expired social profiles will be refreshed.
+            The expiration configuration is defined in "Social.ProfileUpdating.DaysBeforeExpiration" setting.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.RefreshSocialProfiles(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Refreshes all social profiles attached to a user from social networks.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="refreshAsync">if set to <c>true</c> the social profiles will be refreshed asynchronously.</param>
+            <param name="forceRefresh">if set to <c>true</c> the expiration configuration of the social profile will be ignored and the social profiles will be refreshed in any case.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.RefreshSocialProfiles(Sitecore.Social.Domain.Model.Identifier,System.Boolean,System.Boolean)">
+            <summary>
+            Refreshes all social profiles attached to a contact from social networks.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="refreshAsync">if set to <c>true</c> the social profiles will be refreshed asynchronously.</param>
+            <param name="forceRefresh">if set to <c>true</c> the expiration configuration of the social profile will be ignored and the social profiles will be refreshed in any case.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.RefreshSocialProfile(System.String,System.String)">
+            <summary>
+            Refreshes the social profile attached to a user from the specified network.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="networkName">The network name.</param>
+            <remarks>
+            The expiration configuration of the social profile will be ignored and the social profile will be refreshed in any case.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.RefreshSocialProfile(Sitecore.Social.Domain.Model.Identifier,System.String)">
+            <summary>
+            Refreshes the social profile attached to a contact from the specified network.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="networkName">The network name.</param>
+            <remarks>
+            The expiration configuration of the social profile will be ignored and the social profile will be refreshed in any case.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.RefreshSocialProfile(System.String,System.String,System.Boolean)">
+            <summary>
+            Refreshes the social profile attached to a user from the specified network.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="networkName">The network name.</param>
+            <param name="refreshAsync">if set to <c>true</c> the social profile will be refreshed asynchronously.</param>
+            <remarks>
+            The expiration configuration of the social profile will be ignored and the social profile will be refreshed in any case.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Domain.ISocialProfileManager.RefreshSocialProfile(Sitecore.Social.Domain.Model.Identifier,System.String,System.Boolean)">
+            <summary>
+            Refreshes the social profile attached to a contact from the specified network.
+            </summary>
+            <param name="contactId">The contact identifier.</param>
+            <param name="networkName">The network name.</param>
+            <param name="refreshAsync">if set to <c>true</c> the social profile will be refreshed asynchronously.</param>
+            <remarks>
+            The expiration configuration of the social profile will be ignored and the social profile will be refreshed in any case.
+            </remarks>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.AccountCredentials">
+            <summary>
+            Represents the social network account credentials.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.NetworkAccount.AccountCredentials"/>
+            <seealso cref="P:Sitecore.Social.Domain.Model.SocialProfileIdentityData.AccountCredentials"/>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.AccountCredentials.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.AccountCredentials"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.AccountCredentials.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.AccountCredentials"/> class with the specific parameters.
+            </summary>
+            <param name="accessToken">The access token.</param>
+            <param name="accessTokenSecret">The access token secret.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.AccountCredentials.#ctor(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.AccountCredentials"/> class with the specific parameters.
+            </summary>
+            <param name="accessToken">The access token.</param>
+            <param name="accessTokenSecret">The access token secret.</param>
+            <param name="refreshToken">The refresh token.</param>
+            <param name="accessTokeSecretIssueDate">The access toke secret issue date.</param>
+            <param name="accessTokenSecretExpirationDate">The access token secret expiration date.</param>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.AccountCredentials.AccessToken">
+            <summary>
+            Gets or sets the access token.
+            </summary>
+            <value>
+            The access token.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.AccountCredentials.AccessTokenSecret">
+            <summary>
+            Gets or sets the access token secret.
+            </summary>
+            <value>
+            The access token secret.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.AccountCredentials.RefreshToken">
+            <summary>
+            Gets or sets the refresh token.
+            </summary>
+            <value>
+            The refresh token.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.AccountCredentials.AccessTokenSecretIssueDate">
+            <summary>
+            Gets or sets the access token secret issue date.
+            </summary>
+            <value>
+            The access token secret issue date.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.AccountCredentials.AccessTokenSecretExpirationDate">
+            <summary>
+            Gets or sets the access token secret expiration date.
+            </summary>
+            <value>
+            The access token secret expiration date.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.Application">
+            <summary>
+            Represents the social network application entity.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.Application.ApplicationCredentials"/>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.Application.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Domain.Model.Application"/> class whose value represents not found application.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Application.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Application.Id">
+            <summary>
+            Gets or sets the id.
+            </summary>
+            <value>
+            The id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Application.NetworkId">
+            <summary>
+            Gets or sets the network id.
+            </summary>
+            <value>
+            The network id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Application.ApplicationContainer">
+            <summary>
+            Gets or sets the application container.
+            </summary>
+            <value>
+            The application container.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Application.ApplicationCredentials">
+            <summary>
+            Gets or sets application credentials.
+            </summary>
+            <value>
+            The application credentials.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Application.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.ApplicationCredentials">
+            <summary>
+            Represents the social network application credentials.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.Application.ApplicationCredentials"/>
+            <seealso cref="P:Sitecore.Social.Domain.Model.SocialProfileIdentityData.ApplicationCredentials"/>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.ApplicationCredentials.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.ApplicationCredentials"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.ApplicationCredentials.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.ApplicationCredentials"/> class with the specific parameters.
+            </summary>
+            <param name="applicationKey">The application key.</param>
+            <param name="applicationSecret">The application secret.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.ApplicationCredentials.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.ApplicationCredentials"/> class with the specific parameters.
+            </summary>
+            <param name="applicationKey">The application key.</param>
+            <param name="applicationSecret">The application secret.</param>
+            <param name="publicApiKey">The public API key.</param>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.ApplicationCredentials.ApplicationKey">
+            <summary>
+            Gets or sets the application key.
+            </summary>
+            <value>
+            The application key.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.ApplicationCredentials.ApplicationSecret">
+            <summary>
+            Gets or sets the application secret.
+            </summary>
+            <value>
+            The application secret.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.ApplicationCredentials.PublicApiKey">
+            <summary>
+            Gets or sets the public API key.
+            </summary>
+            <value>
+            The public API key.
+            </value>
+            <remarks>
+            For a Google application it's an API key (a server key) - a unique identifier that you generate using the Developers Console. 
+            Using an API key does not require user action or consent. API keys do not grant access to any account information, and are not used for authorization.
+            If your client application does not use OAuth 2.0, then it must include an API key when it calls an API that's enabled within a Developers Console project. 
+            The application passes this key into all API requests as a key=API_key parameter.
+            </remarks>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.AutomaticPostingPreference">
+            <summary>
+            Defines constants for automatic posting preference.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.AutomaticPostingPreference.Default">
+            <summary>
+            Use default automatic posting preference.  
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.AutomaticPostingPreference.Allowed">
+            <summary>
+            The automatic posting is allowed.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.AutomaticPostingPreference.Denied">
+            <summary>
+            The automatic posting is denied.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.ContainerPostingConfiguration">
+            <summary>
+            Represents an abstract class for posting configurations with a container.
+            </summary>
+            <seealso cref="T:Sitecore.Social.Domain.Model.ContentPostingConfiguration"/>
+            <seealso cref="T:Sitecore.Social.Domain.Model.GoalPostingConfiguration"/>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.PostingConfiguration">
+            <summary>
+            Represents an abstract class of posting configurations.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.Message.PostingConfiguration"/>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.ContainerPostingConfiguration.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.ContainerPostingConfiguration"/> class.
+            </summary>
+            <param name="container">The container.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.ContainerPostingConfiguration.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.ContainerPostingConfiguration"/> class.
+            </summary>
+            <param name="container">The container.</param>
+            <param name="containerPublished"><c>true</c> if the container is published; otherwise, <c>false</c>.</param>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.ContainerPostingConfiguration.Container">
+            <summary>
+            Gets the container.
+            </summary>
+            <value>
+            The container.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.ContainerPostingConfiguration.ContainerPublished">
+            <summary>
+            Gets or sets a value indicating whether the container is published.
+            </summary>
+            <value>
+            <c>true</c> if the container is published; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.ContentPostingConfiguration">
+            <summary>
+            Represents content posting configuration.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.Message.PostingConfiguration"/>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.ContentPostingConfiguration.#ctor(System.String,Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.ContentPostingConfiguration"/> class.
+            </summary>
+            <param name="contentContainer">The content container.</param>
+            <param name="accountId">The account id.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.ContentPostingConfiguration.#ctor(System.String,Sitecore.Social.Domain.Model.Identifier,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.ContentPostingConfiguration"/> class.
+            </summary>
+            <param name="contentContainer">The content container.</param>
+            <param name="accountId">The account id.</param>
+            <param name="postOnContentPublishing">If checked, the related message will be posted to the social network when the content is published to the website.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.ContentPostingConfiguration.#ctor(System.String,Sitecore.Social.Domain.Model.Identifier,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.ContentPostingConfiguration"/> class.
+            </summary>
+            <param name="contentContainer">The content container.</param>
+            <param name="accountId">The account id.</param>
+            <param name="postAutomatically">If checked, the related message will be posted automatically to the social network after the content is published to the website.</param>
+            <param name="contentContainerPublished"><c>true</c> if the content container is published; otherwise, <c>false</c>.</param>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.ContentPostingConfiguration.PostAutomatically">
+            <summary>
+            Gets a value indicating whether the related message should be posted automatically to the social network after the content is published to the website.
+            </summary>
+            <value>
+            If <c>true</c>, the related message will be posted automatically to the social network after the content is published to the website. Otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.ContentPostingConfiguration.AccountId">
+            <summary>
+            Gets the identifier of the account assigned to the message.
+            </summary>
+            <value>
+            The account identifier.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.FailedStatisticsStatus">
+            <summary>
+            Represents a failed statistics status.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.AccountStatistics.StatisticsStatus"/>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.StatisticsStatus">
+            <summary>
+            Represents a statistics status.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.AccountStatistics.StatisticsStatus"/>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.GoalPostingConfiguration">
+            <summary>
+            Represents a goal posting configuration.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.Message.PostingConfiguration"/>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.GoalPostingConfiguration.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.GoalPostingConfiguration"/> class.
+            </summary>
+            <param name="goalContainer">The goal container.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.GoalPostingConfiguration.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.GoalPostingConfiguration"/> class.
+            </summary>
+            <param name="goalContainer">The goal container.</param>
+            <param name="goalContainerPublished"><c>true</c> if the goal container is published; otherwise, <c>false</c>.</param>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.Message">
+            <summary>
+            Represents a social network message.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.Message.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Domain.Model.Message"/> class whose value represents not found message.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Message.#ctor(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.MessageData,Sitecore.Social.Domain.Model.PostingConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.Message"/> class.
+            </summary>
+            <param name="networkId">The network id.</param>
+            <param name="messageData">The message data.</param>
+            <param name="postingConfiguration">The posting configuration.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Message.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Sitecore.Social.Domain.Model.Message"/> class from being created.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Message.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Message.Id">
+            <summary>
+            Gets or sets the id.
+            </summary>
+            <value>
+            The id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Message.NetworkId">
+            <summary>
+            Gets the network id.
+            </summary>
+            <value>
+            The network id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Message.MessageData">
+            <summary>
+            Gets the message data.
+            </summary>
+            <value>
+            The message data.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Message.PostingConfiguration">
+            <summary>
+            Gets the posting configuration.
+            </summary>
+            <value>
+            The posting configuration.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.MessageData">
+            <summary>
+            Represents a social network message data.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.Message.MessageData"/>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageData.DisplayName">
+            <summary>
+            Gets or sets the display name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageData.CampaignId">
+            <summary>
+            Gets or sets the campaign id.
+            </summary>
+            <value>
+            The campaign id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageData.Link">
+            <summary>
+            Gets or sets the link.
+            </summary>
+            <value>
+            The link.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageData.Text">
+            <summary>
+            Gets or sets the text.
+            </summary>
+            <value>
+            The text.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageData.CreatedDate">
+            <summary>
+            Gets or sets the Created date.
+            </summary>
+            <value>
+            The Created date.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageData.PostedDate">
+            <summary>
+            Gets or sets the Posted date.
+            </summary>
+            <value>
+            The Posted date.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.MessageStatus">
+            <summary>
+            Represents social message status.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.MessageStatus.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Domain.Model.MessageStatus"/> class whose value represents not found message status.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.MessageStatus.#ctor(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.AccountStatus)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.MessageStatus"/> class.
+            </summary>
+            <param name="messageId">The message id.</param>
+            <param name="accountStatus">The account status.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.MessageStatus.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Sitecore.Social.Domain.Model.MessageStatus"/> class from being created.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageStatus.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageStatus.MessageId">
+            <summary>
+            Gets the message id.
+            </summary>
+            <value>
+            The message id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageStatus.AccountStatus">
+            <summary>
+            Gets the account status.
+            </summary>
+            <value>
+            The account status.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.AccountStatus">
+            <summary>
+            Represents the message posting status to the account.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.MessageStatus.AccountStatus"/>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.AccountStatus.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Domain.Model.AccountStatus"/> class whose value represents not defined account status.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.AccountStatus.#ctor(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.PostingStatus)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.AccountStatus"/> class.
+            </summary>
+            <param name="accountId">The account id.</param>
+            <param name="postingStatus">The posting status.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.AccountStatus.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Sitecore.Social.Domain.Model.AccountStatus"/> class from being created.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.AccountStatus.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.AccountStatus.AccountId">
+            <summary>
+            Gets the account id.
+            </summary>
+            <value>
+            The account id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.AccountStatus.PostingStatus">
+            <summary>
+            Gets the posting status.
+            </summary>
+            <value>
+            The posting status.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.Network">
+            <summary>
+            Represents the social network entity.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.Network.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Domain.Model.Network"/> class whose value represents not found network.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Network.#ctor(Sitecore.Social.Domain.Model.Identifier,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.Network"/> class.
+            </summary>
+            <param name="id">The id.</param>
+            <param name="name">The name.</param>
+            <param name="prefix">The prefix.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Network.#ctor(Sitecore.Social.Domain.Model.Identifier,System.String,System.String,System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.Network"/> class.
+            </summary>
+            <param name="id">The id.</param>
+            <param name="name">The name.</param>
+            <param name="prefix">The prefix.</param>
+            <param name="url">The URL.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Network.#ctor(Sitecore.Social.Domain.Model.Identifier,System.String,System.String,System.Uri,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.Network"/> class.
+            </summary>
+            <param name="id">The id.</param>
+            <param name="name">The name.</param>
+            <param name="prefix">The prefix.</param>
+            <param name="url">The URL.</param>
+            <param name="icon">The icon.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Network.#ctor(Sitecore.Social.Domain.Model.Identifier,System.String,System.String,System.Uri,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.Network"/> class.
+            </summary>
+            <param name="id">The id.</param>
+            <param name="name">The name.</param>
+            <param name="prefix">The prefix.</param>
+            <param name="url">The URL.</param>
+            <param name="icon">The icon.</param>
+            <param name="accountExpirationDays">The account expiration days.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Network.#ctor(Sitecore.Social.Domain.Model.Identifier,System.String,System.String,System.Uri,System.String,System.Nullable{System.Int32},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.Network"/> class.
+            </summary>
+            <param name="id">The id.</param>
+            <param name="name">The name.</param>
+            <param name="prefix">The prefix.</param>
+            <param name="url">The URL.</param>
+            <param name="icon">The icon.</param>
+            <param name="accountExpirationDays">The account expiration days.</param>
+            <param name="displayName">The display name.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.Network.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Sitecore.Social.Domain.Model.Network"/> class from being created.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Network.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Network.Id">
+            <summary>
+            Gets the id.
+            </summary>
+            <value>
+            The id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Network.Name">
+            <summary>
+            Gets the unique name of the network.
+            </summary>
+            <value>
+            The network name.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Network.DisplayName">
+            <summary>
+            Gets the display name.
+            </summary>
+            <value>
+            The display name.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Network.Prefix">
+            <summary>
+            Gets the prefix.
+            </summary>
+            <value>
+            The prefix.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Network.Url">
+            <summary>
+            Gets the URL.
+            </summary>
+            <value>
+            The URL.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Network.Icon">
+            <summary>
+            Gets the icon.
+            </summary>
+            <value>
+            The icon.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Network.AccountExpirationDays">
+            <summary>
+            Gets the number of days that the account expires in.
+            </summary>
+            <value>
+            The number of days that the account expired in.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.Network.Order">
+            <summary>
+            Gets or sets the order.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.NetworkAccount">
+            <summary>
+            Represents the social network account entity.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.NetworkAccount.AccountCredentials"/>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.NetworkAccount.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Domain.Model.NetworkAccount"/> class whose value represents not found network account.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.NetworkAccount.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.NetworkAccount"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.NetworkAccount.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.NetworkAccount.ApplicationId">
+            <summary>
+            Gets or sets the application id.
+            </summary>
+            <value>
+            The application id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.NetworkAccount.AccountCredentials">
+            <summary>
+            Gets or sets account credentials.
+            </summary>
+            <value>
+            The account credentials.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.NetworkAccount.LastRenewalDate">
+            <summary>
+            Gets or sets the last renewal date.
+            </summary>
+            <value>
+            The last renewal date.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.NumberCounter">
+            <summary>
+            Represents the statistics number counter.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.AccountStatistics.StatisticsCounters"/>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.StatisticsCounter">
+            <summary>
+            Represents the statistics counter.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.AccountStatistics.StatisticsCounters"/>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.StatisticsCounter.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.StatisticsCounter"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="displayName">The display name.</param>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.StatisticsCounter.Name">
+            <summary>
+            Gets the statistics counter name.
+            </summary>
+            <value>
+            The statistics counter name.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.StatisticsCounter.DisplayName">
+            <summary>
+            Gets the statistics counter display name.
+            </summary>
+            <value>
+            The statistics counter display name.
+            </value>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.NumberCounter.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.NumberCounter"/> class.
+            </summary>
+            <param name="name">The statistics name.</param>
+            <param name="displayName">The display name.</param>
+            <param name="number">The number.</param>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.NumberCounter.Number">
+            <summary>
+            Gets the statistics numerical value.
+            </summary>
+            <value>
+            The number.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.DonePostingStatus">
+            <summary>
+            Represents the successfully posted message's account status.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.AccountStatus.PostingStatus"/>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.PostingStatus">
+            <summary>
+            Represents an abstract class of message's account posting statuses.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.AccountStatus.PostingStatus"/>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.DonePostingStatus.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.DonePostingStatus"/> class.
+            </summary>
+            <param name="networkMessageId">The id of the message in the social network.</param>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.DonePostingStatus.NetworkMessageId">
+            <summary>
+            Gets the id of the message in the social network.
+            </summary>
+            <value>
+            The network message id.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.FailedPostingStatus">
+            <summary>
+            Represents the failed posting message's account status.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.AccountStatus.PostingStatus"/>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.FailedPostingStatus.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.FailedPostingStatus"/> class.
+            </summary>
+            <param name="errorText">The error text.</param>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.FailedPostingStatus.ErrorText">
+            <summary>
+            Gets the error text.
+            </summary>
+            <value>
+            The error text.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.PostingPreference">
+            <summary>
+            Represents user's posting preference for the specific message.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.PostingPreference.AutomaticPostingPreference"/>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.PostingPreference.#ctor(System.String,Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.AutomaticPostingPreference)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.PostingPreference"/> class.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="messageId">The message id.</param>
+            <param name="automaticPostingPreference">The automatic posting preference.</param>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.PostingPreference.UserName">
+            <summary>
+            Gets the name of the user.
+            </summary>
+            <value>
+            The name of the user.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.PostingPreference.MessageId">
+            <summary>
+            Gets the message id.
+            </summary>
+            <value>
+            The message id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.PostingPreference.AutomaticPostingPreference">
+            <summary>
+            Gets the automatic posting preference.
+            </summary>
+            <value>
+            The automatic posting preference.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.SocialProfile">
+            <summary>
+            Represents a social profile.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.SocialProfile.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Domain.Model.SocialProfile"/> class whose value represents not found social profile.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.SocialProfile.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.SocialProfile"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfile.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfile.UserName">
+            <summary>
+            Gets or sets the name of the user.
+            </summary>
+            <value>
+            The name of the user.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfile.ContactId">
+            <summary>
+            Gets or sets the contact identifier.
+            </summary>
+            <value>
+            The contact identifier.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfile.NetworkName">
+            <summary>
+            Gets or sets a network name.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfile.Fields">
+            <summary>
+            Gets or sets profile fields.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfile.FieldsLastRenewedDate">
+            <summary>
+            Gets or sets the fields last renewed date.
+            </summary>
+            <value>
+            The fields last renewed date.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfile.IsPrimary">
+            <summary>
+            Gets or sets a value indicating whether the social profile is primary.
+            </summary>
+            <value>
+              <c>true</c> if the social profile is primary; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfile.LastRenewedDate">
+            <summary>
+            Gets or sets the last renewed date.
+            </summary>
+            <value>
+            The last renewed date.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfile.IdentityData">
+            <summary>
+            Gets or sets the identity data.
+            </summary>
+            <value>
+            The identity data.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.MessageStatistics">
+            <summary>
+            Represents a social network message statistics.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.MessageStatistics.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Domain.Model.MessageStatistics"/> class whose value represents not found message statistics.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.MessageStatistics.#ctor(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.AccountStatistics)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.MessageStatistics"/> class.
+            </summary>
+            <param name="messageId">The message id.</param>
+            <param name="accountStatistics">The account statistics.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.MessageStatistics.#ctor(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.AccountStatistics,System.Nullable{System.DateTime})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.MessageStatistics"/> class.
+            </summary>
+            <param name="messageId">The message id.</param>
+            <param name="accountStatistics">The account statistics.</param>
+            <param name="startRefreshDate">The start refresh date.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.MessageStatistics.#ctor(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.AccountStatistics,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.MessageStatistics"/> class.
+            </summary>
+            <param name="messageId">The message id.</param>
+            <param name="accountStatistics">The account statistics.</param>
+            <param name="startRefreshDate">The start refresh date.</param>
+            <param name="lastRefreshDate">The last refresh date.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.MessageStatistics.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Sitecore.Social.Domain.Model.MessageStatistics"/> class from being created.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageStatistics.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageStatistics.MessageId">
+            <summary>
+            Gets the message id.
+            </summary>
+            <value>
+            The message id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageStatistics.AccountsStatistics">
+            <summary>
+            Gets the account statistics.
+            </summary>
+            <value>
+            The account statistics.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageStatistics.LastRefreshDate">
+            <summary>
+            Gets the statistics last refresh date.
+            </summary>
+            <value>
+            The last refresh date.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.MessageStatistics.StartRefreshDate">
+            <summary>
+            Gets the start refresh date.
+            </summary>
+            <value>
+            The start refresh date.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.SocialProfileIdentityData">
+            <summary>
+            Represents a social profile identity data.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.SocialProfileIdentityData.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Domain.Model.SocialProfileIdentityData"/> class whose value represents not found social profile identity data.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.SocialProfileIdentityData.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.SocialProfileIdentityData"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfileIdentityData.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfileIdentityData.NetworkAccountId">
+            <summary>
+            Gets or sets a network account id.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfileIdentityData.Email">
+            <summary>
+            Gets or sets an email address.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfileIdentityData.FullName">
+            <summary>
+            Gets or sets a full name.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfileIdentityData.AccountCredentials">
+            <summary>
+            Gets or sets account credentials.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.SocialProfileIdentityData.ApplicationCredentials">
+            <summary>
+            Gets or sets application credentials.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.AccountStatistics">
+            <summary>
+            Represents the social network statistics by account entity.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.MessageStatistics.AccountsStatistics"/>
+        </member>
+        <member name="F:Sitecore.Social.Domain.Model.AccountStatistics.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Domain.Model.AccountStatistics"/> class whose value represents not defined account statistics.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.AccountStatistics.#ctor(Sitecore.Social.Domain.Model.Identifier,Sitecore.Social.Domain.Model.StatisticsStatus,System.Collections.Generic.IEnumerable{Sitecore.Social.Domain.Model.StatisticsCounter})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Domain.Model.AccountStatistics"/> class.
+            </summary>
+            <param name="accountId">The account id.</param>
+            <param name="statisticsStatus">The statistics status.</param>
+            <param name="statisticsCounters">The statistics counters.</param>
+        </member>
+        <member name="M:Sitecore.Social.Domain.Model.AccountStatistics.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Sitecore.Social.Domain.Model.AccountStatistics"/> class from being created.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.AccountStatistics.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.AccountStatistics.AccountId">
+            <summary>
+            Gets the account id.
+            </summary>
+            <value>
+            The account id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.AccountStatistics.StatisticsStatus">
+            <summary>
+            Gets the statistics status.
+            </summary>
+            <value>
+            The statistics status.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Domain.Model.AccountStatistics.StatisticsCounters">
+            <summary>
+            Gets the statistics counters.
+            </summary>
+            <value>
+            The statistics counters.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Domain.Model.UpdatedStatisticsStatus">
+            <summary>
+            Represents an updated statistics status.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.AccountStatistics.StatisticsStatus"/>
+        </member>
+    </members>
+</doc>

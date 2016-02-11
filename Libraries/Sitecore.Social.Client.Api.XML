@@ -1,0 +1,1201 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Client.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Client.Api.AccountClientManager">
+            <summary>
+            Defines the methods that are used to work with a social network account.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.AccountClientManager.BeginGetAccountCredentials(Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest)">
+             <summary>
+             Initializes the process of receiving the social network account credentials.
+             </summary>
+             <remarks>
+             <list type="bullet">
+             <item>
+             <description> Use <see cref="M:Sitecore.Social.Client.Api.AccountClientManager.EndGetAccountCredentials(System.String)"/> to receive the account credentials response by this request id.</description>
+             </item>
+             <item>
+             <description> Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to receive the exception information in a case of error.</description>
+             </item>
+             </list>
+             </remarks>
+             <example>
+             <code>
+             var newAccountName = accountNameTextBox.Text;
+            
+             var facebookApplication = applicationManager.GetApplication(facebookApplicationId);
+            
+             if (!facebookApplication.IsEmpty)
+             {
+               var accountDataRequest = new GetAccountCredentialsRequest(
+                 "Facebook",
+                 facebookApplication.ApplicationCredentials,
+                 HttpContext.Current.Request.Url,
+                 new Dictionary&lt;string, object&gt;
+                   {
+                     { "ApplicationId", facebookApplicationId },
+                     { "AccountName", newAccountName }
+                   });
+            
+               // to grant publish on the wall
+               accountDataRequest.Permissions.Add("publish_actions", string.Empty);
+            
+               // to retrieve user pages accessTokens
+               accountDataRequest.Permissions.Add("manage_pages", string.Empty);
+            
+               // to get message statistics
+               accountDataRequest.Permissions.Add("read_stream", string.Empty);
+            
+               accountClientManager.BeginGetAccountCredentials(accountDataRequest);
+             }
+             </code>
+             </example>
+             <param name="request">The account credentials request.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.AccountClientManager.EndGetAccountCredentials(System.String)">
+             <summary>
+             Returns the account credentials by request id.
+             </summary>
+             <remarks>
+             This method helps you to complete the process of receiving account credentials. 
+             At the end of the flow you'll be redirected to the <see cref="P:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest.CallbackPageUrl"/> with the <see cref="F:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest.RequestIdParameterName"/> parameter in a query string.
+             Use this request id to receive the account credentials response.
+             </remarks>
+             <example>
+             <code>
+             var requestId = HttpContext.Current.Request.QueryString[GetAccountCredentialsRequest.RequestIdParameterName];
+             var response = accountClientManager.EndGetAccountCredentials(requestId);
+            
+             switch (response.Status)
+             {
+               case GetAccountCredentialsResponseStatus.Done:
+                 var contextData = (Dictionary&lt;string, object&gt;)response.ContextData;
+            
+                 var newAccount = new Account
+                   {
+                     AccountContainer = "/sitecore/system/Social/Accounts",
+                     AccountCredentials = response.AccountCredentials,
+                     ApplicationId = (Identifier)contextData["ApplicationId"],
+                     LastRenewalDate = DateTime.UtcNow,
+                     Name = (string)contextData["AccountName"]
+                   };
+            
+                 accountManager.CreateAccount(newAccount);
+                 this.ShowAccount(newAccount);
+                 break;
+               case GetAccountCredentialsResponseStatus.Failed:
+                 var exceptionClientManager = new ExceptionClientManager();
+                 var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+                 this.ShowExceptionInfo(exceptionInfo);
+                 break;
+               case GetAccountCredentialsResponseStatus.ResponseIsNotFound:
+                 Console.WriteLine("Session is expired or response is not found.");
+                 break;
+             }
+             </code>
+             </example>
+             <param name="requestId">The request id returned in the query string at the end of the flow.</param>
+             <returns>
+             The account credentials response.
+             </returns>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.ApiAuthCompleted">
+            <summary>
+            The class represents authentication completing for client API.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ApiAuthCompleted.AuthCompleted(Sitecore.Social.NetworkProviders.Args.AuthCompletedArgs)">
+            <summary>
+            Completes authentication process.
+            </summary>
+            <param name="args">The args.</param>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.ConnectorClientManager">
+            <summary>
+            Defines the methods that are used to log in users with social networks or attach social network profiles for existing users.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Api.ConnectorClientManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.#ctor(Sitecore.Social.Configuration.IConfigurationFactory,Sitecore.Social.ISocialProfileBusinessManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Api.ConnectorClientManager"/> class with the specified parameters.
+            </summary>
+            <param name="configurationFactory">The configuration factory.</param>
+            <param name="socialProfileBusinessManager">The social profile business manager.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String)">
+            <summary>
+            Logs the user in the specified network. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network (case-sensitive).</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <example>
+              <remarks>
+            Example of how to start the login process.
+              </remarks>
+              <code>
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.LogOnUser("Facebook", callbackUrl);
+            }
+              </code>
+              <remarks>
+            Example of how to finish the login process.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Logs the user in the specified network. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+            <example>
+              <remarks>
+            Example of how to start the login process.
+              </remarks>
+              <code>
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.LogOnUser("Facebook", callbackUrl, new Dictionary{string, object}(){ {"parameter1", "parameterValue1"} });
+            }
+              </code>
+              <remarks>
+            Example of how to finish the login process.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,System.Boolean)">
+            <summary>
+            Logs the user in the specified network. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+            <example>
+              <remarks>
+            Example of how to start the login process.
+              </remarks>
+              <code>
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.LogOnUser("Facebook", callbackUrl, true);
+            }
+              </code>
+              <remarks>
+            Example of how to finish the login process.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Logs the user in the specified network. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+            <example>
+              <remarks>
+            Example of how to start the login process.
+              </remarks>
+              <code>
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.LogOnUser("Facebook", callbackUrl, true, new Dictionary{string, object}(){ {"parameter1", "parameterValue1"} });
+            }
+              </code>
+              <remarks>
+            Example of how to finish the login process.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials)">
+            <summary>
+            Logs the user in the specified network with the specified application credentials. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <example>
+              <remarks>
+            Example of how to start the login process.
+              </remarks>
+              <code>
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.LogOnUser("Facebook", callbackUrl, new ApplicationCredentials("&lt;application key&gt;", "&lt;application secret&gt;"));
+            }
+              </code>
+              <remarks>
+            Example of how to finish the login process.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Logs the user in the specified network with the specified application credentials. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+            <example>
+              <remarks>
+            Example of how to start the login process.
+              </remarks>
+              <code>
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.LogOnUser("Facebook", callbackUrl, new ApplicationCredentials("&lt;application key&gt;", "&lt;application secret&gt;"), new Dictionary{string, object}(){ {"parameter1", "parameterValue1"} });
+            }
+              </code>
+              <remarks>
+            Example of how to finish the login process.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Boolean)">
+            <summary>
+            Logs the user in the specified network with the specified application credentials. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+            <example>
+              <remarks>
+            Example of how to start the login process.
+              </remarks>
+              <code>
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.LogOnUser("Facebook", callbackUrl, new ApplicationCredentials("&lt;application key&gt;", "&lt;application secret&gt;"), true);
+            }
+              </code>
+              <remarks>
+            Example of how to finish the login process.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Logs the user in the specified network with the specified application credentials. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+            <example>
+              <remarks>
+            Example of how to start the login process.
+              </remarks>
+              <code>
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.LogOnUser("Facebook", callbackUrl, new ApplicationCredentials("&lt;application key&gt;", "&lt;application secret&gt;"), true, new Dictionary{string, object}(){ {"parameter1", "parameterValue1"} });
+            }
+              </code>
+              <remarks>
+            Example of how to finish the login process.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.AttachToUser(System.String,System.String)">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="M:Sitecore.Social.Client.Domain.IConnectorClientManager.LogOnUser(System.String,System.String)"/>
+            </summary>
+            <param name="networkName">The name of the network (case-sensitive).</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <example>
+              <remarks>
+            An example of how to start the process of attaching a social profile.
+              </remarks>
+              <code>
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.AttachToUser("Facebook", callbackUrl);
+            }
+              </code>
+              <remarks>
+            Example of how to finish the process of attaching a social profile.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected on the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.AttachToUser(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String)"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+            <example>
+              <remarks>
+            An example of how to start the process of attaching a social profile.
+              </remarks>
+              <code>
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.AttachToUser("Facebook", callbackUrl, new Dictionary{string, object}(){ {"parameter1", "parameterValue1"} });
+            }
+              </code>
+              <remarks>
+            Example of how to finish the process of attaching a social profile.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected on the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.AttachToUser(System.String,System.String,System.Boolean)">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,System.Boolean)"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+            <example>
+              <remarks>
+            An example of how to start the process of attaching a social profile.
+              </remarks>
+              <code>
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.AttachToUser("Facebook", callbackUrl, true);
+            }
+              </code>
+              <remarks>
+            Example of how to finish the process of attaching a social profile.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.AttachToUser(System.String,System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+            <example>
+              <remarks>
+            An example of how to start the process of attaching a social profile.
+              </remarks>
+              <code>
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.AttachToUser("Facebook", callbackUrl, true, new Dictionary{string, object}(){ {"parameter1", "parameterValue1"} });
+            }
+              </code>
+              <remarks>
+            Example of how to finish the process of attaching a social profile.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.AttachToUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials)">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials)"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <example>
+              <remarks>
+            An example of how to start the process of attaching a social profile.
+              </remarks>
+              <code>
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.AttachToUser("Facebook", callbackUrl, new ApplicationCredentials("&lt;application key&gt;", "&lt;application secret&gt;"));
+            }
+              </code>
+              <remarks>
+            Example of how to finish the process of attaching a social profile.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.AttachToUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Collections.Generic.Dictionary{System.String,System.Object})"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+            <example>
+              <remarks>
+            An example of how to start the process of attaching a social profile.
+              </remarks>
+              <code>
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.AttachToUser("Facebook", callbackUrl, new ApplicationCredentials("&lt;application key&gt;", "&lt;application secret&gt;"), new Dictionary{string, object}(){ {"parameter1", "parameterValue1"} });
+            }
+              </code>
+              <remarks>
+            Example of how to finish the process of attaching a social profile.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.AttachToUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Boolean)">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Boolean)"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+            <example>
+              <remarks>
+            An example of how to start the process of attaching a social profile.
+              </remarks>
+              <code>
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.AttachToUser("Facebook", callbackUrl, new ApplicationCredentials("&lt;application key&gt;", "&lt;application secret&gt;"), true);
+            }
+              </code>
+              <remarks>
+            Example of how to finish the process of attaching a social profile.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.AttachToUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="M:Sitecore.Social.Client.Api.ConnectorClientManager.LogOnUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+            <example>
+              <remarks>
+            An example of how to start the process of attaching a social profile.
+              </remarks>
+              <code>
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+              connectorClientManager.AttachToUser("Facebook", callbackUrl, new ApplicationCredentials("&lt;application key&gt;", "&lt;application secret&gt;"), true, new Dictionary{string, object}(){ {"parameter1", "parameterValue1"} });
+            }
+              </code>
+              <remarks>
+            Example of how to finish the process of attaching a social profile.
+              </remarks>
+              <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (exceptionInfo.IsEmpty)
+            {
+              var facebookProfile = HttpContext.Current.User.GetSocialProfile("Facebook");
+              if (!facebookProfile.IsEmpty)
+              {
+                this.ShowSocialProfile(facebookProfile);
+              }
+            }
+            else
+            {
+              Console.WriteLine("Simple message: {0}\nDetailed message: {1}", exceptionInfo.SimpleMessage, exceptionInfo.DetailedMessage);
+            }
+              </code>
+              </example>
+            <remarks>
+            At the end of the flow you'll be redirected to the same page again.
+            Use <see cref="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)"/> to get the exception information in a case of error.
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.Connect(System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,Sitecore.Social.Domain.Model.AccountCredentials,System.Boolean,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Login/Attach a user with specified a social network profile credentials.
+            </summary>
+            <param name="networkName">Name of the network.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="accountCredentials">The account credentials.</param>
+            <param name="attachAccountToLoggedInUser">if set to <c>true</c> [attach account to logged in user].</param>
+            <param name="isAsyncProfileUpdate">if set to <c>true</c> [is asynchronous profile update].</param>
+            <param name="additionalParameters">The additional parameters, which were kept during the authentication flow.</param>
+            <exception cref="T:Sitecore.Social.Exceptions.AccountInUserDuplicatedException">User already has another attached account of the same network.</exception>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.ShouldSocialProfileBeRefreshed(Sitecore.Social.Domain.Model.SocialProfile)">
+            <summary>
+            Determines whether social profile should be refreshed.
+            </summary>
+            <param name="socialProfile">The social profile.</param>
+            <returns>true if social profile should be refreshed.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.UpdateUserFullName(System.String)">
+            <summary>
+            Updates the full name of the user.
+            </summary>
+            <param name="fullName">The full name.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ConnectorClientManager.ProcessUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Boolean,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Initiates the process of logging in/attaching the current user.
+            </summary>
+            <param name="networkName">Name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> [update social profile async].</param>
+            <param name="attachAccountToLoggedInUser">if set to <c>true</c> a social profile will be attached to the current user; otherwise, the current user will be logged in first.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+        </member>
+        <member name="P:Sitecore.Social.Client.Api.ConnectorClientManager.SocialProfileBusinessManager">
+            <summary>
+            Gets the social profile business manager.
+            </summary>
+            <value>
+            The social profile business manager.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Client.Api.ConnectorClientManager.ConfigurationFactory">
+            <summary>
+            Gets the configuration factory.
+            </summary>
+            <value>
+            The configuration factory.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.EventArgs.SocialConnectorEventArgs">
+            <summary>
+            Base class for social connector event args.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Client.Api.EventArgs.SocialConnectorEventArgs.NetworkName">
+            <summary>
+            Gets or sets the name of the network.
+            </summary>
+            <value>
+            The name of the network.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Client.Api.EventArgs.SocialConnectorEventArgs.AdditionalParameters">
+            <summary>
+            The additional parameters, which were kept during the authentication flow.
+            </summary>
+            <value>
+            The additional parameters.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Client.Api.EventArgs.SocialConnectorEventArgs.UserName">
+            <summary>
+            Gets or sets the name of the user.
+            </summary>
+            <value>
+            The name of the user.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Client.Api.EventArgs.SocialConnectorEventArgs.ContactId">
+            <summary>
+            Gets or sets the contact identifier.
+            </summary>
+            <value>
+            The contact identifier.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Client.Api.EventArgs.SocialConnectorEventArgs.SocialProfileIdentityData">
+            <summary>
+            Gets or sets the social profile identity data.
+            </summary>
+            <value>
+            The social profile identity data.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.EventArgs.SocialProfileAttachedEventArgs">
+            <summary>
+            Event arguments, which are passed to the "social:connector:user:socialprofileattached" event.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.EventArgs.SocialProfileAttachedEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Api.EventArgs.SocialConnectorEventArgs"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.EventArgs.SocialProfileAttachedEventArgs.#ctor(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.Guid,Sitecore.Social.Domain.Model.SocialProfileIdentityData)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Api.EventArgs.SocialProfileAttachedEventArgs"/> class.
+            </summary>
+            <param name="networkName">Name of the network.</param>
+            <param name="additionalParameters">The additional parameters.</param>
+            <param name="userName">Name of the user.</param>
+            <param name="contactId">The contact identifier.</param>
+            <param name="socialProfileIdentityData">The social profile identity data.</param>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.EventArgs.SocialNetworkUserLoggedInEventArgs">
+            <summary>
+            Event arguments, which are passed to the "social:connector:user:loggedin" event.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.EventArgs.SocialNetworkUserLoggedInEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Api.EventArgs.SocialConnectorEventArgs"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.EventArgs.SocialNetworkUserLoggedInEventArgs.#ctor(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.Guid,Sitecore.Social.Domain.Model.SocialProfileIdentityData)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Api.EventArgs.SocialNetworkUserLoggedInEventArgs"/> class.
+            </summary>
+            <param name="networkName">Name of the network.</param>
+            <param name="additionalParameters">The additional parameters.</param>
+            <param name="userName">Name of the user.</param>
+            <param name="contactId">The contact identifier.</param>
+            <param name="socialProfileIdentityData">The social profile identity data.</param>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.ExceptionClientManager">
+            <summary>
+            Represents receiving of exception information.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.IExceptionClientManager">
+            <summary>
+            Represents receiving of exception information.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.IExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)">
+            <summary>
+            Receives the exception information.
+            </summary>
+            <param name="request">The http request.</param>
+            <returns>The exception information.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ExceptionClientManager.GetExceptionInfo(System.Web.HttpRequest)">
+            <summary>
+            Receives the exception information.
+            </summary>
+            <example>
+            <code>
+            var exceptionClientManager = new ExceptionClientManager();
+            var exceptionInfo = exceptionClientManager.GetExceptionInfo(HttpContext.Current.Request);
+            if (!exceptionInfo.IsEmpty)
+            {
+              this.ShowExceptionInfo(exceptionInfo);
+            }
+            </code>
+            </example>
+            <param name="request">The http request.</param>
+            <returns>The exception information.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.ExceptionInfo">
+            <summary>
+            Represents the information about exception.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.Exceptions.SocialExceptionInfo">
+            <summary>
+            The class represents the social excption info.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.Exceptions.SocialExceptionInfo.#ctor(Sitecore.Social.Domain.Exceptions.ISocialException)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Api.Exceptions.SocialExceptionInfo"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.Exceptions.SocialExceptionInfo.Equals(Sitecore.Social.Client.Api.Exceptions.SocialExceptionInfo)">
+            <summary>
+            Checks if the current SocialExceptionInfo is equal to another one.
+            </summary>
+            <param name="other">The other SocialExceptionInfo.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.Exceptions.SocialExceptionInfo.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+            <exception cref="T:System.NullReferenceException">
+            The <paramref name="obj"/> parameter is null.
+              </exception>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.Exceptions.SocialExceptionInfo.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:Sitecore.Social.Client.Api.Exceptions.SocialExceptionInfo.SimpleMessage">
+            <summary>
+            The simple message.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Client.Api.Exceptions.SocialExceptionInfo.DetailedMessage">
+            <summary>
+            The detailed message.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Api.ExceptionInfo.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Client.Api.ExceptionInfo"/> class whose value represents not found exception info.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ExceptionInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Api.ExceptionInfo"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ExceptionInfo.#ctor(Sitecore.Social.Domain.Exceptions.ISocialException)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Api.ExceptionInfo"/> class and fills the class with information from the provided <see cref="T:Sitecore.Social.Domain.Exceptions.ISocialException"/> parameter.
+            </summary>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="P:Sitecore.Social.Client.Api.ExceptionInfo.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.Exceptions.ExceptionManager">
+            <summary>
+            The class represents the interface of storing exception info
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Api.Exceptions.ExceptionManager.CollectionKey">
+            <summary>
+            The collection key
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Api.Exceptions.ExceptionManager.session">
+            <summary>
+            The session
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.Exceptions.ExceptionManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Api.Exceptions.ExceptionManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.Exceptions.ExceptionManager.Put(Sitecore.Social.Client.Api.Exceptions.SocialExceptionInfo)">
+            <summary>
+            Puts the specified exception info.
+            </summary>
+            <param name="exceptioInfo">The exception info.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.Exceptions.ExceptionManager.Get(System.Guid)">
+            <summary>
+            Gets the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.Exceptions.ExceptionManager.GetCollection">
+            <summary>
+            Gets the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.Exceptions.ExceptionManager.SaveCollection(System.Collections.Hashtable)">
+            <summary>
+            Saves the collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.IoC.Modules.ClientManagersModule">
+            <summary>
+            Defines bindings of client managers implementations.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.IoC.Modules.ClientManagersModule.Load">
+            <summary>
+            Loads the module into the kernel.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.ISocialPageEventClientManager">
+            <summary>
+            Defines the methods to enrich PageEvents with extra parameters.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ISocialPageEventClientManager.TriggerSocialPageEvent(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Registers the event parameters.
+            </summary>
+            <param name="pageEventName">Name of the page event.</param>
+            <param name="parameters">The parameters.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.ISocialPageEventClientManager.GetSocialPageEventParameters(Sitecore.Social.Client.Api.SocialPageEventItem)">
+            <summary>
+            Gets the social page event parameters.
+            </summary>
+            <param name="socialPageItem">The social page item.</param>
+            <returns>The social page event parameters.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.SocialPageEventClientManager">
+            <summary>
+            Helps to enrich PageEvents with extra parameters.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.SocialPageEventClientManager.TriggerSocialPageEvent(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Registers the event parameters.
+            </summary>
+            <param name="pageEventName">Name of the page event.</param>
+            <param name="parameters">The parameters.</param>
+            <example>
+            <code>
+            const string PageEventName = "Social Test Page Event";
+            var tokensToBeReplaced = new Dictionary&lt;string, string&gt; { { "testToken", "New Value" } };
+            pageEventClientManager.TriggerSocialPageEvent(PageEventName, tokensToBeReplaced);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.SocialPageEventClientManager.GetSocialPageEventParameters(Sitecore.Social.Client.Api.SocialPageEventItem)">
+             <summary>
+             Gets the social page event parameters.
+             </summary>
+             <param name="socialPageItem">The social page item.</param>
+             <returns>The social page event parameters.</returns>
+             <example>
+             <code>
+             if (pageEventItem is SocialPageEventItem)
+             {
+               var parameters = pageEventClientManager.GetSocialPageEventParameters(pageEventItem);
+            
+               foreach (var parameter in parameters)
+               {
+                 Console.WriteLine("Parameter: {0}; with value: {1}", parameter.Key, parameter.Value);
+               }
+             }
+             </code>
+             </example>
+        </member>
+        <member name="T:Sitecore.Social.Client.Api.SocialPageEventItem">
+            <summary>
+            Represents the PageEvent wrapper to store additional data.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Api.SocialPageEventItem.#ctor(Sitecore.Data.Items.Item)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Api.SocialPageEventItem"/> class.
+            </summary>
+            <param name="item">The item.</param>
+        </member>
+        <member name="P:Sitecore.Social.Client.Api.SocialPageEventItem.Data">
+            <summary>
+            Gets or sets the data.
+            </summary>
+            <value>The data.</value>
+        </member>
+    </members>
+</doc>

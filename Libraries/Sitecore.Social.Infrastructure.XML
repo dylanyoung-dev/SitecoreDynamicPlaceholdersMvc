@@ -1,0 +1,1620 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Infrastructure.Common.XmlEncoder">
+            <summary>
+            The class helps to replace the symbols which can brake the xml with their codes
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Common.XmlEncoder.Escape(System.String)">
+            <summary>
+            Escapes the specified string with invalid symbols.
+            </summary>
+            <param name="stringWithInvalidSymbols">The string with invalid symbols.</param>
+            <returns>The safe string.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Exceptions.SocialException">
+            <summary>
+            The base class of the social module exceptions
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Exceptions.SocialException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Infrastructure.Exceptions.SocialException"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Exceptions.SocialException.#ctor(System.Exception,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Infrastructure.Exceptions.SocialException"/> class with the specified network name.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+            <param name="networkName">Name of the network.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Exceptions.SocialException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Infrastructure.Exceptions.SocialException"/> class with the specified inner exception.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.Exceptions.SocialException.SimpleMessage">
+            <summary>
+            The simple message.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.Exceptions.SocialException.DetailedMessage">
+            <summary>
+            The detailed message.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.ExecutingContext">
+            <summary>
+            Social module executing context
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.ExecutingContext.ExecutingContextKey">
+            <summary>
+            Key to get ExecutingContext from HttpContext/Thread
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.ExecutingContext.CreateDefaultContext">
+            <summary>
+            Creates the default context.
+            </summary>
+            <returns>
+            - <see cref="T:Sitecore.Social.Infrastructure.HttpRequestExecutingContext"/> in case of http request;
+            - <see cref="T:Sitecore.Social.Infrastructure.ManagedThreadExecutingContext"/> in another case.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.ExecutingContext.GetContext">
+            <summary>
+            Gets the current executing context.
+            </summary>
+            <returns><see cref="T:Sitecore.Social.Infrastructure.ExecutingContext"/></returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.ExecutingContext.SetContext(Sitecore.Social.Infrastructure.ExecutingContext)">
+            <summary>
+            Sets the context.
+            </summary>
+            <param name="ctx">The <see cref="T:Sitecore.Social.Infrastructure.ExecutingContext"/></param>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.ExecutingContext.Current">
+            <summary>
+            Gets or sets the current Social executing context.
+            </summary>
+            <value>
+            The <see cref="T:Sitecore.Social.Infrastructure.ExecutingContext"/>.
+            </value>
+            <remarks>
+            If the context is not defined, the default context is created and returned:
+            - <see cref="T:Sitecore.Social.Infrastructure.HttpRequestExecutingContext"/> for the http request;
+            - <see cref="T:Sitecore.Social.Infrastructure.ManagedThreadExecutingContext"/> in another case.
+            </remarks>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.ExecutingContext.IoC">
+            <summary>
+            Gets the IoC container.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.ExecutingContext.IoCState">
+            <summary>
+            Gets the state of the IoC container.
+            </summary>
+            <value>
+            The IoC container state.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.ExecutingContext.RenewingNetworkAccountIdList">
+            <summary>
+            Gets the list of network account IDs which are being renewed currently.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Extensions.GuidExtensions">
+            <summary>
+            Provides a set of static methods to get <see cref="T:Sitecore.Social.Domain.Model.Identifier"/> for the <see cref="T:System.Guid"/> objects.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Extensions.GuidExtensions.GetIdentifier(System.Guid)">
+            <summary>
+            Gets the identifier from GUID.
+            </summary>
+            <param name="value">The GUID.</param>
+            <returns>The <see cref="T:Sitecore.Social.Infrastructure.Identifiers.GuidIdentifier"/>.</returns>
+            <example>
+            <code>
+            var contentId = Guid.NewGuid().GetIdentifier();
+            </code>
+            </example>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Extensions.IdentifierExtensions">
+            <summary>
+            Provides a set of static methods to get values for the <see cref="T:Sitecore.Social.Domain.Model.Identifier"/> objects.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Extensions.IdentifierExtensions.GetGuid(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the GUID value.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <returns>The GUID value.</returns>
+            <exception cref="T:System.InvalidCastException">The 'identifier' argument is not a GuidIdentifier object.</exception>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Extensions.IdentifierExtensions.GetID(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Gets the ID from identifier.
+            </summary>
+            <param name="id">The id.</param>
+            <returns>The <see cref="T:Sitecore.Data.ID"/>.</returns>
+            <exception cref="T:System.InvalidCastException">The 'id' argument is not an IDIdentifier object.</exception>
+            <example>
+            <code>
+            var messageItemID = messageId.GetID();
+            </code>
+            </example>
+            <seealso cref="T:Sitecore.Social.Infrastructure.Identifiers.IDIdentifier"/>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Extensions.IDExtensions">
+            <summary>
+            Provides a set of static methods to get <see cref="T:Sitecore.Social.Domain.Model.Identifier"/> for the <see cref="T:Sitecore.Data.ID"/> objects.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Extensions.IDExtensions.GetIdentifier(Sitecore.Data.ID)">
+            <summary>
+            Gets the identifier from ID.
+            </summary>
+            <param name="id">The id.</param>
+            <returns>The <see cref="T:Sitecore.Social.Domain.Model.Identifier"/>.</returns>
+            <example>
+            <code>
+            var messageId = messageItemID.GetIdentifier();
+            </code>
+            </example>
+            <seealso cref="T:Sitecore.Social.Infrastructure.Identifiers.IDIdentifier"/>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Extensions.StringExtensions">
+            <summary>
+            Defines static methods that extend <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Extensions.StringExtensions.Contains(System.String,System.String,System.StringComparison)">
+            <summary>
+            Determines whether a string contains the specified string.
+            </summary>
+            <param name="source">The source string.</param>
+            <param name="toCheck">The string to check.</param>
+            <param name="stringComparison">The string comparison options.</param>
+            <returns>
+              <c>true</c> if the string contains the specified string; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Extensions.StringExtensions.EscapeJavaScript(System.String)">
+            <summary>
+            Escapes the java script.
+            </summary>
+            <param name="source">The source.</param>
+            <returns>The escaped text.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.HttpRequestExecutingContext">
+            <summary>
+            Http request executing context
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.HttpRequestExecutingContext.IoCApplicationKey">
+            <summary>
+            The key to get IoC from the Application object.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.HttpRequestExecutingContext.IoCStateApplicationKey">
+            <summary>
+            The key to get IoC state from the Application object.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.HttpRequestExecutingContext.RenewingNetworkAccountIdListSessionKey">
+            <summary>
+            The key to get <see cref="P:Sitecore.Social.Infrastructure.HttpRequestExecutingContext.RenewingNetworkAccountIdList"/> from the session.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.HttpRequestExecutingContext.IoC">
+            <summary>
+            Gets the IoC container.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.HttpRequestExecutingContext.IoCState">
+            <summary>
+            Gets the state of the IoC container.
+            </summary>
+            <value>
+            The IoC container state.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.HttpRequestExecutingContext.RenewingNetworkAccountIdList">
+            <summary>
+            Gets the list of network account IDs which are being renewed currently.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Identifiers.GuidIdentifier">
+            <summary>
+            Represents the identifier for the <see cref="T:System.Guid"/> object.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Identifiers.GuidIdentifier.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Infrastructure.Identifiers.GuidIdentifier"/> class whose value represents a not defined identifier.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Identifiers.GuidIdentifier.#ctor(System.Guid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Infrastructure.Identifiers.GuidIdentifier"/> class with specific GUID.
+            </summary>
+            <param name="id">The id.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Identifiers.GuidIdentifier.Equals(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Checks if the current identifier is equal to another one.
+            </summary>
+            <param name="other">The other identifier.</param>
+            <returns>
+              <c>true</c> if the current identifier is equal to another one, otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.Identifiers.GuidIdentifier.OriginalId">
+            <summary>
+            Gets the original id.
+            </summary>
+            <value>
+            The original id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.Identifiers.GuidIdentifier.OriginalType">
+            <summary>
+            Gets the original type.
+            </summary>
+            <value>
+            The original type.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.Identifiers.GuidIdentifier.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Identifiers.IDIdentifier">
+            <summary>
+            Represents the identifier for the <see cref="T:Sitecore.Data.ID"/> object.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Identifiers.IDIdentifier.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Infrastructure.Identifiers.IDIdentifier"/> class whose value represents a not defined identifier.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Identifiers.IDIdentifier.#ctor(Sitecore.Data.ID)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Infrastructure.Identifiers.IDIdentifier"/> class from the id.
+            </summary>
+            <param name="id">The id.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Identifiers.IDIdentifier.Equals(Sitecore.Social.Domain.Model.Identifier)">
+            <summary>
+            Checks if the current identifier is equal to another one.
+            </summary>
+            <param name="other">The other identifier.</param>
+            <returns>
+              <c>true</c> if the current identifier is equal to another one, otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.Identifiers.IDIdentifier.OriginalId">
+            <summary>
+            Gets the original id.
+            </summary>
+            <value>
+            The original id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.Identifiers.IDIdentifier.OriginalType">
+            <summary>
+            Gets the original type.
+            </summary>
+            <value>
+            The original type.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.Identifiers.IDIdentifier.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.IoC.IoCState">
+            <summary>
+            Defines methods to determine the IoC container state.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.IoC.IoCState.IoCLoaded">
+            <summary>
+            Checks if the IoC container is loaded.
+            </summary>
+            <returns><c>true</c> if the IoC container is loaded; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.IoC.IoCState.IoCLoaded(System.String)">
+            <summary>
+            Checks if the IoC container is loaded.
+            </summary>
+            <param name="warnMessageToLog">The warn message to log if the IoC container is not loaded.</param>
+            <returns>
+              <c>true</c> if the IoC container is loaded; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.IoC.IoCInitialization">
+            <summary>
+            Defines a processor for the IoC container initialization.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.IoC.IoCInitialization.assemblies">
+            <summary>
+            The assemblies to look for <see cref="T:Ninject.Modules.INinjectModule"/> modules.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.IoC.IoCInitialization.Process(Sitecore.Pipelines.PipelineArgs)">
+            <summary>
+            Runs the processor.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.IoC.IoCInitialization.AddAssembly(System.String)">
+            <summary>
+            Adds an assembly to look for <see cref="T:Ninject.Modules.INinjectModule"/> modules.
+            </summary>
+            <param name="assemblyName">Name of the assembly.</param>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.IoC.Modules.WrappersModule">
+            <summary>
+            IoC module to bind wrapper services
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.IoC.Modules.WrappersModule.Load">
+            <summary>
+            Loads the module into the kernel.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.FormatterForAttribute">
+            <summary>
+            The formatter for attribute.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.FormatterForAttribute.entityType">
+            <summary>
+            The entity type
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.FormatterForAttribute.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Infrastructure.Logging.FormatterForAttribute"/> class.
+            </summary>
+            <param name="entityType">Type of the entity.</param>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.Logging.FormatterForAttribute.EntityType">
+            <summary>
+            Gets the type of the entity.
+            </summary>
+            <value>
+            The type of the entity.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter">
+            <summary>
+            Defines a method to format entities.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.IEntityFormatter.FormatEntity(System.Object)">
+            <summary>
+            Formats the entity.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>
+            A string representation of <paramref name="entity" />.
+            </returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatterCache">
+            <summary>
+            The interface for entity formatter cache.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.IEntityFormatterCache.Get(System.Type)">
+            <summary>
+            Gets the <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> instance for the passed <paramref name="type"/> from cache.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> concrete implementation.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.IEntityFormatterCache.Set(System.Type,Sitecore.Social.Infrastructure.Logging.IEntityFormatter)">
+            <summary>
+            Sets the <paramref name="entityFormatter"/> formatter for the <paramref name="type"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="entityFormatter">The entity formatter.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.IEntityFormatterCache.Exists(System.Type)">
+            <summary>
+            Checks if an <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> for <paramref name="type"/> exists in cache.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>true, if an <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> for <paramref name="type"/> exists in cache, otherwise - false.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatterMapper">
+            <summary>
+            Defines method for mapping types to the concrete implementations of the <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> interface.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.IEntityFormatterMapper.GetEntityFormatter(System.Type)">
+            <summary>
+            Gets the entity formatter for the specific type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> implementation for <paramref name="type"/>.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.ILogManager">
+            <summary>
+            Defines methods for logging.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogObject(System.Object,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object)">
+            <summary>
+            Logs the specified object.
+            </summary>
+            <param name="obj">The object.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogObject(System.Object,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the specified object with the exception.
+            </summary>
+            <param name="obj">The object.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogObject(System.Object,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean)">
+            <summary>
+            Logs the specified object with the information about the current user.
+            </summary>
+            <param name="obj">The object.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogObject(System.Object,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean,System.Exception)">
+            <summary>
+            Logs the specified object with the information about the current user and the exception.
+            </summary>
+            <param name="obj">The object.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogEnumerable``1(System.Collections.Generic.IEnumerable{``0},System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object)">
+            <summary>
+            Logs the enumerable.
+            </summary>
+            <typeparam name="T">Type of objects.</typeparam>
+            <param name="enumerable">The enumerable.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The owner.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogEnumerable``1(System.Collections.Generic.IEnumerable{``0},System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the enumerable with the exception.
+            </summary>
+            <typeparam name="T">Type of objects.</typeparam>
+            <param name="enumerable">The enumerable.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The owner.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogEnumerable``1(System.Collections.Generic.IEnumerable{``0},System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean)">
+            <summary>
+            Logs the enumerable with the information about the current user.
+            </summary>
+            <typeparam name="T">Type of objects.</typeparam>
+            <param name="enumerable">The enumerable.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The owner.</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogEnumerable``1(System.Collections.Generic.IEnumerable{``0},System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean,System.Exception)">
+            <summary>
+            Logs the enumerable with the information about the current user.
+            </summary>
+            <typeparam name="T">Type of objects.</typeparam>
+            <param name="enumerable">The enumerable.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The owner.</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogStatic(System.Type,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object)">
+            <summary>
+            Logs the static class.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogStatic(System.Type,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the static class with the information about the exception.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogStatic(System.Type,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean)">
+            <summary>
+            Logs the static class with the information about the current user.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogStatic(System.Type,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean,System.Exception)">
+            <summary>
+            Logs the static class with the information about the current user and the exception.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogJson(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object)">
+            <summary>
+            Logs the JSON.
+            </summary>
+            <param name="jsonString">The JSON string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogJson(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the JSON with the exception.
+            </summary>
+            <param name="jsonString">The JSON string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogJson(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean)">
+            <summary>
+            Logs the JSON with the information about the current user.
+            </summary>
+            <param name="jsonString">The JSON string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogJson(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean,System.Exception)">
+            <summary>
+            Logs the JSON with the information about the current user and the exception.
+            </summary>
+            <param name="jsonString">The JSON string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogXml(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object)">
+            <summary>
+            Logs the XML.
+            </summary>
+            <param name="xmlString">The XML string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogXml(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the XML with the exception.
+            </summary>
+            <param name="xmlString">The XML string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogXml(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean)">
+            <summary>
+            Logs the XML with the information about the current user.
+            </summary>
+            <param name="xmlString">The XML string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogXml(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean,System.Exception)">
+            <summary>
+            Logs the XML with the information about the current user and the exception.
+            </summary>
+            <param name="xmlString">The XML string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogMessage(System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object)">
+            <summary>
+            Logs the message.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.LogMessage(System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the message with the information about the exception.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogManager.Audit(System.String,System.Object)">
+            <summary>
+            Logs the message with the information about the current user.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="owner">The owner.</param>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.ILogProvider">
+            <summary>
+            Defines methods for logging messages.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogProvider.LogMessage(System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the message.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The owner.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.ILogMessageFormatter">
+            <summary>
+            Defines a method for formatting log message.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogMessageFormatter.FormatMessage(System.String)">
+            <summary>
+            Formats the message.
+            </summary>
+            <param name="message">The message.</param>
+            <returns>A formatted <paramref name="message"/>.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogMessageFormatter.FormatMessage(System.String,System.String)">
+            <summary>
+            Formats the message.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="userName">Name of the user.</param>
+            <returns>A formatted string, which unions <paramref name="message" /> and <paramref name="userName" />.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogMessageFormatter.FormatMessageWithObject(System.String,System.String)">
+            <summary>
+            Formats the message.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="objectRepresentation">The object representation.</param>
+            <returns>
+            A formatted string, which unions <paramref name="message" /> and <paramref name="objectRepresentation" />.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogMessageFormatter.FormatMessageWithObject(System.String,System.String,System.String)">
+            <summary>
+            Formats the message.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="objectRepresentation">The object representation.</param>
+            <param name="userName">Name of the user.</param>
+            <returns>A formatted string, which unions <paramref name="message" />, <paramref name="objectRepresentation" /> and <paramref name="userName" />.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogMessageFormatter.FormatMessageWithEnumerable(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Formats the message with enumerable.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="objectsEnumerable">The objects enumerable.</param>
+            <returns>A formatted string, which unions <paramref name="message" /> and <paramref name="objectsEnumerable" />.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.ILogMessageFormatter.FormatMessageWithEnumerable(System.String,System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            Formats the message with enumerable.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="objectsEnumerable">The objects enumerable.</param>
+            <param name="userName">Name of the user.</param>
+            <returns>A formatted string, which unions <paramref name="message" />, <paramref name="objectsEnumerable" /> and <paramref name="userName" />.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.LogLevel">
+            <summary>
+            Contains the enumeration of log levels.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.LogLevel.Info">
+            <summary>
+            The information level
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.LogLevel.Warn">
+            <summary>
+            The warning level
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.LogLevel.Error">
+            <summary>
+            The error level
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.LogLevel.Fatal">
+            <summary>
+            The fatal error level
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.LogLevel.Debug">
+            <summary>
+            The debug level
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.LogLevel.Trace">
+            <summary>
+            The trace log level
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.ManagedThreadExecutingContext">
+            <summary>
+            Managed thread executing context.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.ManagedThreadExecutingContext.ioC">
+            <summary>
+            Ninject dependency resolver
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.ManagedThreadExecutingContext.ioCState">
+            <summary>
+            The IoC container state.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.ManagedThreadExecutingContext.renewingNetworkAccountIdList">
+            <summary>
+            List of network account IDs which are renewing currently.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.ManagedThreadExecutingContext.IoC">
+            <summary>
+            Gets the IoC container.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.ManagedThreadExecutingContext.IoCState">
+            <summary>
+            Gets the state of the IoC container.
+            </summary>
+            <value>
+            The IoC container state.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.ManagedThreadExecutingContext.RenewingNetworkAccountIdList">
+            <summary>
+            Gets the list of network account IDs which are being renewed currently.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.IoC.NinjectState">
+            <summary>
+            Defines methods to determine the Ninject container state.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.IoC.NinjectState.ioCLoaded">
+            <summary>
+            Specifies if the IoC container is loaded.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.IoC.NinjectState.ioCAssemblyFullName">
+            <summary>
+            The IoC assembly full name.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.IoC.NinjectState.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Infrastructure.IoC.NinjectState"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.IoC.NinjectState.IoCLoaded(System.String)">
+            <summary>
+            Checks if the IoC container is loaded.
+            </summary>
+            <param name="warnMessageToLog">The warn message to log if the IoC container is not loaded.</param>
+            <returns>
+              <c>true</c> if the IoC container is loaded; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Utils.DateTimeUtil">
+            <summary>
+            Represents the set of extensions to work with <see cref="T:System.DateTime"/> values.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToUtc(System.DateTime)">
+            <summary>
+            Converts the <see cref="T:System.DateTime"/> to UTC.
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>
+            The UTC <see cref="T:System.DateTime"/>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToNullableUtc(System.Nullable{System.DateTime})">
+            <summary>
+            Converts the <see cref="T:System.Nullable`1"/> to UTC.
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>
+            The UTC <see cref="T:System.Nullable`1"/>. <c>null</c> is returned in case of <paramref name="dateTime"/> is <c>null</c>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToUtcBinary(System.DateTime)">
+            <summary>
+            Converts the <see cref="T:System.DateTime"/> to UTC and then to a 64-bit binary value that subsequently can be used to recreate the <see cref="T:System.DateTime"/> object.
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>
+            A 64-bit signed integer that encodes the <see cref="P:System.DateTime.Kind"/> and <see cref="P:System.DateTime.Ticks"/> properties. 
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToUtcIso(System.DateTime)">
+            <summary>
+            Converts the <see cref="T:System.DateTime"/> to UTC and then to an ISO formatted date/time string without ticks.
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>
+            The ISO formatted date/time equivalent of the <see cref="T:System.DateTime"/> class.
+            </returns>
+            <remarks>
+            The date/time string is formatted as "yyyyMMddTHHmmssZ".
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToUtcIso(System.Nullable{System.DateTime})">
+            <summary>
+            Converts the <see cref="T:System.Nullable`1"/> to UTC and then to an ISO formatted date/time string without ticks.
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>
+            The ISO formatted date/time equivalent of the <see cref="T:System.Nullable`1"/> class. <c>string.Empty</c> is returned in case of <paramref name="dateTime"/> is <c>null</c>.
+            </returns>
+            <remarks>
+            The date/time string is formatted as "yyyyMMddTHHmmssZ".
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToUtcString(System.DateTime,System.String)">
+            <summary>
+            Converts the <see cref="T:System.DateTime"/> to UTC and then to string using specified format.
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <param name="format">The format.</param>
+            <returns>
+            The date/time string in the specfied format.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToUtcString(System.Nullable{System.DateTime},System.String,System.String)">
+            <summary>
+            Converts the <see cref="T:System.Nullable`1"/> to UTC and then to string using specified format.
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <param name="defaultValue">The default value.</param>
+            <param name="format">The format.</param>
+            <returns>
+            The date/time string in the specfied format. <paramref name="defaultValue"/> is returned in case of <paramref name="dateTime"/> is <c>null</c>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToIso(System.DateTime)">
+            <summary>
+            Converts the <see cref="T:System.DateTime"/> to an ISO formatted date/time string without ticks.
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>
+            The ISO formatted date/time equivalent of the <see cref="T:System.DateTime"/> class.
+            </returns>
+            <remarks>
+            The date/time string is formatted as "yyyyMMddTHHmmss".
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToIso(System.Nullable{System.DateTime})">
+            <summary>
+            Converts the <see cref="T:System.Nullable`1"/> to an ISO formatted date/time string without ticks.
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>
+            The ISO formatted date/time equivalent of the <see cref="T:System.Nullable`1"/> class. <c>string.Empty</c> is returned in case of <paramref name="dateTime"/> is <c>null</c>.
+            </returns>
+            <remarks>
+            The date/time string is formatted as "yyyyMMddTHHmmss".
+            </remarks>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToNullableServerTimeZone(System.Nullable{System.DateTime})">
+            <summary>
+            Converts the <see cref="T:System.Nullable`1"/> to the server's time zone <see cref="T:System.Nullable`1"/>. 
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>
+            The <see cref="T:System.Nullable`1"/> in the server's time zone. <c>null</c> is returned in case of <paramref name="dateTime"/> is <c>null</c>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToServerTimeZone(System.DateTime)">
+            <summary>
+            Converts the <see cref="T:System.DateTime"/> to the server's time zone <see cref="T:System.DateTime"/>. 
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>
+            The <see cref="T:System.DateTime"/> in the server's time zone.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToServerTimeZoneString(System.DateTime)">
+            <summary>
+            Converts the <see cref="T:System.DateTime"/> to the server's time zone and then to string using <see cref="P:System.Globalization.CultureInfo.CurrentCulture"/>. 
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>
+            The string representation of the <see cref="T:System.DateTime"/> class.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToServerTimeZoneString(System.Nullable{System.DateTime})">
+            <summary>
+            Converts the <see cref="T:System.Nullable`1"/> to the server's time zone and then to string using <see cref="P:System.Globalization.CultureInfo.CurrentCulture"/>. 
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>
+            The string representation of the <see cref="T:System.Nullable`1"/> class. <see cref="F:System.String.Empty"/> is returned in case of <paramref name="dateTime"/> is <c>null</c>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToServerTimeZoneString(System.Nullable{System.DateTime},System.String)">
+            <summary>
+            Converts the <see cref="T:System.Nullable`1"/> to the server's time zone and then to string using <see cref="P:System.Globalization.CultureInfo.CurrentCulture"/>.
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <param name="defaultValue">The default string value.</param>
+            <returns>
+            The string representation of the <see cref="T:System.Nullable`1"/> class. <paramref name="defaultValue"/> is returned in case of <paramref name="dateTime"/> is <c>null</c>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ToUtc(System.Int64)">
+            <summary>
+            Deserializes a 64-bit binary value and recreates an original serialized <see cref="T:System.DateTime"/> object and converts it to UTC.
+            </summary>
+            <param name="dateTimeBinary">A 64-bit signed integer that encodes the <see cref="P:System.DateTime.Kind"/> property in a 2-bit field and the <see cref="P:System.DateTime.Ticks"/> property in a 62-bit field.</param>
+            <returns>
+            An object that is equivalent to the <see cref="T:System.DateTime"/> object, that was serialized by the <see cref="M:System.DateTime.ToBinary"/> method, converted to UTC.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.IsoToUtc(System.String)">
+            <summary>
+            Converts an ISO formatted date/time string to a <see cref="T:System.DateTime"/> class and then to UTC.
+            </summary>
+            <param name="isoDateTime">An ISO formatted date/time string.</param>
+            <returns>The <see cref="T:System.DateTime"/> class equivalent of the date/time string. If the date/time is not valid, <see cref="F:System.DateTime.MinValue"/> is returned.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.IsoToNullableUtc(System.String,System.Nullable{System.DateTime})">
+            <summary>
+            Converts an ISO formatted date/time string to a <see cref="T:System.Nullable`1"/> class and then to UTC.
+            </summary>
+            <param name="isoDateTime">An ISO formatted date/time string.</param>
+            <param name="defaultDateTime">Default value to use if <paramref name="isoDateTime"/> can not be converted to a date/time.</param>
+            <returns>The <see cref="T:System.Nullable`1"/> class equivalent of the date/time string. If the date/time is not valid, <paramref name="defaultDateTime"/> is returned. </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.DateTimeUtil.ParseToNullableUtc(System.String,System.Nullable{System.DateTime})">
+            <summary>
+            Parses a string into a <see cref="T:System.Nullable`1"/> structure and converts it to UTC.
+            </summary>
+            <param name="dateTime">The date time string.</param>
+            <param name="defaultDateTime">The default date time.</param>
+            <returns>The <see cref="T:System.Nullable`1"/> class equivalent of the date/time string. If the date/time is not valid, <paramref name="defaultDateTime"/> is returned.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Utils.GoogleUrlShortener">
+            <summary>
+            Defines the Google URL shortener class.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Utils.IUrlShortener">
+            <summary>
+            Defines the IUrlSortener interface class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.IUrlShortener.ShortenUrl(System.Uri,System.String)">
+            <summary>
+            Shortens the URL using the specified API key.
+            </summary>
+            <param name="url">Long URL.</param>
+            <param name="key">API key.</param>
+            <returns>
+            Shortened URL.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.IUrlShortener.ShortenUrl(System.Uri)">
+            <summary>
+            Shortens the URL using the default API key.
+            </summary>
+            <param name="url">Long URL.</param>
+            <returns>
+            Shortened URL.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.GoogleUrlShortener.ShortenUrl(System.Uri,System.String)">
+            <summary>
+            Shortens the URL using the specified API key.
+            </summary>
+            <param name="url">Original URL.</param>
+            <param name="key">API key.</param>
+            <returns>
+            Shortened URL.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.GoogleUrlShortener.ShortenUrl(System.Uri)">
+            <summary>
+            Shortens the URL using the default API key.
+            </summary>
+            <param name="url">Long URL.</param>
+            <returns>
+            Shortened URL.
+            </returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Utils.ItemsIds">
+            <summary>
+            Item Ids constants.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.MessageFieldId">
+            <summary>
+            The message field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.PostWithItemFieldId">
+            <summary>
+            The post with item field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.LinkFieldId">
+            <summary>
+            The link field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.CampaignFieldId">
+            <summary>
+            The campaign field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.CampaignClassificationChannelFieldId">
+            <summary>
+            The campaign classification channel field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.CampaignReportId">
+            <summary>
+            The campaign report identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.PageEventTemplateId">
+            <summary>
+            The page event template identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.GoalTemplateId">
+            <summary>
+            The goal template identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.CampaignTemplateId">
+            <summary>
+            The campaign template identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.AccountFieldId">
+            <summary>
+            The account field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.ItemUriFieldId">
+            <summary>
+            The item URI field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.WorkflowStateFieldId">
+            <summary>
+            The workflow state field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.SendAssocialtedMessagesActionId">
+            <summary>
+            The send associated messages action identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.AlwaysTrueConditionId">
+            <summary>
+            The always true condition identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.PostingConfigurationTemplateId">
+            <summary>
+            The posting configuration template identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.MessageTemplateId">
+            <summary>
+            The message template identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.SocialMarketerAccountTemplateId">
+            <summary>
+            The social marketer account template identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.ProcessPreExpiredAccountsTaskId">
+            <summary>
+            The process pre-expired accounts task identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.NetworkTemplateId">
+            <summary>
+            The network template identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.AccountTemplateId">
+            <summary>
+            The account template identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.FacebookContentCampaignId">
+            <summary>
+            The Facebook content campaign identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.FacebookGoalCampaignId">
+            <summary>
+            The Facebook goal campaign identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.FacebookShareButtonsCampaignId">
+            <summary>
+            The Facebook share buttons campaign identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.TwitterContentCampaignId">
+            <summary>
+            The Twitter content campaign identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.TwitterGoalCampaignId">
+            <summary>
+            The Twitter goal campaign identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.TwitterShareButtonsCampaignId">
+            <summary>
+            The Twitter share buttons campaign identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.GooglePlusOneGoalId">
+            <summary>
+            The Google+ one goal identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.GooglePlusShareButtonsCampaignId">
+            <summary>
+            The Google+ share buttons campaign identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.LinkedInShareGoalId">
+            <summary>
+            The LinkedIn share goal identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.LinkedInShareButtonsCampaignId">
+            <summary>
+            The LinkedIn share buttons campaign identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.SocialMarketerCampaignId">
+            <summary>
+            The social marketer campaign identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.SocialLikeGoalId">
+            <summary>
+            The social like goal identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.SocialTweetGoalId">
+            <summary>
+            The social tweet goal identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.SocialMessageWorkflowId">
+            <summary>
+            The social message workflow identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.SocialMarketerMessageWorkflowId">
+            <summary>
+            The social marketer message workflow identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.SocialMessageFolderId">
+            <summary>
+            The social message folder identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.FacebookNetworkId">
+            <summary>
+            The Facebook network identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.LinkImageFieldId">
+            <summary>
+            The link image field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.LinkTitleFieldId">
+            <summary>
+            The link title field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.LinkDescriptionFieldId">
+            <summary>
+            The link description field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.TwitterNetworkId">
+            <summary>
+            The Twitter network identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.ApplicationTemplateId">
+            <summary>
+            The application template identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.WorkflowFieldId">
+            <summary>
+            The workflow field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.RolesFieldId">
+            <summary>
+            The roles field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.DescriptionFieldId">
+            <summary>
+            The description field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.MessageLanguageFieldId">
+            <summary>
+            The message language field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.ItemPublishedFieldId">
+            <summary>
+            The item published field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.CreatedDateFieldId">
+            <summary>
+            The created date field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.PostedDateFieldId">
+            <summary>
+            The posted date field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.AccessTokenFieldId">
+            <summary>
+            The access token field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.AccessTokenSecretFieldId">
+            <summary>
+            The access token secret field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.ApplicationFieldId">
+            <summary>
+            The application field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.LastRenewalDateFieldId">
+            <summary>
+            The last renewal date field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.AccountRenewalWorkflowId">
+            <summary>
+            The account renewal workflow identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.NeedsRenewalStateId">
+            <summary>
+            The needs renewal state identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.ExpiredStateId">
+            <summary>
+            The expired state identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.RenewedStateId">
+            <summary>
+            The renewed state identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.ExpireCommandId">
+            <summary>
+            The expire command identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.NeedsRenewalStateRenewCommandId">
+            <summary>
+            The needs renewal state renew command identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.ExpiredStateRenewCommandId">
+            <summary>
+            The expired state renew command identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.AnalyticsWorkflowId">
+            <summary>
+            The analytics workflow identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.DraftStateId">
+            <summary>
+            The draft state identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.DeployedStateId">
+            <summary>
+            The deployed state identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.DeployCommandId">
+            <summary>
+            The deploy command identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.SocialMarketerNetworkId">
+            <summary>
+            The social marketer network identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.CommentsFieldId">
+            <summary>
+            The comments field identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.MessageTemplateStandardValuesItemId">
+            <summary>
+            The message template standard values item identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.FacebookMessageTemplateStandardValuesItemId">
+            <summary>
+            The Facebook message template standard values item identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.TwitterMessageTemplateStandardValuesItemId">
+            <summary>
+            The Twitter message template standard values item identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.SocialMarketerMessageTemplateStandardValuesItemId">
+            <summary>
+            The social marketer message template standard values item identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.PostingConfigurationTemplateStandardValuesItemId">
+            <summary>
+            The posting configuration template standard values item identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.GoalPostingConfigurationTemplateStandardValuesItemId">
+            <summary>
+            The goal posting configuration template standard values item identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.ContentPostingConfigurationTemplateStandardValuesItemId">
+            <summary>
+            The content posting configuration template standard values item identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.ContainerPostingConfigurationTemplateStandardValuesItemId">
+            <summary>
+            The container posting configuration template standard values item identifier
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Utils.ItemsIds.AccountPostingConfigurationTemplateStandardValuesItemId">
+            <summary>
+            The account posting configuration template standard values item identifier
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Utils.RedirectUtil">
+            <summary>
+            Defines method for performing redirects.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.RedirectUtil.Redirect(System.String,System.Web.HttpContext)">
+            <summary>
+            Redirects user to the specified URL avoiding <see cref="T:System.Threading.ThreadAbortException"/>.
+            </summary>
+            <param name="url">The URL.</param>
+            <param name="httpContext">The http context.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.RedirectUtil.Redirect(System.String)">
+            <summary>
+            Redirects user to the specified URL avoiding <see cref="T:System.Threading.ThreadAbortException"/>.
+            </summary>
+            <param name="url">The URL.</param>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Utils.SearchUtil">
+            <summary>
+            Defines search utilities.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.SearchUtil.GetNormalizedEmptyContainer(System.String)">
+            <summary>
+            Gets the normalized empty container.
+            </summary>
+            <param name="currentDatabaseName">The name of the current database.</param>
+            <returns>The normalized container.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.SearchUtil.NormalizeContainer(Sitecore.Data.ItemUri,System.String)">
+            <summary>
+            Gets the normalized <see cref="T:Sitecore.Data.ItemUri"/> string.
+            </summary>
+            <param name="container">The item URI.</param>
+            <param name="currentDatabaseName">The name of the current database.</param>
+            <returns>
+            The normalized container.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Utils.SearchUtil.NormalizeContainer(System.String,System.String)">
+            <summary>
+            Gets the normalized container.
+            </summary>
+            <param name="container">The container.</param>
+            <param name="currentDatabaseName">The name of the current database.</param>
+            <returns>
+            The normalized container.
+            </returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Wrappers.Sitecore.ISiteContextSwitcherWrapper">
+            <summary>
+            Wrapper for <see cref="T:Sitecore.Social.Infrastructure.Wrappers.Switchers.SiteContextSwitcherWrapper"/>
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Wrappers.Sitecore.ISiteContextSwitcherWrapper.Switch(System.String)">
+            <summary>
+            Switches site to the <paramref name="siteName"/>.
+            </summary>
+            <param name="siteName">Name of the site.</param>
+            <returns><see cref="T:System.IDisposable"/> switcher.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Wrappers.Switchers.SiteContextSwitcherWrapper">
+            <summary>
+            Wrapper for <see cref="T:Sitecore.Social.Infrastructure.Wrappers.Switchers.SiteContextSwitcherWrapper"/>
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Wrappers.Switchers.SiteContextSwitcherWrapper.Switch(System.String)">
+            <summary>
+            Switches site to the <paramref name="siteName"/>.
+            </summary>
+            <param name="siteName">Name of the site.</param>
+            <returns><see cref="T:System.IDisposable"/> switcher.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Wrappers.System.IMembershipWrapper">
+            <summary>
+            Defines methods, that allow to get user.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Wrappers.System.IMembershipWrapper.GetUser(System.String)">
+            <summary>
+            Gets the user.
+            </summary>
+            <param name="providerUserName">Name of the provider user.</param>
+            <returns>The user with <paramref name="providerUserName"/>.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Wrappers.System.IMembershipWrapper.GetUser(System.String,System.Boolean)">
+            <summary>
+            Gets the user.
+            </summary>
+            <param name="providerUserName">Name of the provider user.</param>
+            <param name="isAuthenticated">if set to <c>true</c> [is authenticated].</param>
+            <returns>The user with <paramref name="providerUserName"/>.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Wrappers.System.IMembershipWrapper.GetContextUser">
+            <summary>
+            Gets the context user.
+            </summary>
+            <returns>Context user.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Wrappers.System.IMembershipWrapper.GetAllUsers">
+            <summary>
+            Gets all users.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Wrappers.System.MembershipWrapper">
+            <summary>
+            Defines methods, that allow to get user.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Wrappers.System.MembershipWrapper.GetUser(System.String)">
+            <summary>
+            Gets the user.
+            </summary>
+            <param name="providerUserName">Name of the provider user.</param>
+            <returns>
+            The user with <paramref name="providerUserName" />.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Wrappers.System.MembershipWrapper.GetUser(System.String,System.Boolean)">
+            <summary>
+            Gets the user.
+            </summary>
+            <param name="providerUserName">Name of the provider user.</param>
+            <param name="isAuthenticated">if set to <c>true</c> [is authenticated].</param>
+            <returns>
+            The user with <paramref name="providerUserName" />.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Wrappers.System.MembershipWrapper.GetContextUser">
+            <summary>
+            Gets the context user.
+            </summary>
+            <returns>
+            Context user.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Wrappers.System.MembershipWrapper.GetAllUsers">
+            <summary>
+            Gets all users.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

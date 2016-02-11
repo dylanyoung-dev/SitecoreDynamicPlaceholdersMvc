@@ -1,0 +1,1974 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Configuration</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Configuration.ConfigurationCache">
+            <summary>
+            The configuration cache.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.IConfigurationCache">
+            <summary>
+            The ConfigurationCache interface.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.IConfigurationCache.Get``1">
+            <summary>
+            Gets ConfigurationData from the cache.
+            </summary>
+            <typeparam name="T">
+            The ConfigurationData type.
+            </typeparam>
+            <returns>
+            The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.IConfigurationCache.Set(Sitecore.Social.Configuration.Model.ConfigurationData)">
+            <summary>
+            Sets ConfigurationData in the cache.
+            </summary>
+            <param name="data">
+            The configuration data.
+            </param>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.IConfigurationCache.Exists``1">
+            <summary>
+            Checks if there is ConfigurationData in the cache.
+            </summary>
+            <typeparam name="T">
+            The ConfigurationData type.
+            </typeparam>
+            <returns>
+            The <see cref="T:System.Boolean"/>.
+            </returns>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.ConfigurationCache.slidingExpiration">
+            <summary>
+            The cache sliding expiration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.ConfigurationCache.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.ConfigurationCache"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.ConfigurationCache.Get``1">
+            <summary>
+            Gets ConfigurationData from the cache.
+            </summary>
+            <typeparam name="T">
+            The ConfigurationData type.
+            </typeparam>
+            <returns>
+            The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.ConfigurationCache.Set(Sitecore.Social.Configuration.Model.ConfigurationData)">
+            <summary>
+            Sets ConfigurationData in the cache.
+            </summary>
+            <param name="data">
+            The configuration data.
+            </param>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.ConfigurationCache.Exists``1">
+            <summary>
+            Checks if there is ConfigurationData in the cache.
+            </summary>
+            <typeparam name="T">
+            The ConfigurationData type.
+            </typeparam>
+            <returns>
+            The <see cref="T:System.Boolean"/>.
+            </returns>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.ConfigurationCache.Cache">
+            <summary>
+            Gets or sets the cache.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.ConfigurationFactory">
+            <summary>
+            The configuration factory.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.IConfigurationFactory">
+            <summary>
+            The ConfigurationFactory interface.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.IConfigurationFactory.Get``1">
+            <summary>
+            Gets ConfigurationData.
+            </summary>
+            <typeparam name="T">
+            The ConfigurationData type.
+            </typeparam>
+            <returns>
+            The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.ConfigurationFactory.#ctor(Sitecore.Social.Configuration.IConfigurationCache)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.ConfigurationFactory"/> class.
+            </summary>
+            <param name="configurationCache">
+            The configuration cache.
+            </param>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.ConfigurationFactory.Get``1">
+             <summary>
+             Gets ConfigurationData.
+             </summary>
+             <typeparam name="T">
+             The ConfigurationData type.
+             </typeparam>
+             <returns>
+             The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+             </returns>
+             <example>
+             <code>
+             var networksConfiguration = ExecutingContext.Current.IoC.Get&lt;IConfigurationFactory&gt;().Get&lt;NetworksConfiguration&gt;();
+            
+             foreach (var networkSettings in networksConfiguration.Networks)
+             {
+               Console.WriteLine("network: {0}, itemId: {1}", networkSettings.Name, networkSettings.ItemId);
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.ConfigurationFactory.GetConfigurationFromManager``1">
+            <summary>
+            Gets configuration from manager.
+            </summary>
+            <typeparam name="T">
+            The ConfigurationData type.
+            </typeparam>
+            <returns>
+            The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+            </returns>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.ConfigurationFactory.ConfigurationCache">
+            <summary>
+            Gets or sets the configuration cache.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.IoC.Modules.FactoryModule">
+            <summary>
+            Defines bindings of managers implementations.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.IoC.Modules.FactoryModule.Load">
+            <summary>
+            Loads the module into the kernel.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.AnalyticsSettingsConfigurationManager">
+            <summary>
+            Represents the analytics settings configuration manager.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.ConfigurationManager">
+            <summary>
+            The configuration manager.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.IConfigurationManager">
+            <summary>
+            The ConfigurationManager interface.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.IConfigurationManager.GetConfigurationData">
+            <summary>
+            The get configuration data.
+            </summary>
+            <returns>
+            The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.ConfigurationManager.GetConfigurationData">
+            <summary>
+            The get configuration data.
+            </summary>
+            <returns>
+            The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.ConfigurationManager.GetAttribute(System.Xml.XmlNode,System.String)">
+            <summary>
+            Gets the attribute value.
+            </summary>
+            <param name="node">The node.</param>
+            <param name="attribute">The attribute.</param>
+            <returns>The attribute value.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.AnalyticsSettingsConfigurationManager.GetConfigurationData">
+            <summary>
+            Gets the configuration data.
+            </summary>
+            <returns>The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.ApiConfigurationManager">
+            <summary>
+            The api configuration manager.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.ApiConfigurationManager.GetConfigurationData">
+            <summary>
+            The get configuration data.
+            </summary>
+            <returns>
+            The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.ApiConfigurationManager.GetMessageDataBuilders(System.Xml.XmlNode)">
+            <summary>
+            Gets the message data builders.
+            </summary>
+            <param name="node">The node.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.ApiConfigurationManager.GetPostingConfigurationBuilders(System.Xml.XmlNode)">
+            <summary>
+            Gets the posting configuration builders.
+            </summary>
+            <param name="node">The node.</param>
+            <returns>The posting configuration builders.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.ApiConfigurationManager.GetMessageStatusBuilders(System.Xml.XmlNode)">
+            <summary>
+            Gets the message status builders.
+            </summary>
+            <param name="node">The node.</param>
+            <returns>The message status builders.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.ApiConfigurationManager.GetAccountBuilders(System.Xml.XmlNode)">
+            <summary>
+            Gets the account builders.
+            </summary>
+            <param name="node">The node.</param>
+            <returns>The account builder settings.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.GenderRuleConfigurationManager">
+            <summary>
+            The gender rule configuration manager.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.GenderRuleConfigurationManager.GetConfigurationData">
+            <summary>
+            The get configuration data.
+            </summary>
+            <returns>
+            The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+            </returns>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.InteractionChannelMappingsConfigurationManager">
+            <summary>
+            The interaction channel mappings configuration manager.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.InteractionChannelMappingsConfigurationManager.GetConfigurationData">
+            <summary>
+            Gets the interaction channel mappings configuration data.
+            </summary>
+            <returns>The interaction channel mappings configuration data.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.InteractionChannelMappingsConfigurationManager.GetChannelSettings(System.Xml.XmlNode)">
+            <summary>
+            Gets the channel settings.
+            </summary>
+            <param name="channelNode">The channel node.</param>
+            <returns>The channel settings.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.InteractionChannelMappingsConfigurationManager.GetChannelMappingSettings(System.Xml.XmlNode)">
+            <summary>
+            Gets the channel mapping settings.
+            </summary>
+            <param name="channelMappingNode">The channel mapping node.</param>
+            <returns>The channel mapping settings.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.InterestedInRuleConfigurationManager">
+            <summary>
+            The interested in rule configuration manager.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.InterestedInRuleConfigurationManager.GetConfigurationData">
+            <summary>
+            The get configuration data.
+            </summary>
+            <returns>
+            The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+            </returns>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.LoggingConfigurationManager">
+            <summary>
+            The logging configuration manager.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.LoggingConfigurationManager.GetConfigurationData">
+            <summary>
+            Gets the logging configuration data.
+            </summary>
+            <returns>The logging configuration data.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.LoggingConfigurationManager.GetAssemblySettings(System.Xml.XmlNode)">
+            <summary>
+            Gets the assembly settings.
+            </summary>
+            <param name="assemblyNode">The assembly node.</param>
+            <returns>The assembly settings.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.PostingConfigurationsConfigurationManager">
+            <summary>
+            Defines methods to get posting configurations settings.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.PostingConfigurationsConfigurationManager.GetConfigurationData">
+            <summary>
+            Gets the configuration data.
+            </summary>
+            <returns>The <see cref="T:Sitecore.Social.Configuration.Model.PostingConfigurationsConfiguration"/>.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.PostingConfigurationsConfigurationManager.GetPostingConfiguration(System.Xml.XmlNode)">
+            <summary>
+            Gets the posting configuration settings.
+            </summary>
+            <param name="node">The posting configuration node.</param>
+            <returns>The <see cref="T:Sitecore.Social.Configuration.Model.PostingConfigurations.PostingConfigurationSettings"/>.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.PostingConfigurationsConfigurationManager.GetBuilder(System.Xml.XmlNode)">
+            <summary>
+            Gets the builder settings.
+            </summary>
+            <param name="node">The builder node.</param>
+            <returns>The <see cref="T:Sitecore.Social.Configuration.Model.PostingConfigurations.BuilderSettings"/>.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.ProfileKeyMappingsConfigurationManager">
+            <summary>
+            The profile key mappings configuration manager.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.ProfileKeyMappingsConfigurationManager.GetConfigurationData">
+            <summary>
+            The get configuration data.
+            </summary>
+            <returns>
+            The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.ProfileKeyMappingsConfigurationManager.GetNetwork(System.Xml.XmlNode)">
+            <summary>
+            Gets the network.
+            </summary>
+            <param name="node">The node.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.ProfileKeyMappingsConfigurationManager.GetFields(System.Xml.XmlNode)">
+            <summary>
+            Gets the fields.
+            </summary>
+            <param name="node">The node.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.ScalabilitySettingsConfigurationManager">
+            <summary>
+            The scalability settings configuration manager.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.ScalabilitySettingsConfigurationManager.GetConfigurationData">
+            <summary>
+            Gets the configuration data.
+            </summary>
+            <returns>The configuration data.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.SettingsConfigurationManager">
+            <summary>
+            The settings configuration manager.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.SettingsConfigurationManager.GetConfigurationData">
+            <summary>
+            The get configuration data.
+            </summary>
+            <returns>
+            The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+            </returns>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.NetworksConfigurationManager">
+            <summary>
+            The network configuration manager.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.NetworksConfigurationManager.GetConfigurationData">
+            <summary>
+            The get configuration data.
+            </summary>
+            <returns>
+            The <see cref="T:Sitecore.Social.Configuration.Model.ConfigurationData"/>.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.NetworksConfigurationManager.GetMessages(System.Xml.XmlNode)">
+            <summary>
+            Gets the messages.
+            </summary>
+            <param name="node">The node.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.NetworksConfigurationManager.GetProviders(System.Xml.XmlNode)">
+            <summary>
+            Gets the providers.
+            </summary>
+            <param name="node">The node.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.SitecoreSettingsConfigurationManager">
+            <summary>
+            The Sitecore settings configuration manager.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Managers.SitecoreSettingsConfigurationManager.GetConfigurationData">
+            <summary>
+            Gets the configuration data.
+            </summary>
+            <returns>The configuration data.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.AnalyticsSettingsConfiguration">
+            <summary>
+            Represents analytics settings configuration.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.ConfigurationData">
+            <summary>
+            The configuration data.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.IEmptyable">
+            <summary>
+            Defines the property that is used to check if an entity is empty.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.IEmptyable.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ConfigurationData.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.AnalyticsSettingsConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.AnalyticsSettingsConfiguration"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.AnalyticsSettingsConfiguration.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.AnalyticsSettingsConfiguration.AnalyticsEnabled">
+            <summary>
+            Gets or sets a value indicating whether analytics is enabled.
+            </summary>
+            <value>
+              <c>true</c> if analytics is enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.AnalyticsSettingsConfiguration.XdbSettingsEnabled">
+            <summary>
+            Gets or sets a value indicating whether analytics is enabled.
+            </summary>
+            <value>
+              <c>true</c> if analytics is enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.AnalyticsSettingsConfiguration.XdbSettingsTrackingEnabled">
+            <summary>
+            Gets or sets a value indicating whether analytics tracking is enabled.
+            </summary>
+            <value>
+              <c>true</c> if analytics tracking is enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.ApiConfiguration">
+            <summary>
+            The social api configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.ApiConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.ApiConfiguration"/> class whose value represents a not defined configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.ApiConfiguration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.ApiConfiguration"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ApiConfiguration.AccountBuilders">
+            <summary>
+            Gets or sets the account builders.
+            </summary>
+            <value>
+            The account builders.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ApiConfiguration.MessageStatusBuilders">
+            <summary>
+            Gets or sets the message status builders.
+            </summary>
+            <value>
+            The message status builders.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ApiConfiguration.MessageDataBuilders">
+            <summary>
+            Gets or sets the message data builders.
+            </summary>
+            <value>
+            The message data builders.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ApiConfiguration.DomainMessageBuilders">
+            <summary>
+            Gets or sets the domain message builders.
+            </summary>
+            <value>
+            The domain message builders.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ApiConfiguration.PostingConfigurationBuilders">
+            <summary>
+            Gets or sets the posting configuration builders.
+            </summary>
+            <value>
+            The posting configuration builders.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ApiConfiguration.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Api.AccountBuilderSettings">
+            <summary>
+            Represents the account builder settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Api.AccountBuilderSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Api.AccountBuilderSettings"/> class whose value represents a not defined account builder settings.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.AccountBuilderSettings.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.AccountBuilderSettings.BuilderType">
+            <summary>
+            Gets or sets the type of the builder.
+            </summary>
+            <value>
+            The type of the builder.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.AccountBuilderSettings.AccountType">
+            <summary>
+            Gets or sets the type of the account.
+            </summary>
+            <value>
+            The type of the account.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.AccountBuilderSettings.AccountTemplateID">
+            <summary>
+            Gets or sets the account template ID.
+            </summary>
+            <value>
+            The account template ID.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Api.DomainMessageBuilderSettings">
+            <summary>
+            The domain message builder settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Api.DomainMessageBuilderSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Api.DomainMessageBuilderSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.DomainMessageBuilderSettings.NetworkName">
+            <summary>
+            Gets or sets the name of the network.
+            </summary>
+            <value>
+            The name of the network.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.DomainMessageBuilderSettings.BuilderType">
+            <summary>
+            Gets or sets the type of the builder.
+            </summary>
+            <value>
+            The type of the builder.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.DomainMessageBuilderSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Api.MessageDataBuilderSettings">
+            <summary>
+            The message data builder settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Api.MessageDataBuilderSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Api.MessageDataBuilderSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.MessageDataBuilderSettings.MessageItemBaseType">
+            <summary>
+            Gets or sets the type of the message item base.
+            </summary>
+            <value>
+            The type of the message item base.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.MessageDataBuilderSettings.MessageDataType">
+            <summary>
+            Gets or sets the type of the message data.
+            </summary>
+            <value>
+            The type of the message data.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.MessageDataBuilderSettings.BuilderType">
+            <summary>
+            Gets or sets the type of the builder.
+            </summary>
+            <value>
+            The type of the builder.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.MessageDataBuilderSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Api.MessageStatusBuilderSettings">
+            <summary>
+            Represents the message status builder settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Api.MessageStatusBuilderSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Api.MessageStatusBuilderSettings"/> class whose value represents a not defined configuration settings.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.MessageStatusBuilderSettings.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.MessageStatusBuilderSettings.PostingConfigurationName">
+            <summary>
+            Gets or sets the name of the posting configuration.
+            </summary>
+            <value>
+            The name of the posting configuration.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.MessageStatusBuilderSettings.BuilderType">
+            <summary>
+            Gets or sets the type of the builder.
+            </summary>
+            <value>
+            The type of the builder.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Api.PostingConfigurationBuilderSettings">
+            <summary>
+            Represents the posting configuration builder settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Api.PostingConfigurationBuilderSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Api.PostingConfigurationBuilderSettings"/> class whose value represents a not defined configuration settings.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.PostingConfigurationBuilderSettings.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.PostingConfigurationBuilderSettings.PostingConfigurationName">
+            <summary>
+            Gets or sets the name of the posting configuration.
+            </summary>
+            <value>
+            The name of the posting configuration.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.PostingConfigurationBuilderSettings.BuilderType">
+            <summary>
+            Gets or sets the type of the builder.
+            </summary>
+            <value>
+            The type of the builder.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Api.PostingConfigurationBuilderSettings.PostingConfigurationType">
+            <summary>
+            Gets or sets the type of the posting configuration.
+            </summary>
+            <value>
+            The type of the posting configuration.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.GenderRuleConfiguration">
+            <summary>
+            The gender rule configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.GenderRuleConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.GenderRuleConfiguration"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.GenderRuleConfiguration.Networks">
+            <summary>
+            Gets or sets the networks settings.
+            </summary>
+            <value>
+            The networks settings.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.GenderRuleConfiguration.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.GenderRule.GenderSettings">
+            <summary>
+            This class represents the gender sitecoreKey and values in the user profile.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.GenderRule.GenderSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.GenderRule.GenderSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.GenderRule.GenderSettings.Equals(Sitecore.Social.Configuration.Model.GenderRule.GenderSettings)">
+            <summary>
+            Checks if the current GenderSettings is equal to another one.
+            </summary>
+            <param name="other">The other GenderSettings.</param>
+            <returns><c>true</c> if the current GenderSettings is equal to another one, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.GenderRule.GenderSettings.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+            <exception cref="T:System.InvalidCastException">The 'obj' argument is not an Identifier object.</exception>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.GenderRule.GenderSettings.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.GenderRule.GenderSettings.SitecoreKey">
+            <summary>
+            Gets or sets the sitecore key.
+            </summary>
+            <value>
+            The sitecore key.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.GenderRule.GenderSettings.MaleValue">
+            <summary>
+            Gets or sets the male value.
+            </summary>
+            <value>
+            The male value.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.GenderRule.GenderSettings.FemaleValue">
+            <summary>
+            Gets or sets the female value.
+            </summary>
+            <value>
+            The female value.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.GenderRule.GenderSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.GenderRule.NetworkSettings">
+            <summary>
+            The network settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.GenderRule.NetworkSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.GenderRule.NetworkSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.GenderRule.NetworkSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.GenderRule.NetworkSettings"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.GenderRule.NetworkSettings.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.GenderRule.NetworkSettings.Gender">
+            <summary>
+            Gets or sets the gender settings.
+            </summary>
+            <value>
+            The gender settings.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.GenderRule.NetworkSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.InteractionChannelMappingsConfiguration">
+            <summary>
+            The interaction channel mappings configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.InteractionChannelMappingsConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.InteractionChannelMappingsConfiguration"/> class whose value represents a not defined configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.InteractionChannelMappingsConfiguration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.InteractionChannelMappingsConfiguration"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.InteractionChannelMappingsConfiguration.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.InteractionChannelMappingsConfiguration.Channels">
+            <summary>
+            Gets or sets the channels.
+            </summary>
+            <value>
+            The channels.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelMappingSettings">
+            <summary>
+            Represents a channel mapping settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelMappingSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelMappingSettings"/> class whose value represents a not defined channel mapping settings.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelMappingSettings.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelMappingSettings.UrlReferrerHost">
+            <summary>
+            Gets or sets the URL referrer host.
+            </summary>
+            <value>
+            The URL referrer host.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelSettings">
+            <summary>
+            Represents a channel settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelSettings"/> class whose value represents a not defined channel settings.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelSettings"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelSettings.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelSettings.ChannelId">
+            <summary>
+            Gets or sets the channel identifier.
+            </summary>
+            <value>
+            The channel identifier.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.InteractionChannelMappings.ChannelSettings.ChannelMappings">
+            <summary>
+            Gets or sets the channel mappings.
+            </summary>
+            <value>
+            The channel mappings.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.InterestedInRuleConfiguration">
+            <summary>
+            The "interested in" rule configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.InterestedInRuleConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.InterestedInRuleConfiguration"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.InterestedInRuleConfiguration.Networks">
+            <summary>
+            Gets or sets the networks settings.
+            </summary>
+            <value>
+            The networks settings.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.InterestedInRuleConfiguration.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.InterestedInRule.NetworkSettings">
+            <summary>
+            The network.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.InterestedInRule.NetworkSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.InterestedInRule.NetworkSettings"/> class whose value represents not defined settings.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.InterestedInRule.NetworkSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.InterestedInRule.NetworkSettings"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.InterestedInRule.NetworkSettings.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.InterestedInRule.NetworkSettings.Fields">
+            <summary>
+            Gets or sets the fields.
+            </summary>
+            <value>
+            The fields.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.InterestedInRule.NetworkSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.LoggingConfiguration">
+            <summary>
+            The logging configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.LoggingConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.LoggingConfiguration"/> class whose value represents a not defined configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.LoggingConfiguration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.LoggingConfiguration"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.LoggingConfiguration.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.LoggingConfiguration.EntityFormatterAssemblies">
+            <summary>
+            Gets or sets the entity formatter assemblies.
+            </summary>
+            <value>
+            The entity formatter assemblies.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Logging.AssemblySettings">
+            <summary>
+            Represents the entity formatter assembly settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Logging.AssemblySettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Logging.AssemblySettings"/> class whose value represents a not defined settings.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Logging.AssemblySettings.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Logging.AssemblySettings.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Networks.CampaignSettings">
+            <summary>
+            The campaign settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Networks.CampaignSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Networks.CampaignSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.CampaignSettings.PostingConfiguration">
+            <summary>
+            Gets or sets the posting configuration.
+            </summary>
+            <value>
+            The posting configuration.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.CampaignSettings.ItemId">
+            <summary>
+            Gets or sets the item unique identifier.
+            </summary>
+            <value>
+            The item unique identifier.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.CampaignSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Managers.ConfigurationManagerAttribute">
+            <summary>
+            The config manager attribute.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Managers.ConfigurationManagerAttribute.ManagerType">
+            <summary>
+            Gets or sets the manager type.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Networks.MessageSettings">
+            <summary>
+            The message settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Networks.MessageSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Networks.MessageSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.MessageSettings.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.MessageSettings.MessageTemplateId">
+            <summary>
+            Gets or sets the message template unique identifier.
+            </summary>
+            <value>
+            The message template unique identifier.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.MessageSettings.Renderer">
+            <summary>
+            Gets or sets the renderer.
+            </summary>
+            <value>
+            The renderer.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.MessageSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.MessageSettings.TextLimit">
+            <summary>
+            Gets or sets the text limit.
+            </summary>
+            <value>
+            The text limit.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Networks.MessagePostingSettings">
+            <summary>
+            The message posting settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Networks.MessagePostingSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Networks.MessagePostingSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.Networks.MessagePostingSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.Networks.MessagePostingSettings"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.MessagePostingSettings.RootCampaignItemId">
+            <summary>
+            Gets or sets the root campaign item unique identifier.
+            </summary>
+            <value>
+            The root campaign item unique identifier.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.MessagePostingSettings.ChannelId">
+            <summary>
+            Gets or sets the channel identifier.
+            </summary>
+            <value>
+            The channel identifier.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.MessagePostingSettings.Campaigns">
+            <summary>
+            Gets or sets the campaigns settings.
+            </summary>
+            <value>
+            The campaigns settings.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.MessagePostingSettings.Publisher">
+            <summary>
+            Gets or sets the publisher settings.
+            </summary>
+            <value>
+            The publisher settings.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.MessagePostingSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Networks.NetworkSettings">
+            <summary>
+            The network settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Networks.NetworkSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.Networks.NetworkSettings"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.AccountExpirationDays">
+            <summary>
+            Gets or sets the account expiration days.
+            </summary>
+            <value>
+            The account expiration days.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.ItemId">
+            <summary>
+            Gets or sets the item unique identifier.
+            </summary>
+            <value>
+            The item unique identifier.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.Prefix">
+            <summary>
+            Gets or sets the prefix.
+            </summary>
+            <value>
+            The prefix.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.Icon">
+            <summary>
+            Gets or sets the icon.
+            </summary>
+            <value>
+            The icon.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.Url">
+            <summary>
+            Gets or sets the URL.
+            </summary>
+            <value>
+            The URL.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.Items">
+            <summary>
+            Gets or sets the items.
+            </summary>
+            <value>
+            The items.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.Providers">
+            <summary>
+            Gets or sets the providers.
+            </summary>
+            <value>
+            The providers.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.PermissionBuilders">
+            <summary>
+            Gets or sets the permission builders.
+            </summary>
+            <value>
+            The permission builders.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.MessagePosting">
+            <summary>
+            Gets or sets the message posting settings.
+            </summary>
+            <value>
+            The message posting settings.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.NetworkSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Networks.PermissionBuilderSettings">
+            <summary>
+            The permission builder settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Networks.PermissionBuilderSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Networks.PermissionBuilderSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.PermissionBuilderSettings.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.PermissionBuilderSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Networks.ProviderSettings">
+            <summary>
+            The provider settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Networks.ProviderSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Networks.ProviderSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.ProviderSettings.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.ProviderSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.Networks.PublisherSettings">
+            <summary>
+            The publisher settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.Networks.PublisherSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.Networks.PublisherSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.PublisherSettings.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.Networks.PublisherSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.PostingConfigurationsConfiguration">
+            <summary>
+            Represents posting configurations settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.PostingConfigurationsConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.PostingConfigurationsConfiguration"/> class whose value represents not defined posting configurations.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.PostingConfigurationsConfiguration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.PostingConfigurationsConfiguration"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.PostingConfigurationsConfiguration.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.PostingConfigurationsConfiguration.PostingConfigurations">
+            <summary>
+            Gets or sets the posting configurations settings.
+            </summary>
+            <value>
+            The posting configurations settings.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.PostingConfigurations.BuilderSettings">
+            <summary>
+            Represents builder settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.PostingConfigurations.BuilderSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.PostingConfigurations.BuilderSettings"/> class whose value represents not defined builder settings.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.PostingConfigurations.BuilderSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.PostingConfigurations.BuilderSettings.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.PostingConfigurations.PostingConfigurationSettings">
+            <summary>
+            Represents posting configuration settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.PostingConfigurations.PostingConfigurationSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.PostingConfigurations.PostingConfigurationSettings"/> class whose value represents not defined posting configuration settings.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.PostingConfigurations.PostingConfigurationSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.PostingConfigurations.PostingConfigurationSettings"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.PostingConfigurations.PostingConfigurationSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.PostingConfigurations.PostingConfigurationSettings.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.PostingConfigurations.PostingConfigurationSettings.TemplateId">
+            <summary>
+            Gets or sets the template id.
+            </summary>
+            <value>
+            The template id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.PostingConfigurations.PostingConfigurationSettings.Builder">
+            <summary>
+            Gets or sets the builder.
+            </summary>
+            <value>
+            The builder.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.ProfileKeyMappingsConfiguration">
+            <summary>
+            The profile key mappings configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.ProfileKeyMappingsConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.ProfileKeyMappingsConfiguration"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.ProfileKeyMappingsConfiguration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.ProfileKeyMappingsConfiguration"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappingsConfiguration.Networks">
+            <summary>
+            Gets or sets the networks settings.
+            </summary>
+            <value>
+            The networks settings.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappingsConfiguration.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings">
+            <summary>
+            The field settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings.Enabled">
+            <summary>
+            Gets or sets the enabled value.
+            </summary>
+            <value>
+            The enabled value.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings.OriginalKey">
+            <summary>
+            Gets or sets the original key.
+            </summary>
+            <value>
+            The original key.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings.SitecoreKey">
+            <summary>
+            Gets or sets the sitecore key.
+            </summary>
+            <value>
+            The sitecore key.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings.MainNetworkDataPropertyName">
+            <summary>
+            Gets or sets the name of the main network data property.
+            </summary>
+            <value>
+            The name of the main network data property.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings.Permission">
+            <summary>
+            Gets or sets the permission.
+            </summary>
+            <value>
+            The permission.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings.Access">
+            <summary>
+            Gets or sets the access.
+            </summary>
+            <value>
+            The access.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings.Text">
+            <summary>
+            Gets or sets the text.
+            </summary>
+            <value>
+            The text.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings.XmlPath">
+            <summary>
+            Gets or sets the XML path.
+            </summary>
+            <value>
+            The XML path.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.ProfileKeyMappings.NetworkSettings">
+            <summary>
+            The network settings.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.ProfileKeyMappings.NetworkSettings.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.ProfileKeyMappings.FieldSettings"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.ProfileKeyMappings.NetworkSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.ProfileKeyMappings.NetworkSettings"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappings.NetworkSettings.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappings.NetworkSettings.Fields">
+            <summary>
+            Gets or sets the fields.
+            </summary>
+            <value>
+            The fields.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ProfileKeyMappings.NetworkSettings.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.ScalabilitySettingsConfiguration">
+            <summary>
+            Represents the scalability settings configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.ScalabilitySettingsConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.ScalabilitySettingsConfiguration"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ScalabilitySettingsConfiguration.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ScalabilitySettingsConfiguration.ContentManagementTasksExecutionInstance">
+            <summary>
+            Gets or sets the content management tasks execution instance.
+            </summary>
+            <value>
+            The content management tasks execution instance.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.ScalabilitySettingsConfiguration.ContentManagementInstanceExecutionManager">
+            <summary>
+            Gets or sets the content management instance execution manager.
+            </summary>
+            <value>
+            The content management instance execution manager.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.SettingsConfiguration">
+            <summary>
+            The settings configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.SettingsConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.SettingsConfiguration"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.MessagesRootPath">
+            <summary>
+            Gets or sets the messages root path.
+            </summary>
+            <value>
+            The messages root path.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.AllowMessageGoalPostingByDefault">
+            <summary>
+            Gets or sets a value indicating whether to allow posting if the message PostingPreference has default value.
+            </summary>
+            <value>
+            <c>true</c> if message posting is allowed by default; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.PostingConfigurationBaseTemplateId">
+            <summary>
+            Gets or sets the posting configuration base template unique identifier.
+            </summary>
+            <value>
+            The posting configuration base template unique identifier.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.ConnectorAuthCompletedType">
+            <summary>
+            Gets or sets the type of the <see cref="!:Sitecore.Social.Client.Api.Connector.ConnectorAuthCompleted"/> instance.
+            </summary>
+            <value>
+            The type of the <see cref="!:Sitecore.Social.Client.Api.Connector.ConnectorAuthCompleted"/> instance.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.IoCAssemblyFullName">
+            <summary>
+            Gets or sets the full name of the IoC (Inversion of Control) container assembly.
+            </summary>
+            <value>
+            The full name of the IoC (Inversion of Control) container assembly.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.LoggingTraceToLog">
+            <summary>
+            Gets or sets a value indicating whether the tracing information is written to logs.
+            </summary>
+            <value>
+              <c>true</c> if tracing to log is enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.MessageBaseTemplateId">
+            <summary>
+            Gets or sets the message base template unique identifier.
+            </summary>
+            <value>
+            The message base template unique identifier.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.LinkDomain">
+            <summary>
+            Gets or sets the link domain.
+            </summary>
+            <value>
+            The link domain.
+            </value>
+            <remarks>
+            When this setting is set, every link that is generated by the Social Connected module will contain this hostName.
+            </remarks>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.MessagesByContainerCacheEnabled">
+            <summary>
+            Gets or sets a value indicating if messages by container cache is enabled.
+            </summary>
+            <value>
+            <c>true</c> if messages by container cache is enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.AccountRenewalDaysBeforePreExpiration">
+            <summary>
+            Gets or sets the number of days before network account pre-expiration.
+            </summary>
+            <value>
+            The number of days before network account pre-expiration.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.MessagesByContainerCacheName">
+            <summary>
+            Gets or sets the name of the messages by container cache.
+            </summary>
+            <value>
+            The name of the messages by container cache.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.MessagesByContainerCacheSize">
+            <summary>
+            Gets or sets the size of the messages by container cache.
+            </summary>
+            <value>
+            The size of the messages by container cache.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.MessageStatisticsStopRefreshAge">
+            <summary>
+            Gets or sets the number of hours the message statistics will not be updated after.
+            </summary>
+            <value>
+            The number of hours the message statistics will not be updated after.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.AccountRenewalEnabled">
+            <summary>
+            Gets or sets a value indicating whether account renewal is enabled.
+            </summary>
+            <value>
+            <c>true</c> if the account renewal is enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.ProfileContactLeaseDuration">
+            <summary>
+            Gets or sets the duration of the contact lease.
+            </summary>
+            <value>
+            The duration of the contact lease.
+            </value>
+            <remarks>
+            Specifies the lock period in milliseconds. The contact is locked for this period to be updated with social data.
+            </remarks>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.ProfileUpdatingEnabled">
+            <summary>
+            Gets or sets a value indicating whether profile updating is enabled.
+            </summary>
+            <value>
+            <c>true</c> if the profile updating is enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.ProfileUpdatingDaysBeforeExpiration">
+            <summary>
+            Gets or sets the number of days before user profile expiration.
+            </summary>
+            <value>
+            The number of days before user profile expiration.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.AddNetworkAccountWizardAuthenticationTimeout">
+            <summary>
+            Gets or sets the add network account wizard authentication timeout.
+            </summary>
+            <value>
+            The add network account wizard authentication timeout.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.MessagesSearchIndexMaster">
+            <summary>
+            Gets or sets the name of the index to use in the repositories for items search in the master database.
+            </summary>
+            <value>
+            The name of the index.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SettingsConfiguration.MessagesSearchIndexWeb">
+            <summary>
+            Gets or sets the name of the index to use in the repositories for items search in the web database.
+            </summary>
+            <value>
+            The name of the index.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.NetworksConfiguration">
+            <summary>
+            The networks configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.NetworksConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.NetworksConfiguration"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Configuration.Model.NetworksConfiguration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Configuration.Model.NetworksConfiguration"/> class.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.NetworksConfiguration.Networks">
+            <summary>
+            Gets or sets the networks settings.
+            </summary>
+            <value>
+            The networks settings.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.NetworksConfiguration.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Configuration.Model.SitecoreSettingsConfiguration">
+            <summary>
+            Represents the Sitecore settings configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Configuration.Model.SitecoreSettingsConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Configuration.Model.SitecoreSettingsConfiguration"/> class whose value represents not defined configuration.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SitecoreSettingsConfiguration.IsEmpty">
+            <summary>
+            Returns a Boolean value indicating if the specified instance is empty.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Configuration.Model.SitecoreSettingsConfiguration.InstanceName">
+            <summary>
+            Gets or sets the name of the instance.
+            </summary>
+            <value>
+            The name of the instance.
+            </value>
+        </member>
+    </members>
+</doc>

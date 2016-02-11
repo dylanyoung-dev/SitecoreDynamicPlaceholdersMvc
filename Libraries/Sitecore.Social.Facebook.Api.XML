@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Facebook.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Facebook.Api.Builders.FacebookMessageDataBuilder">
+            <summary>
+            Represents <see cref="T:Sitecore.Social.Facebook.Api.Model.FacebookMessageData"/> builder.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Api.Builders.FacebookMessageDataBuilder.LinkImageFieldId">
+            <summary>
+            The link image field id
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Api.Builders.FacebookMessageDataBuilder.LinkTitleFieldId">
+            <summary>
+            The link title field id
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Api.Builders.FacebookMessageDataBuilder.LinkDescriptionFieldId">
+            <summary>
+            The link description field id
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Api.Builders.FacebookMessageDataBuilder.BuildFrom(Sitecore.Social.MessagePosting.Items.MessageItemBase)">
+            <summary>
+            Builds from social message base.
+            </summary>
+            <param name="messageItemBase">The message item base.</param>
+            <returns>
+            The <seealso cref="T:Sitecore.Social.Domain.Model.MessageData"/>
+            </returns>
+            <exception cref="T:System.InvalidCastException">The 'messageItemBase' argument is not a FacebookMessageItem object.</exception>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Api.Builders.FacebookMessageDataBuilder.BuildFrom(Sitecore.Social.Domain.Model.MessageData)">
+            <summary>
+            Builds from message data.
+            </summary>
+            <param name="messageData">The message data.</param>
+            <returns>
+            The <seealso cref="T:Sitecore.Social.NetworkProviders.Messages.Message"/>
+            </returns>
+            <exception cref="T:System.InvalidCastException">The 'messageData' argument is not a FacebookMessageData object.</exception>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Api.Builders.FacebookMessageDataBuilder.UpdateMessageItem(Sitecore.Data.Items.Item,Sitecore.Social.Domain.Model.MessageData)">
+            <summary>
+            Updates the message item from the message data.
+            </summary>
+            <param name="messageItem">The message item.</param>
+            <param name="messageData">The message data.</param>
+            <exception cref="T:System.InvalidCastException">The 'messageData' argument is not a FacebookMessageData object.</exception>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Api.IoC.Modules.ManagersModule">
+            <summary>
+            Defines bindings for managers.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Api.IoC.Modules.ManagersModule.Load">
+            <summary>
+            Loads the module into the kernel.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Api.Managers.FacebookSocialProfileManager">
+            <summary>
+            Defines methods for managing Facebook social profile.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Api.Managers.IFacebookSocialProfileManager">
+            <summary>
+            Defines methods for managing Facebook social profile.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Api.Managers.IFacebookSocialProfileManager.DetachFacebookProfile(System.String,System.String)">
+            <summary>
+            Detaches the Facebook profile.
+            </summary>
+            <param name="applicationId">The application identifier.</param>
+            <param name="signedRequest">The signed request.</param>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Api.Managers.FacebookSocialProfileManager.FacebookNetworkName">
+            <summary>
+            The Facebook network name
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Api.Managers.FacebookSocialProfileManager.Encoding">
+            <summary>
+            The encoding
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Api.Managers.FacebookSocialProfileManager.DetachFacebookProfile(System.String,System.String)">
+            <summary>
+            Detaches the Facebook profile.
+            </summary>
+            <param name="applicationId">The application identifier.</param>
+            <param name="signedRequest">The signed request.</param>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Api.Managers.FacebookSocialProfileManager.ComputeHash(System.String,System.String)">
+            <summary>
+            Computes the hash.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="key">The key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Api.Managers.FacebookSocialProfileManager.DecodeBase64Url(System.String)">
+            <summary>
+            Decodes the base64 URL.
+            </summary>
+            <param name="encodedBase64Url">The encoded base64 URL.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Api.Model.CommentsCounter">
+            <summary>
+            Represents the comments counter.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Api.Model.CommentsCounter.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.Api.Model.CommentsCounter"/> class.
+            </summary>
+            <param name="displayName">The display name.</param>
+            <param name="number">The number.</param>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Api.Model.FacebookMessageData">
+            <summary>
+            Represents Facebook message data.
+            </summary>
+            <seealso cref="P:Sitecore.Social.Domain.Model.Message.MessageData"/>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.Api.Model.FacebookMessageData.LinkTitle">
+            <summary>
+            Gets or sets the link title.
+            </summary>
+            <value>
+            The link title.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.Api.Model.FacebookMessageData.LinkDescription">
+            <summary>
+            Gets or sets the link description.
+            </summary>
+            <value>
+            The link description.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.Api.Model.FacebookMessageData.LinkImage">
+            <summary>
+            Gets or sets the link image.
+            </summary>
+            <value>
+            The link image.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Api.Model.LikesCounter">
+            <summary>
+            Represents the likes counter
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Api.Model.LikesCounter.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.Api.Model.LikesCounter"/> class.
+            </summary>
+            <param name="displayName">The display name.</param>
+            <param name="number">The number.</param>
+        </member>
+    </members>
+</doc>

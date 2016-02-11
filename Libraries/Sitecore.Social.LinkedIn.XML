@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.LinkedIn</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.LinkedIn.Common.Texts">
+            <summary>
+            Text constants.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.LinkedIn.Configuration.SettingsConfiguration">
+            <summary>
+            LinkedIn settings configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.LinkedIn.Configuration.SettingsConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.LinkedIn.Configuration.SettingsConfiguration"/> class whose value represents a not defined configuration settings.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.LinkedIn.Configuration.SettingsConfiguration.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.LinkedIn.Configuration.SettingsConfiguration.DefaultLinkedInShareGoal">
+            <summary>
+            Gets or sets the default LinkedIn Share goal.
+            </summary>
+            <value>
+            The default LinkedIn Share goal.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.LinkedIn.Configuration.SettingsConfigurationManager">
+            <summary>
+            Defines methods to get LinkedIn settings configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Configuration.SettingsConfigurationManager.GetConfigurationData">
+            <summary>
+            Gets the configuration data.
+            </summary>
+            <returns>The <see cref="T:Sitecore.Social.LinkedIn.Configuration.SettingsConfiguration"/>.</returns>
+        </member>
+        <member name="T:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPaths">
+            <summary>
+            Contains LinkedIn paths.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPaths.API">
+            <summary>Contains API.</summary>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPaths.#ctor(System.String,Sitecore.Social.NetworkProviders.Connector.Paths.SocialPaths.CommandsPaths,Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPaths.Links)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPaths"/> class.
+            </summary>
+            <param name="homePage">
+            The home page.
+            </param>
+            <param name="queryCommands">
+            The query commands.
+            </param>
+            <param name="api">
+            The api.
+            </param>
+        </member>
+        <member name="T:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPaths.Links">
+            <summary>
+            API links.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPaths.Links.RequestToken">
+            <summary>Request token link.</summary>
+        </member>
+        <member name="F:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPaths.Links.Authorize">
+            <summary>Authorize link.</summary>
+        </member>
+        <member name="F:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPaths.Links.People">
+            <summary>People link.</summary>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPaths.Links.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPaths.Links"/> struct.
+            </summary>
+            <param name="requestToken">
+            The request token.
+            </param>
+            <param name="authorize">
+            The authorize.
+            </param>
+            <param name="people">
+            The people.
+            </param>
+        </member>
+        <member name="T:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPathsFactory">
+            <summary>
+            <see cref="T:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPaths"/> factory.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.LinkedIn.Connector.Paths.LinkedInPathsFactory.LinkedIn">
+            <summary>LinkedIn paths.</summary>
+        </member>
+        <member name="T:Sitecore.Social.LinkedIn.Connector.PermissionBuilders.LinkedInPermissionBuilder">
+            <summary>
+            Permission builder for LinkedIn
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Connector.PermissionBuilders.LinkedInPermissionBuilder.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.LinkedIn.Connector.PermissionBuilders.LinkedInPermissionBuilder"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Connector.PermissionBuilders.LinkedInPermissionBuilder.BuildPermissions">
+            <summary>
+            Builds the permissions.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Exceptions.Analyzers.LinkedInExceptionAnalyzer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.LinkedIn.Exceptions.Analyzers.LinkedInExceptionAnalyzer"/> class.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.LinkedIn.Networks.Providers.LinkedInProvider">
+            <summary>
+            LinkedIn provider
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.LinkedIn.Networks.Providers.LinkedInProvider.linkedInOAuth">
+            <summary>External library for work with LinkedIn.</summary>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Networks.Providers.LinkedInProvider.#ctor(Sitecore.Social.NetworkProviders.Application)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.LinkedIn.Networks.Providers.LinkedInProvider"/> class.
+            </summary>
+            <param name="application">The application.</param>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Networks.Providers.LinkedInProvider.GetAuthErrorParameters">
+            <summary>
+            Gets the authentication error parameters.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Networks.Providers.LinkedInProvider.AuthGetCode(Sitecore.Social.NetworkProviders.Args.AuthArgs)">
+            <summary>
+            Redirection on the social network auth page needs to be implemented in this method.
+            This needs for application to be allowed by user.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Networks.Providers.LinkedInProvider.AuthGetAccessToken(Sitecore.Social.NetworkProviders.Args.AuthArgs)">
+            <summary>
+            Authes the get access token.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Networks.Providers.LinkedInProvider.GetDisplayName(Sitecore.Social.NetworkProviders.Account)">
+            <summary>
+            Gets the display name.
+            </summary>
+            <param name="account">The account.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Networks.Providers.LinkedInProvider.GetAccountId(Sitecore.Social.NetworkProviders.Account)">
+            <summary>
+            Gets the account identifier.
+            </summary>
+            <param name="account">The account.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Networks.Providers.LinkedInProvider.GetAccountBasicData(Sitecore.Social.NetworkProviders.Account)">
+            <summary>
+            Gets the account basic data.
+            </summary>
+            <param name="account">The account.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Networks.Providers.LinkedInProvider.GetAccountInfo(Sitecore.Social.NetworkProviders.Account,System.Collections.Generic.IEnumerable{Sitecore.Social.NetworkProviders.NetworkFields.FieldInfo})">
+            <summary>
+            Gets the account information.
+            </summary>
+            <param name="account">The account.</param>
+            <param name="acceptedFields">The accepted fields.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.LinkedIn.Networks.Providers.LinkedInProvider.GetAccountData(Sitecore.Social.NetworkProviders.Account,System.String)">
+            <summary>
+            Gets the account data.
+            </summary>
+            <param name="account">The account.</param>
+            <param name="fields">The fields.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

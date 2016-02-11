@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.GooglePlus</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.GooglePlus.Common.Texts">
+            <summary>
+            Text constants.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.GooglePlus.Configuration.SettingsConfiguration">
+            <summary>
+            Google+ settings configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.GooglePlus.Configuration.SettingsConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.GooglePlus.Configuration.SettingsConfiguration"/> class whose value represents a not defined configuration settings.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.GooglePlus.Configuration.SettingsConfiguration.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.GooglePlus.Configuration.SettingsConfiguration.IsOfflineAccess">
+            <summary>
+            Gets or sets the value that indicates whether Social Connector will request the Google+ “offline_access” permission or not.
+            </summary>
+            <value>
+            <c>true</c> to get offline access token; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.GooglePlus.Configuration.SettingsConfiguration.DefaultGooglePlusOneGoal">
+            <summary>
+            Gets or sets the default goal to trigger on Google +1 button.
+            </summary>
+            <value>
+            The default goal to trigger on Google +1 button.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.GooglePlus.Configuration.SettingsConfigurationManager">
+            <summary>
+            Defines methods to get Google+ settings configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.GooglePlus.Configuration.SettingsConfigurationManager.GetConfigurationData">
+            <summary>
+            Gets the configuration data.
+            </summary>
+            <returns>The <see cref="T:Sitecore.Social.GooglePlus.Configuration.SettingsConfiguration"/>.</returns>
+        </member>
+        <member name="T:Sitecore.Social.GooglePlus.Connector.Paths.GooglePaths">
+            <summary>
+            Contains Google paths.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.GooglePlus.Connector.Paths.GooglePaths.API">
+            <summary>Contains API.</summary>
+        </member>
+        <member name="M:Sitecore.Social.GooglePlus.Connector.Paths.GooglePaths.#ctor(System.String,Sitecore.Social.NetworkProviders.Connector.Paths.SocialPaths.CommandsPaths,Sitecore.Social.GooglePlus.Connector.Paths.GooglePaths.Links)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.GooglePlus.Connector.Paths.GooglePaths"/> class.
+            </summary>
+            <param name="homePage">
+            The home page.
+            </param>
+            <param name="queryCommands">
+            The query commands.
+            </param>
+            <param name="api">
+            The api.
+            </param>
+        </member>
+        <member name="T:Sitecore.Social.GooglePlus.Connector.Paths.GooglePaths.Links">
+            <summary>
+            API links.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.GooglePlus.Connector.Paths.GooglePaths.Links.LoginScope">
+            <summary>The login scope.</summary>
+        </member>
+        <member name="F:Sitecore.Social.GooglePlus.Connector.Paths.GooglePaths.Links.EmailScope">
+            <summary>The email scope.</summary>
+        </member>
+        <member name="M:Sitecore.Social.GooglePlus.Connector.Paths.GooglePaths.Links.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.GooglePlus.Connector.Paths.GooglePaths.Links"/> struct.
+            </summary>
+            <param name="loginScope">
+            The login scope.
+            </param>
+            <param name="emailScope">
+            The email scope.
+            </param>
+        </member>
+        <member name="T:Sitecore.Social.GooglePlus.Connector.Paths.GooglePathsFactory">
+            <summary>
+            <see cref="T:Sitecore.Social.GooglePlus.Connector.Paths.GooglePaths"/> factory.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.GooglePlus.Connector.Paths.GooglePathsFactory.Google">
+            <summary>Google paths.</summary>
+        </member>
+        <member name="F:Sitecore.Social.GooglePlus.Networks.Providers.GooglePlusProvider._provider">
+            <summary> Application client provider. </summary>
+        </member>
+        <member name="F:Sitecore.Social.GooglePlus.Networks.Providers.GooglePlusProvider._auth">
+            <summary> Use for saving the Authorization State between calls some API-library methods. </summary>
+        </member>
+        <member name="M:Sitecore.Social.GooglePlus.Networks.Providers.GooglePlusProvider.RefreshAccessTokenSecret(Sitecore.Social.NetworkProviders.Account)">
+            <summary>
+            Refreshes the access token secret.
+            </summary>
+            <param name="account">The account.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,556 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Facebook</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Facebook.Accounts.Items.FacebookAccountItem">
+            <summary>
+            TODO: Update summary.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Configuration.SettingsConfiguration">
+            <summary>
+            Facebook settings configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Configuration.SettingsConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Facebook.Configuration.SettingsConfiguration"/> class whose value represents a not defined configuration settings.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.Configuration.SettingsConfiguration.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.Configuration.SettingsConfiguration.DefaultLikeGoal">
+            <summary>
+            Gets or sets the default like goal.
+            </summary>
+            <value>
+            The default like goal.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.Configuration.SettingsConfiguration.HasWriteAccess">
+            <summary>
+            Gets or sets the value that indicates whether an application has write access to Facebook or not.
+            </summary>
+            <value>
+            <c>true</c> if the application has write access; otherwise, <c>false</c>.
+            </value>
+            <remarks>
+            Enables your application to post content, comments, and likes to a user's timeline and to the timelines of user's friends. 
+            With this permission, you can post a content to the user's timeline at any time, without requesting offline_access.
+            </remarks>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.Configuration.SettingsConfiguration.IsOfflineAccess">
+            <summary>
+            Gets or sets the value that indicates whether Social Connector will request the Facebook “offline_access” permission or not.
+            </summary>
+            <value>
+            <c>true</c> to get offline access token; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Configuration.SettingsConfigurationManager">
+            <summary>
+            Defines methods to get Facebook settings configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Configuration.SettingsConfigurationManager.GetConfigurationData">
+            <summary>
+            Gets the configuration data.
+            </summary>
+            <returns>The <see cref="T:Sitecore.Social.Facebook.Configuration.SettingsConfiguration"/>.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Connector.Managers.WebRequestManager">
+            <summary>
+            Allow do request with specific method.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Managers.WebRequestManager.request">
+            <summary>
+            Web request.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Managers.WebRequestManager.dataStream">
+            <summary>
+            Stream for getting response information.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Connector.Managers.WebRequestManager.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.Connector.Managers.WebRequestManager"/> class.
+            </summary>
+            <param name="url">
+            The url.
+            </param>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Connector.Managers.WebRequestManager.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.Connector.Managers.WebRequestManager"/> class.
+            </summary>
+            <param name="url">
+            The url.
+            </param>
+            <param name="method">
+            The method.
+            </param>
+            <exception cref="T:Sitecore.Social.Facebook.Exceptions.InvalidMethodException">Called when given the wrong method.</exception>
+            <exception cref="T:System.Exception">Invalid Method Type</exception>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Connector.Managers.WebRequestManager.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.Connector.Managers.WebRequestManager"/> class.
+            </summary>
+            <param name="url">
+            The url.
+            </param>
+            <param name="method">
+            The method.
+            </param>
+            <param name="data">
+            The data.
+            </param>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Connector.Managers.WebRequestManager.GetResponse">
+            <summary>
+            Get response by curent manager.
+            </summary>
+            <returns>
+            Response data string.
+            </returns>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.Connector.Managers.WebRequestManager.Status">
+            <summary>
+            Gets or sets Status.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths">
+            <summary>
+            Contains Facebook paths.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.API">
+            <summary>Contains API.</summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.#ctor(System.String,Sitecore.Social.NetworkProviders.Connector.Paths.SocialPaths.CommandsPaths,Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths"/> class.
+            </summary>
+            <param name="homePage">The home page.</param>
+            <param name="queryCommands">The query commands.</param>
+            <param name="api">The API links.</param>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links">
+            <summary>
+            API links.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links.ApiVersion">
+            <summary>
+            The API version
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links.IdsForBusiness">
+            <summary>
+            The ids for business
+            https://developers.facebook.com/docs/graph-api/reference/v2.2/user/ids_for_business
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links.Oauth">
+            <summary>OAuth link.</summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links.AccessToken">
+            <summary>Access token link.</summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links.Accounts">
+            <summary>
+            The accounts link.
+            https://developers.facebook.com/docs/graph-api/reference/v2.2/user/accounts?locale=en_GB
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links.Feed">
+            <summary>
+            The feed link.
+            https://developers.facebook.com/docs/graph-api/reference/v2.2/user/feed?locale=en_GB
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links.User">
+            <summary>
+            The user link.
+            https://developers.facebook.com/docs/graph-api/reference/v2.2/user?locale=en_GB
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links.Post">
+            <summary>
+            The post link.
+            https://developers.facebook.com/docs/graph-api/reference/v2.2/post?locale=en_GB
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links.Comments">
+            <summary>
+            The comments link.
+            https://developers.facebook.com/docs/graph-api/reference/v2.2/object/comments?locale=en_GB
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.Connector.Paths.FacebookPaths.Links"/> struct.
+            </summary>
+            <param name="apiVersion">The API version.</param>
+            <param name="oauth">The OAuth link.</param>
+            <param name="accessToken">The access token link.</param>
+            <param name="accounts">The accounts link.</param>
+            <param name="feed">The feed link.</param>
+            <param name="user">The user link.</param>
+            <param name="post">The post link.</param>
+            <param name="comments">The comments link.</param>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Connector.Paths.FacebookPathsFactory">
+            <summary>
+            Contains paths.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Connector.Paths.FacebookPathsFactory.Facebook">
+            <summary>
+            Facebook paths.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Connector.Pipelines.MatchUser.FindByFacebookIdsForBusiness">
+            <summary>
+            Defines the processor of the "social.matchUser" pipeline. It is responsible to try to find the existing user by Facebook IDs for Business.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Connector.Pipelines.MatchUser.FindByFacebookIdsForBusiness.Process(Sitecore.Social.Connector.Pipelines.MatchUser.SelectUserPipelineArgs)">
+            <summary>
+            Runs the processor.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Connector.Pipelines.MatchUser.FindByFacebookIdsForBusiness.GetApplicationScopedIds(Sitecore.Social.Connector.Pipelines.MatchUser.SelectUserPipelineArgs)">
+            <summary>
+            Gets the application-scoped IDs.
+            </summary>
+            <param name="args">The arguments.</param>
+            <returns>The application-scoped ids except of <c>args.AccountBasicData.Id</c>.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Connector.Pipelines.MatchUser.FindByFacebookIdsForBusiness.FindByDomain(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Finds the by domain.
+            </summary>
+            <param name="applicationScopedIds">The application scoped IDs.</param>
+            <returns>The user.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Connector.Pipelines.MatchUser.FindByFacebookIdsForBusiness.FindByNetworkCredentials(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Finds the by network credentials.
+            </summary>
+            <param name="applicationScopedIds">The application scoped IDs.</param>
+            <returns>The user.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Exceptions.Analyzers.FacebookExceptionAnalyzer">
+            <summary>
+            The classs throws the appropriate exception according to the error result 
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Exceptions.Analyzers.FacebookExceptionAnalyzer.Analyze(System.String)">
+            <summary>
+            Analyzes the specified error.
+            </summary>
+            <param name="error">The error.</param>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Exceptions.Analyzers.FacebookExceptionAnalyzer.CheckIfStrngIsFacebookError(System.String)">
+            <summary>
+            Checks if STRING is Facebook error.
+            </summary>
+            <param name="error">The error.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Exceptions.Analyzers.FacebookExceptionAnalyzer.GetError(System.String)">
+            <summary>
+            Creates the FacebookError instance.
+            </summary>
+            <param name="error">The error.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Exceptions.InvalidMethodException">
+            <summary>
+            Called when given the wrong method.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Exceptions.InvalidMethodException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.Exceptions.InvalidMethodException"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Exceptions.InvalidMethodException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.Exceptions.InvalidMethodException"/> class.
+            </summary>
+            <param name="message">
+            The message.
+            </param>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Exceptions.InvalidMethodException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.Exceptions.InvalidMethodException"/> class.
+            </summary>
+            <param name="message">
+            The message.
+            </param>
+            <param name="inner">
+            The inner.
+            </param>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Exceptions.InvalidMethodException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.Exceptions.InvalidMethodException"/> class.
+            </summary>
+            <param name="info">
+            The info.
+            </param>
+            <param name="context">
+            The context.
+            </param>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.IoC.IoCInitialization">
+            <summary>
+            Defines a processor for the IoC container initialization.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.Networks.Messages.FacebookMessage.Link">
+            <summary>
+            Link
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.Networks.Messages.FacebookMessage.Name">
+            <summary>
+            Link title
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.Networks.Messages.FacebookMessage.Picture">
+            <summary>
+            Image URL
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.Networks.Messages.FacebookMessage.Description">
+            <summary>
+            Link description
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider">
+            <summary>
+            Represents the network provider for Facebook.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.Networks.Providers.IGetApplicationScopedIds">
+            <summary>
+            Defines methods to get application-scoped IDs.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.IGetApplicationScopedIds.GetApplicationScopedIds(Sitecore.Social.NetworkProviders.Account)">
+            <summary>
+            Gets the application-scoped IDs.
+            </summary>
+            <param name="account">The account.</param>
+            <returns>The application-scoped IDs.</returns>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.LikesCounterKey">
+            <summary>
+            The "likes" counter key.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.CommentsCounterKey">
+            <summary>
+            The "comments" counter key.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.ExpiresParameterName">
+            <summary>
+            The expires parameter name
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.AccessTokenParameterName">
+            <summary>
+            The access token parameter name
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.#ctor(Sitecore.Social.NetworkProviders.Application)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider"/> class.
+            </summary>
+            <param name="application">The application.</param>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.GetAccountPages(Sitecore.Social.NetworkProviders.Account)">
+            <summary>
+            Gets the account pages.
+            </summary>
+            <param name="account">The account.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.GetStatisticsCounterDisplayName(System.String)">
+            <summary>
+            Gets the display name of the statistics counter.
+            </summary>
+            <param name="statisticsCounterName">Name of the statistics counter.</param>
+            <returns>The display name</returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.FacebookRequest(Sitecore.Social.NetworkProviders.Account,System.String,System.Object,System.Func{Facebook.FacebookClient,System.String,System.Object,System.Collections.Generic.IDictionary{System.String,System.Object}})">
+            <summary>
+            Makes a request for Facebook graph API.
+            </summary>
+            <param name="account">The account.</param>
+            <param name="feedPath">The feed path.</param>
+            <param name="inputParams">The input parameters.</param>
+            <param name="action">The action.</param>
+            <returns>The response.</returns>
+            <exception cref="T:Sitecore.Social.NetworkProviders.Exceptions.AuthException">In a case of authorization error.</exception>
+            <exception cref="T:Sitecore.Social.Infrastructure.Exceptions.SocialException">In a case of bad request for graph API.</exception>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.FacebookRequest(Sitecore.Social.NetworkProviders.Account,System.String,System.Object,System.Func{Facebook.FacebookClient,System.String,System.Object,System.Object})">
+            <summary>
+            Makes a request for Facebook graph API.
+            </summary>
+            <param name="account">The account.</param>
+            <param name="feedPath">The feed path.</param>
+            <param name="inputParams">The input parameters.</param>
+            <param name="action">The action.</param>
+            <returns>The response.</returns>
+            <exception cref="T:Sitecore.Social.NetworkProviders.Exceptions.AuthException">In a case of authorization error.</exception>
+            <exception cref="T:Sitecore.Social.Infrastructure.Exceptions.SocialException">In a case of bad request for graph API.</exception>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.GetAccountData(Sitecore.Social.NetworkProviders.Account,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets the account data.
+            </summary>
+            <param name="account">The account.</param>
+            <param name="access">The access.</param>
+            <param name="fields">The fields.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.GetAccountData(Sitecore.Social.NetworkProviders.Account,System.String,System.String)">
+            <summary>
+            Gets the account data.
+            </summary>
+            <param name="account">The account.</param>
+            <param name="access">The access.</param>
+            <param name="field">The field.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.GetResponseDictionary(System.Collections.Generic.Dictionary{System.String,Facebook.JSONObject})">
+            <summary>
+            Gets the response dictionary.
+            </summary>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.CreateMessageParameters(Sitecore.Social.Facebook.Networks.Messages.FacebookMessage)">
+            <summary>
+            Creates the parameters.
+            </summary>
+            <param name="message">The message.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.GetAccountInfo(Sitecore.Social.NetworkProviders.Account,System.Collections.Generic.IEnumerable{Sitecore.Social.NetworkProviders.NetworkFields.FieldInfo})">
+            <summary>
+            The method gets the profile fields from social netwok, matches them with accepted field list
+            </summary>
+            <param name="account">The network account</param>
+            <param name="acceptedFields">The list of accepted fields</param>
+            <returns>The collection with a sitecore (not original) field name as a key and value</returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.RenewAccount(Sitecore.Data.ID,Sitecore.Social.NetworkProviders.Account,System.String)">
+            <summary>
+            Renews the account.
+            </summary>
+            <param name="account">The account.</param>
+            <param name="redirectUrl">The redirect URL.</param>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.GetMessageComments(Sitecore.Social.NetworkProviders.Account,System.String)">
+            <summary>
+            Gets the message comments.
+            </summary>
+            <param name="account">The account.</param>
+            <param name="messageId">The message id.</param>
+            <returns>
+            The list of the message comments.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.GetApplicationScopedIds(Sitecore.Social.NetworkProviders.Account)">
+            <summary>
+            Gets the application scoped ids.
+            </summary>
+            <param name="account">The account.</param>
+            <returns>The enumerable of application scoped ids.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.Networks.Providers.FacebookProvider.GetMessageComment(Facebook.JsonObject)">
+            <summary>
+            Gets the message comment.
+            </summary>
+            <param name="commentJsonObject">The comment json object.</param>
+            <returns>The message comment.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.MessagePosting.Items.FacebookMessageItem">
+            <summary>
+            Represents a social Facebook message.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.MessagePosting.Items.FacebookMessageItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.MessagePosting.Items.FacebookMessageItem"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.MessagePosting.Items.FacebookMessageItem.#ctor(Sitecore.Data.Items.Item)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.MessagePosting.Items.FacebookMessageItem"/> class.
+            </summary>
+            <param name="item">The item.</param>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.MessagePosting.Items.FacebookMessageItem.PictureUrl">
+            <summary>
+            Gets the picture URL.
+            </summary>
+            <value>The picture URL.</value>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.MessagePosting.Items.FacebookMessageItem.Thumbnail">
+            <summary>
+            Gets the thumbnail.
+            </summary>
+            <value>The thumbnail.</value>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.MessagePosting.Items.FacebookMessageItem.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:Sitecore.Social.Facebook.MessagePosting.Items.FacebookMessageItem.Description">
+            <summary>
+            Gets the description.
+            </summary>
+            <value>
+            The description.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Facebook.MessagePosting.Providers.FacebookMessagePostingProvider">
+            <summary>
+            The Facebook message posting provider
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.MessagePosting.Providers.FacebookMessagePostingProvider.#ctor(Sitecore.Social.MessagePosting.Messages.Message)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Facebook.MessagePosting.Providers.FacebookMessagePostingProvider"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Sitecore.Social.Facebook.MessagePosting.Providers.FacebookMessagePostingProvider.PostAll">
+            <summary>
+            Posts all.
+            </summary>
+        </member>
+    </members>
+</doc>

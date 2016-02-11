@@ -1,0 +1,729 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Infrastructure.Logging</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.AttributeEntityFormatterMapper">
+            <summary>
+            Defines method for mapping types to concrete implementations of the <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> interface.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.AttributeEntityFormatterMapper.sync">
+            <summary>
+            The sync object
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.AttributeEntityFormatterMapper.entityFormatterTypesList">
+            <summary>
+            The entity formatter types
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.AttributeEntityFormatterMapper.configurationFactory">
+            <summary>
+            The configuration factory
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.AttributeEntityFormatterMapper.cache">
+            <summary>
+            The cache
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.AttributeEntityFormatterMapper.#ctor(Sitecore.Social.Configuration.IConfigurationFactory,Sitecore.Social.Infrastructure.Logging.IEntityFormatterCache)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Infrastructure.Logging.AttributeEntityFormatterMapper"/> class.
+            </summary>
+            <param name="configurationFactory">The configuration factory.</param>
+            <param name="cache">The cache.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.AttributeEntityFormatterMapper.GetEntityFormatter(System.Type)">
+            <summary>
+            Gets the entity formatter for specific type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>
+            The <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> implementation for <paramref name="type"/>.
+            </returns>
+            <example>
+            <code>
+            IEntityFormatter entityFormatter = entityFormatterMapper.GetEntityFormatter(typeof(Context));
+            </code>
+            </example>
+        </member>
+        <member name="P:Sitecore.Social.Infrastructure.Logging.AttributeEntityFormatterMapper.EntityFormatterTypesCache">
+            <summary>
+            Gets the entity formatter types.
+            </summary>
+            <value>
+            The entity formatter types.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.EntityFormatterCache">
+            <summary>
+            The cache for <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> instances.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.EntityFormatterCache.dictionary">
+            <summary>
+            The dictionary
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.EntityFormatterCache.#cctor">
+            <summary>
+            Initializes the <see cref="T:Sitecore.Social.Infrastructure.Logging.EntityFormatterCache"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.EntityFormatterCache.Get(System.Type)">
+            <summary>
+            Gets the <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> instance for the passed <paramref name="type"/> from cache.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>
+            The <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> concrete implementation.
+            </returns>
+            <example>
+            <code>
+            IEntityFormatter entityFormatter = cache.Get(typeof(User));
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.EntityFormatterCache.Set(System.Type,Sitecore.Social.Infrastructure.Logging.IEntityFormatter)">
+            <summary>
+            Sets the <paramref name="entityFormatter" /> formatter for the <paramref name="type" />.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="entityFormatter">The entity formatter.</param>
+            <example>
+            <code>
+            cache.Set(typeof(User), userEntityFormatter);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.EntityFormatterCache.Exists(System.Type)">
+            <summary>
+            Checks if an <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> for <paramref name="type"/> exists in cache.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>
+            true, if an <see cref="T:Sitecore.Social.Infrastructure.Logging.IEntityFormatter"/> for <paramref name="type"/> exists in cache, otherwise - false.
+            </returns>
+            <example>
+            <code>
+            bool exists = cache.Exists(typeof(User));
+            </code>
+            </example>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.Formatters.AccountCredentialsEntityFormatter">
+            <summary>
+            Entity formatter for the <see cref="T:Sitecore.Social.Domain.Model.AccountCredentials"/> instances.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.Formatters.AccountCredentialsEntityFormatter.FormatEntity(System.Object)">
+            <summary>
+            Formats the entity.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>
+            A string representation of <paramref name="entity" />.
+            </returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.Formatters.DefaultEntityFormatter">
+            <summary>
+            Default formatter for entities.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.Formatters.DefaultEntityFormatter.FormatEntity(System.Object)">
+            <summary>
+            Formats the entity. Uses <see cref="T:System.Runtime.Serialization.Formatters.Soap.SoapFormatter"/> to serialize objects.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>
+            A string representation of the <paramref name="entity"/>.
+            </returns>
+            <example>
+            <code>
+            string formattedEntity = entityFormatter.FormatEntity(entity);
+            </code>
+            </example>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.Formatters.SitecoreContextEntityFormatter">
+            <summary>
+            Entity formatter for the <see cref="T:Sitecore.Context"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.Formatters.SitecoreContextEntityFormatter.FormatEntity(System.Object)">
+            <summary>
+            Formats the entity.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>
+            A string representation of the <paramref name="entity" />.
+            </returns>
+            <example>
+            <code>
+            string formattedSitecoreContext = entityFormatter.FormatEntity(typeof(Context));
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.Formatters.SitecoreContextEntityFormatter.ValueOrNull``1(``0,System.Func{``0,System.String})">
+            <summary>
+            If the <paramref name="obj"/> is not null, returns <paramref name="selector"/> of <paramref name="obj"/>, else "null".
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj">The object.</param>
+            <param name="selector">The selector.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.Formatters.UserEntityFormatter">
+            <summary>
+            Entity formatter for the <see cref="T:Sitecore.Security.Accounts.User"/> instances.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.Formatters.UserEntityFormatter.FormatEntity(System.Object)">
+            <summary>
+            Formats the entity.
+            </summary>
+            <param name="entity">The entity.</param>
+            <returns>
+            A string representation of the <paramref name="entity" />.
+            </returns>
+            <example>
+            <code>
+            string formattedEntity = entityFormatter.FormatEntity(user);
+            </code>
+            </example>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.IoC.LoggingModule">
+            <summary>
+            IoC module to bind logging related implementations.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.IoC.LoggingModule.Load">
+            <summary>
+            Loads the module into the kernel.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.LogManager">
+            <summary>
+            Defines methods for logging.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.LogManager.logMessageFormatter">
+            <summary>
+            The log message formatter
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.LogManager.logProvider">
+            <summary>
+            The log provider
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.LogManager.entityFormatterMapper">
+            <summary>
+            The entity formatter mapper
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.LogManager.membershipWrapper">
+            <summary>
+            The membership wrapper
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Infrastructure.Logging.LogManager.configurationFactory">
+            <summary>
+            The configuration factory
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Infrastructure.Logging.LogManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.#ctor(Sitecore.Social.Infrastructure.Logging.ILogMessageFormatter,Sitecore.Social.Infrastructure.Logging.ILogProvider,Sitecore.Social.Infrastructure.Logging.IEntityFormatterMapper,Sitecore.Social.Infrastructure.Wrappers.System.IMembershipWrapper,Sitecore.Social.Configuration.IConfigurationFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Infrastructure.Logging.LogManager"/> class with the specific parameters.
+            </summary>
+            <param name="logMessageFormatter">The log message formatter.</param>
+            <param name="logProvider">The log provider.</param>
+            <param name="entityFormatterMapper">The entity formatter mapper.</param>
+            <param name="membershipWrapper">The membership wrapper.</param>
+            <param name="configurationFactory">The configuration factory.</param>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogObject(System.Object,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object)">
+            <summary>
+            Logs the specified object.
+            </summary>
+            <param name="obj">The object.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <example>
+            <code>
+            logManager.LogObject(user, "User object:", LogLevel.Debug, this);</code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogObject(System.Object,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the specified object with the exception.
+            </summary>
+            <param name="obj">The object.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="exception">The exception.</param>
+            <example>
+            <code>
+            logManager.LogObject(user, "User object:", LogLevel.Debug, this, exception);</code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogObject(System.Object,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean)">
+            <summary>
+            Logs the specified object with the information about the current user.
+            </summary>
+            <param name="obj">The object.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <example>
+            <code>
+            logManager.LogObject(user, "User object:", LogLevel.Debug, this, true);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogObject(System.Object,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean,System.Exception)">
+            <summary>
+            Logs the specified object with the information about the current user and the exception.
+            </summary>
+            <param name="obj">The object.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <param name="exception">The exception.</param>
+            <example>
+            <code>
+            logManager.LogObject(user, "User object:", LogLevel.Debug, this, true, exception);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogEnumerable``1(System.Collections.Generic.IEnumerable{``0},System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object)">
+            <summary>
+            Logs the enumerable.
+            </summary>
+            <typeparam name="T">Type of objects.</typeparam>
+            <param name="enumerable">The enumerable.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The owner.</param>
+            <example>
+            <code>
+            logManager.LogEnumerable(userList, "Users:", LogLevel.Debug, this);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogEnumerable``1(System.Collections.Generic.IEnumerable{``0},System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the enumerable with the exception.
+            </summary>
+            <typeparam name="T">Type of objects.</typeparam>
+            <param name="enumerable">The enumerable.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The owner.</param>
+            <param name="exception">The exception.</param>
+            <example>
+            <code>
+            logManager.LogEnumerable(userList, "Users:", LogLevel.Debug, this, exception);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogEnumerable``1(System.Collections.Generic.IEnumerable{``0},System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean)">
+            <summary>
+            Logs the enumerable with the information about the current user.
+            </summary>
+            <typeparam name="T">Type of objects.</typeparam>
+            <param name="enumerable">The enumerable.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The owner.</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <example>
+            <code>
+            logManager.LogEnumerable(userList, "Users:", LogLevel.Debug, this, true);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogEnumerable``1(System.Collections.Generic.IEnumerable{``0},System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean,System.Exception)">
+            <summary>
+            Logs the enumerable with the information about the current user.
+            </summary>
+            <typeparam name="T">Type of objects.</typeparam>
+            <param name="enumerable">The enumerable.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The owner.</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <param name="exception">The exception.</param>
+            <example>
+            <code>
+            logManager.LogEnumerable(userList, "Users:", LogLevel.Debug, this, true, exception);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogStatic(System.Type,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object)">
+            <summary>
+            Logs the static class.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <example>
+            <code>
+            logManager.LogStatic(typeof(Sitecore.Context), "Sitecore.Context:", LogLevel.Debug, this);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogStatic(System.Type,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the static class with the information about the exception.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="exception">The exception.</param>
+            <example>
+            <code>
+            logManager.LogStatic(typeof(Sitecore.Context), "Sitecore.Context:", LogLevel.Debug, this, exception);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogStatic(System.Type,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean)">
+            <summary>
+            Logs the static class with the information about the current user.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <example>
+            <code>
+            logManager.LogStatic(typeof(Sitecore.Context), "Sitecore.Context:", LogLevel.Debug, this, true);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogStatic(System.Type,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean,System.Exception)">
+            <summary>
+            Logs the static class with the information about the current user and the exception.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <param name="exception">The exception.</param>
+            <example>
+            <code>
+            logManager.LogStatic(typeof(Sitecore.Context), "Sitecore.Context:", LogLevel.Debug, this, true, exception);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogJson(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object)">
+            <summary>
+            Logs the JSON.
+            </summary>
+            <param name="jsonString">The JSON string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <example>
+            <code>
+            logManager.LogJson("{\"name\": \"John\", \"age\": \"20\"}", "Response from server is:", LogLevel.Debug, this);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogJson(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the JSON with the exception.
+            </summary>
+            <param name="jsonString">The JSON string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="exception">The exception.</param>
+            <example>
+            <code>
+            logManager.LogJson("{\"name\": \"John\", \"age\": \"20\"}", "Response from server is:", LogLevel.Debug, this, exception);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogJson(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean)">
+            <summary>
+            Logs the JSON with the information about the current user.
+            </summary>
+            <param name="jsonString">The JSON string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <example>
+            <code>
+            logManager.LogJson("{\"name\": \"John\", \"age\": \"20\"}", "Response from server is:", LogLevel.Debug, this, true);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogJson(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean,System.Exception)">
+            <summary>
+            Logs the JSON with the information about the current user and the exception.
+            </summary>
+            <param name="jsonString">The JSON string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <param name="exception">The exception.</param>
+            <example>
+            <code>
+            logManager.LogJson("{\"name\": \"John\", \"age\": \"20\"}", "Response from server is:", LogLevel.Debug, this, true, exception);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogXml(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object)">
+            <summary>
+            Logs the XML.
+            </summary>
+            <param name="xmlString">The XML string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <example>
+            <code>
+            logManager.LogXml("&lt;contact name=\"John\" age=\"20\"&gt;&lt;/contact&gt;", "Response from server is:", LogLevel.Debug, this);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogXml(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the XML with the exception.
+            </summary>
+            <param name="xmlString">The XML string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="exception">The exception.</param>
+            <example>
+            <code>
+            logManager.LogXml("&lt;contact name=\"John\" age=\"20\"&gt;&lt;/contact&gt;", "Response from server is:", LogLevel.Debug, this, exception);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogXml(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean)">
+            <summary>
+            Logs the XML with the information about the current user.
+            </summary>
+            <param name="xmlString">The XML string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <example>
+            <code>
+            logManager.LogXml("&lt;contact name=\"John\" age=\"20\"&gt;&lt;/contact&gt;", "Response from server is:", LogLevel.Debug, this, true);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogXml(System.String,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean,System.Exception)">
+            <summary>
+            Logs the XML with the information about the current user and the exception.
+            </summary>
+            <param name="xmlString">The XML string.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="audit">if set to <c>true</c> logs the information about the current user.</param>
+            <param name="exception">The exception.</param>
+            <example>
+            <code>
+            logManager.LogXml("&lt;contact name=\"John\" age=\"20\"&gt;&lt;/contact&gt;", "Response from server is:", LogLevel.Debug, this, true, exception);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogMessage(System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object)">
+            <summary>
+            Logs the message.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <example>
+            <code>
+            logManager.LogMessage("Info message", LogLevel.Info, this);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogMessage(System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the message with the information about the exception.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The calling class instance or type (for static classes).</param>
+            <param name="exception">The exception.</param>
+            <example>
+            <code>
+            logManager.LogMessage("Error message", LogLevel.Error, this, exception);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.Audit(System.String,System.Object)">
+            <summary>
+            Logs the message with the information about the current user.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="owner">The owner.</param>
+            <example>
+            <code>
+            logManager.Audit("Item was moved", this);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.GetContextUserName">
+            <summary>
+            Gets the name of the context user.
+            </summary>
+            <returns>The name of the context user</returns>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogManager.LogEntity``1(``0,System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Boolean,System.Exception,System.Func{``0,System.String})">
+            <summary>
+            Logs the entity.
+            </summary>
+            <typeparam name="T">Type of the <paramref name="entity"/></typeparam>
+            <param name="entity">The entity.</param>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The owner.</param>
+            <param name="audit">if set to <c>true</c> [audit].</param>
+            <param name="exception">The exception.</param>
+            <param name="formatEntity">The format entity.</param>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.LogMessageFormatter">
+            <summary>
+            Defines methods for formatting messages.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogMessageFormatter.FormatMessage(System.String)">
+            <summary>
+            Formats the message.
+            </summary>
+            <param name="message">The message.</param>
+            <returns>
+            A formatted <paramref name="message" />.
+            </returns>
+            <example>
+            <code>
+            string formattedMessage = logMessageFormatter.FormatMessage("Message");
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogMessageFormatter.FormatMessage(System.String,System.String)">
+            <summary>
+            Formats the message.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="userName">Name of the user.</param>
+            <returns>
+            A formatted string, which unions <paramref name="message" /> and <paramref name="userName" />.
+            </returns>
+            <example>
+            <code>
+            string formattedMessage = logMessageFormatter.FormatMessage("Message", userName);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogMessageFormatter.FormatMessageWithObject(System.String,System.String)">
+            <summary>
+            Formats the message.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="objectRepresentation">The object representation.</param>
+            <returns>
+            A formatted string, which unions <paramref name="message" /> and <paramref name="objectRepresentation" />.
+            </returns>
+            <example>
+            <code>
+            string formattedMessage = logMessageFormatter.FormatMessageWithObject("Message", objectRepresentation);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogMessageFormatter.FormatMessageWithObject(System.String,System.String,System.String)">
+            <summary>
+            Formats the message.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="objectRepresentation">The object representation.</param>
+            <param name="userName">Name of the user.</param>
+            <returns>
+            A formatted string, which unions <paramref name="message" />, <paramref name="objectRepresentation" /> and <paramref name="userName" />.
+            </returns>
+            <example>
+            <code>
+            string formattedMessage = logMessageFormatter.FormatMessageWithObject("Message", objectRepresentation, userName);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogMessageFormatter.FormatMessageWithEnumerable(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Formats the message with the enumerable.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="objectsEnumerable">The objects enumerable.</param>
+            <returns>
+            A formatted string, which unions <paramref name="message" /> and <paramref name="objectsEnumerable" />.
+            </returns>
+            <example>
+            <code>
+            string formattedMessage = logMessageFormatter.FormatMessageWithEnumerable("Message", enumerable);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogMessageFormatter.FormatMessageWithEnumerable(System.String,System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            Formats the message with the enumerable.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="objectsEnumerable">The objects enumerable.</param>
+            <param name="userName">Name of the user.</param>
+            <returns>
+            A formatted string, which unions <paramref name="message" />, <paramref name="objectsEnumerable" /> and <paramref name="userName" />.
+            </returns>
+            <example>
+            <code>
+            string formattedMessage = logMessageFormatter.FormatMessageWithEnumerable("Message", enumerable, userName);
+            </code>
+            </example>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.LogMessageFormatter.AddPrefix(System.String)">
+            <summary>
+            Adds prefix to messages.
+            </summary>
+            <param name="message">The message.</param>
+            <returns>A <paramref name="message"/> with prefix.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Infrastructure.Logging.SitecoreLogProvider">
+            <summary>
+            Sitecore log provider.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Infrastructure.Logging.SitecoreLogProvider.LogMessage(System.String,Sitecore.Social.Infrastructure.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Logs the message. Uses <see cref="T:Sitecore.Diagnostics.Log"/> for logging.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="logLevel">The log level.</param>
+            <param name="owner">The owner.</param>
+            <param name="exception">The exception.</param>
+        </member>
+    </members>
+</doc>

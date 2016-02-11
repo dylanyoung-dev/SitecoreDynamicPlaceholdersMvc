@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Twitter</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Twitter.Accounts.Items.TwitterAccountItem">
+            <summary>
+            TODO: Update summary.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Twitter.Common.Texts">
+            <summary>
+            Text constants.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Twitter.Configuration.SettingsConfiguration">
+            <summary>
+            Twitter settings configuration.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Twitter.Configuration.SettingsConfiguration.Empty">
+            <summary>
+            A read-only instance of the <see cref="T:Sitecore.Social.Twitter.Configuration.SettingsConfiguration"/> class whose value represents a not defined configuration settings.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Twitter.Configuration.SettingsConfiguration.IsEmpty">
+            <summary>
+            Gets the value that indicates whether this instance is empty or not.
+            </summary>
+            <value>
+              <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Twitter.Configuration.SettingsConfiguration.DefaultTweetGoal">
+            <summary>
+            Gets or sets the default tweet goal.
+            </summary>
+            <value>
+            The default tweet goal.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Twitter.Configuration.SettingsConfigurationManager">
+            <summary>
+            Defines methods to get Twitter settings configuration.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Configuration.SettingsConfigurationManager.GetConfigurationData">
+            <summary>
+            Gets the configuration data.
+            </summary>
+            <returns>The <see cref="T:Sitecore.Social.Twitter.Configuration.SettingsConfiguration"/>.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Twitter.Connector.Paths.TwitterPaths">
+            <summary>
+            Contains Twitter paths.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Twitter.Connector.Paths.TwitterPaths.API">
+            <summary>Contains API.</summary>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Connector.Paths.TwitterPaths.#ctor(System.String,Sitecore.Social.NetworkProviders.Connector.Paths.SocialPaths.CommandsPaths,Sitecore.Social.Twitter.Connector.Paths.TwitterPaths.Links)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Twitter.Connector.Paths.TwitterPaths"/> class.
+            </summary>
+            <param name="homePage">
+            The home page.
+            </param>
+            <param name="queryCommands">
+            The query commands.
+            </param>
+            <param name="api">
+            The api.
+            </param>
+        </member>
+        <member name="T:Sitecore.Social.Twitter.Connector.Paths.TwitterPaths.Links">
+            <summary>
+            API links.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Twitter.Connector.Paths.TwitterPaths.Links.AccessToken">
+            <summary>Access token link.</summary>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Connector.Paths.TwitterPaths.Links.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Twitter.Connector.Paths.TwitterPaths.Links"/> struct.
+            </summary>
+            <param name="accessToken">
+            The access token.
+            </param>
+        </member>
+        <member name="T:Sitecore.Social.Twitter.Connector.Paths.TwitterPathsFactory">
+            <summary>
+            <see cref="T:Sitecore.Social.Twitter.Connector.Paths.TwitterPaths"/> factory.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Twitter.Connector.Paths.TwitterPathsFactory.Twitter">
+            <summary>Twitter paths.</summary>
+        </member>
+        <member name="T:Sitecore.Social.Twitter.Networks.Accounts.TwitterAccount">
+            <summary>
+            The class represents a Twitter network account
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Twitter.Networks.Accounts.TwitterAccount.Id">
+            <summary>
+            THe network Id
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.Twitter.Networks.Accounts.TwitterAccount.ScreenName">
+            <summary>
+            The unique display name
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider">
+            <summary>
+            The class helps to work with Twitter.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.RetweetsCounterKey">
+            <summary>
+            The counter key
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.twitterService">
+            <summary>
+            The Twitter service
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.#ctor(Sitecore.Social.NetworkProviders.Application)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider"/> class.
+            </summary>
+            <param name="application">The application.</param>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.PostMessage(Sitecore.Social.NetworkProviders.Account,Sitecore.Social.NetworkProviders.Messages.Message)">
+            <summary>
+            Publishes the on the wall.
+            </summary>
+            <param name="account">The account.</param>
+            <param name="message">The message.</param>
+            <returns>
+            The <see cref="T:Sitecore.Social.NetworkProviders.PostResult"/> instance, which contains tweet id.
+            </returns>
+            <exception cref="T:Sitecore.Social.Infrastructure.Exceptions.SocialException">In a case of the social network error.</exception>
+            <exception cref="T:System.ArgumentException">AccessToken</exception>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.GetDisplayName(Sitecore.Social.NetworkProviders.Account)">
+            <summary>
+            Gets the users screen name.
+            </summary>
+            <param name="account">The account.</param>
+            <returns>The users screen name</returns>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.GetAccountId(Sitecore.Social.NetworkProviders.Account)">
+            <summary>
+            Gets the account id.
+            </summary>
+            <param name="account">The account.</param>
+            <returns>The network account id.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.GetAccountBasicData(Sitecore.Social.NetworkProviders.Account)">
+            <summary>
+            Gets the account basic data.
+            </summary>
+            <param name="account">The account.</param>
+            <returns>The account basic data.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.GetAccountInfo(Sitecore.Social.NetworkProviders.Account,System.Collections.Generic.IEnumerable{Sitecore.Social.NetworkProviders.NetworkFields.FieldInfo})">
+            <summary>
+            Gets the account info.
+            </summary>
+            <param name="account">The account.</param>
+            <param name="acceptedFields">The accepted fields.</param>
+            <returns>The account info.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.GetMessageStatistics(Sitecore.Social.NetworkProviders.Account,System.String)">
+            <summary>
+            Gets the message statistics.
+            </summary>
+            <param name="account">The account.</param>
+            <param name="messageId">The message id.</param>
+            <returns>The message statistics.</returns>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.GetStatisticsCounterDisplayName(System.String)">
+            <summary>
+            Gets the display name of the statistics counter.
+            </summary>
+            <param name="statisticsCounterName">Name of the statistics counter.</param>
+            <returns>
+            The display name.
+            </returns>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.ThrowTwitterError(TweetSharp.TwitterResponse)">
+            <summary>
+            Throws the Twitter error.
+            </summary>
+            <param name="twitterResponse">The Twitter response.</param>
+            <exception cref="T:Sitecore.Social.NetworkProviders.Exceptions.BadRequestException">Throws in a case of a bad request.</exception>
+            <exception cref="T:Sitecore.Social.NetworkProviders.Exceptions.AuthException">Throws in a case of authorization error.</exception>
+            <exception cref="T:Sitecore.Social.NetworkProviders.Exceptions.AccessDeniedException">Throws in a case of access denying.</exception>
+            <exception cref="T:Sitecore.Social.NetworkProviders.Exceptions.ResourceNotFoundException">Throws the resource is not found.</exception>
+            <exception cref="T:Sitecore.Social.NetworkProviders.Exceptions.RemoteServerException">Throws in a case of internal server error.</exception>
+            <exception cref="T:Sitecore.Social.Infrastructure.Exceptions.SocialException">Throws in ony other cases.</exception>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.GetTwitterUserProfile(Sitecore.Social.NetworkProviders.Account)">
+            <summary>
+            Gets the Twitter user profile.
+            </summary>
+            <param name="account">The account.</param>
+            <returns>The user profile.</returns>
+        </member>
+        <member name="P:Sitecore.Social.Twitter.Networks.Providers.TwitterProvider.StatisticNames">
+            <summary>
+            Gets the statistic names.
+            </summary>
+            <value>
+            The statistic names.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Twitter.MessagePosting.Items.TwitterMessageItem">
+            <summary>
+            Represents a social Twitter message.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.MessagePosting.Items.TwitterMessageItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Twitter.MessagePosting.Items.TwitterMessageItem"/> class.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.MessagePosting.Items.TwitterMessageItem.#ctor(Sitecore.Data.Items.Item)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Twitter.MessagePosting.Items.TwitterMessageItem"/> class.
+            </summary>
+            <param name="item">The item.</param>
+        </member>
+        <member name="T:Sitecore.Social.Twitter.MessagePosting.Providers.TwitterMessagePostingProvider">
+            <summary>
+            Represents the Twitter posting provider.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.MessagePosting.Providers.TwitterMessagePostingProvider.#ctor(Sitecore.Social.MessagePosting.Messages.Message)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Twitter.MessagePosting.Providers.TwitterMessagePostingProvider"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.MessagePosting.Providers.TwitterMessagePostingProvider.PostAll">
+            <summary>
+            Posts all.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Twitter.MessagePosting.Providers.TwitterMessagePostingProvider.BuildTwitterMessage(Sitecore.Social.MessagePosting.Messages.Message)">
+            <summary>
+            Composes the Twitter status.
+            </summary>
+            <param name="message">The message.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

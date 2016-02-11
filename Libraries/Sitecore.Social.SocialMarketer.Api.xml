@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.SocialMarketer.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.SocialMarketer.Api.Builders.SocialMarketerMessageDataBuilder">
+            <summary>
+            Represents <see cref="T:Sitecore.Social.SocialMarketer.Api.Model.SocialMarketerMessageData"/> builder.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.SocialMarketer.Api.Builders.SocialMarketerMessageDataBuilder.CommentsFieldId">
+            <summary>
+            The comments field id.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.SocialMarketer.Api.Builders.SocialMarketerMessageDataBuilder.BuildFrom(Sitecore.Social.MessagePosting.Items.MessageItemBase)">
+            <summary>
+            Builds from message item base.
+            </summary>
+            <param name="messageItemBase">The message item base.</param>
+            <returns>
+            The <seealso cref="T:Sitecore.Social.Domain.Model.MessageData"/>
+            </returns>
+            <exception cref="T:System.InvalidCastException">The 'messageItemBase' argument is not a SocialMarketerMessageItem object.</exception>
+        </member>
+        <member name="M:Sitecore.Social.SocialMarketer.Api.Builders.SocialMarketerMessageDataBuilder.BuildFrom(Sitecore.Social.Domain.Model.MessageData)">
+            <summary>
+            Builds from message data.
+            </summary>
+            <param name="messageData">The message data.</param>
+            <returns>
+            The <seealso cref="T:Sitecore.Social.NetworkProviders.Messages.Message"/>
+            </returns>
+            <exception cref="T:System.InvalidCastException">"The 'messageData' argument is not a SocialMarketerMessageData object."</exception>
+        </member>
+        <member name="M:Sitecore.Social.SocialMarketer.Api.Builders.SocialMarketerMessageDataBuilder.UpdateMessageItem(Sitecore.Data.Items.Item,Sitecore.Social.Domain.Model.MessageData)">
+            <summary>
+            Updates the message item from the message data.
+            </summary>
+            <param name="messageItem">The message item.</param>
+            <param name="messageData">The message data.</param>
+            <exception cref="T:System.InvalidCastException">The 'messageData' argument is not a SocialMarketerMessageData object.</exception>
+        </member>
+        <member name="T:Sitecore.Social.SocialMarketer.Api.Model.SocialMarketerMessageData">
+            <summary>
+            The social marketer message data.
+            </summary>
+        </member>
+        <member name="P:Sitecore.Social.SocialMarketer.Api.Model.SocialMarketerMessageData.Comments">
+            <summary>
+            Gets or sets the comments.
+            </summary>
+        </member>
+    </members>
+</doc>

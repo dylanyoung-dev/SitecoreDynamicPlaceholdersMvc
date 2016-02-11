@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.Social.Client.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.Social.Client.Domain.IAccountClientManager">
+            <summary>
+            Defines the methods that are used to work with a social network account.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IAccountClientManager.BeginGetAccountCredentials(Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest)">
+            <summary>
+            Initializes the process of receiving the social network account credentials.
+            </summary>
+            <param name="request">The account credentials request.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IAccountClientManager.EndGetAccountCredentials(System.String)">
+            <summary>
+            Returns the account credentials by request id.
+            </summary>
+            <param name="requestId">The request id returned in the query string at the end of the flow.</param>
+            <returns>The account credentials response.</returns>
+        </member>
+        <member name="T:Sitecore.Social.Client.Domain.IConnectorClientManager">
+            <summary>
+            Defines the methods that are used to log in users with social networks or attach social network profiles for existing users.
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.LogOnUser(System.String,System.String)">
+            <summary>
+            Logs the user in the specified network. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.LogOnUser(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Logs the user in the specified network. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.LogOnUser(System.String,System.String,System.Boolean)">
+            <summary>
+            Logs the user in the specified network. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.LogOnUser(System.String,System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Logs the user in the specified network. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.LogOnUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials)">
+            <summary>
+            Logs the user in the specified network with the specified application credentials. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.LogOnUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Logs the user in the specified network with the specified application credentials. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.LogOnUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Boolean)">
+            <summary>
+            Logs the user in the specified network with the specified application credentials. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.LogOnUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Logs the user in the specified network with the specified application credentials. If the user account doesn’t exist, it will be created.
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.AttachToUser(System.String,System.String)">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="!:LogOnUser(string)"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.AttachToUser(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="!:LogOnUser(string)"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.AttachToUser(System.String,System.String,System.Boolean)">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="!:LogOnUser(string, bool)"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.AttachToUser(System.String,System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="!:LogOnUser(string, bool, Dictionary&lt;string, object&gt;)"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.AttachToUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials)">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="!:LogOnUser(string, ApplicationCredentials)"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.AttachToUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="!:LogOnUser(string, ApplicationCredentials, Dictionary&lt;string, object&gt;)"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.AttachToUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Boolean)">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="!:LogOnUser(string, ApplicationCredentials, bool)"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.IConnectorClientManager.AttachToUser(System.String,System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Attaches the specified network social profile to the logged in user.
+            If the current user is not logged in, it tries to log in with <see cref="!:LogOnUser(string, ApplicationCredentials, bool, Dictionary&lt;string, object&gt;)"/>
+            </summary>
+            <param name="networkName">The name of the network.</param>
+            <param name="callbackUrl">The URL, where the user will be redirected after login.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="updateSocialProfileAsync">if set to <c>true</c> a social profile will be updated asynchronously.</param>
+            <param name="additionalParameters">The additional parameters, which will be kept during the authentication flow.</param>
+        </member>
+        <member name="T:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest">
+            <summary>
+            Represents the account credentials request.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest.RequestIdParameterName">
+            <summary>
+            The request id parameter name
+            </summary>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest.#ctor(System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest"/> class.
+            </summary>
+            <param name="networkName">The network name.</param>
+            <param name="applicationCredentials">The application credentials.</param>
+            <param name="callbackPageUrl">The callback page url.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest.#ctor(System.String,Sitecore.Social.Domain.Model.ApplicationCredentials,System.Uri,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest"/> class.
+            </summary>
+            <param name="networkName">
+            The network name.
+            </param>
+            <param name="applicationCredentials">
+            The application credentials.
+            </param>
+            <param name="callbackPageUrl">
+            The callback page url.
+            </param>
+            <param name="contextData">
+            The context data. It's recommended to be serializable.
+            </param>
+        </member>
+        <member name="P:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest.RequestId">
+            <summary>
+            Gets the request id.
+            </summary>
+            <value>
+            The request id.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest.NetworkName">
+            <summary>
+            Gets the name of the network.
+            </summary>
+            <value>
+            The name of the network.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest.ApplicationCredentials">
+            <summary>
+            Gets the application credentials.
+            </summary>
+            <value>
+            The application credentials.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest.Permissions">
+            <summary>
+            Gets the permissions.
+            </summary>
+            <value>
+            The permissions.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest.CallbackPageUrl">
+            <summary>
+            Gets the URL of the page to be redirected at the end of the flow.
+            </summary>
+            <value>
+            The callback page URL.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Client.Domain.Requests.GetAccountCredentialsRequest.ContextData">
+            <summary>
+            Gets the context data.
+            </summary>
+            <remarks>During the receiving account credentials process you'll be redirected on a domain of social network and then redirected back. 
+            Use this storage if you want to keep any data during this process.</remarks>
+            <value>
+            The context data.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponse">
+            <summary>
+            Represents the account credentials response.
+            </summary>
+        </member>
+        <member name="T:Sitecore.Social.Client.Domain.Responses.ResponseStatus`1">
+            <summary>
+            Represents the base class for API responses.
+            </summary>
+            <typeparam name="T">The response status type.</typeparam>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.Responses.ResponseStatus`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Domain.Responses.ResponseStatus`1"/> class.
+            </summary>
+            <param name="status">The status.</param>
+        </member>
+        <member name="P:Sitecore.Social.Client.Domain.Responses.ResponseStatus`1.Status">
+            <summary>
+            Gets the status.
+            </summary>
+            <value>
+            The status.
+            </value>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponse.#ctor(Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponseStatus)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponse"/> class.
+            </summary>
+            <param name="status">The status.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponse.#ctor(Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponseStatus,Sitecore.Social.Domain.Model.AccountCredentials)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponse"/> class.
+            </summary>
+            <param name="status">The status.</param>
+            <param name="accountCredentials">The account credentials.</param>
+        </member>
+        <member name="M:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponse.#ctor(Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponseStatus,Sitecore.Social.Domain.Model.AccountCredentials,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponse"/> class.
+            </summary>
+            <param name="status">The status.</param>
+            <param name="accountCredentials">The account credentials.</param>
+            <param name="contextData">The context data.</param>
+        </member>
+        <member name="P:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponse.AccountCredentials">
+            <summary>
+            Gets the account credentials.
+            </summary>
+            <value>
+            The account credentials.
+            </value>
+        </member>
+        <member name="P:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponse.ContextData">
+            <summary>
+            Gets the context data.
+            </summary>
+            <remarks>During the receiving account credentials process you'll be redirected on a domain of social network and then redirected back. 
+            Use this storage if you want to keep any data during this process.</remarks>
+            <value>
+            The context data.
+            </value>
+        </member>
+        <member name="T:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponseStatus">
+            <summary>
+            Defines constants for account credentials response status.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponseStatus.Done">
+            <summary>
+            Account credentials received successfully.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponseStatus.Failed">
+            <summary>
+            Receiving failed.
+            </summary>
+        </member>
+        <member name="F:Sitecore.Social.Client.Domain.Responses.GetAccountCredentialsResponseStatus.ResponseIsNotFound">
+            <summary>
+            The response is not found
+            </summary>
+        </member>
+    </members>
+</doc>
