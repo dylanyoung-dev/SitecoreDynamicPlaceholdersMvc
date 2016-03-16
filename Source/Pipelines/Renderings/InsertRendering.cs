@@ -55,13 +55,13 @@ namespace Source.Pipelines.Renderings
             // Insert Rendering by it's Unique Id
             if (!string.IsNullOrEmpty(renderingUniqueId) && device != null && device.Renderings != null)
             {
-                Guid uniqueId = new Guid(renderingUniqueId);
+                string uniqueId = string.Concat("{", renderingUniqueId, "}");
                 // Try 
                 for (int index = 0; index < device.Renderings.Count; ++index)
                 {
                     RenderingDefinition rendering = device.Renderings[index] as RenderingDefinition;
 
-                    if (rendering.UniqueId == uniqueId.ToString())
+                    if (rendering.UniqueId == uniqueId)
                     {
                         device.Insert(index + 1, renderingDefinition);
                     }
