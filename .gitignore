@@ -1,0 +1,14 @@
+/Libraries
+/.vs/Solution
+/node_modules
+/packages
+/.vs/config
+/Site.Web/obj/Debug
+/Site.Web/Site.Web.csproj.user
+/Sitecore.Foundation.DynamicPlaceholders/bin/Debug
+/Sitecore.Foundation.DynamicPlaceholders/bin/Release
+/Sitecore.Foundation.DynamicPlaceholders/obj
+/Sitecore.Foundation.DynamicPlaceholders.Web/bin/roslyn
+/Sitecore.Foundation.DynamicPlaceholders.Web/obj
+*.user
+/Source/obj/Debug

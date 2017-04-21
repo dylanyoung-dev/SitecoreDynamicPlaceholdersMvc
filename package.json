@@ -1,0 +1,21 @@
+{
+  "name": "DynamicPlaceholders",
+  "version": "1.0.0",
+  "description": "Dynamic Placeholders",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-debug": "^2.1.2",
+    "gulp-msbuild": "0.2.13",
+    "run-sequence": "^1.1.4",
+    "gulp-util": "^3.0.7",
+    "merge-stream": "^1.0.0",
+    "gulp-nuget-restore": "^0.4.0"
+  },
+  "devDependencies": {
+  },
+  "repository": {
+    "type": "git"
+  },
+  "private":  true
+}
