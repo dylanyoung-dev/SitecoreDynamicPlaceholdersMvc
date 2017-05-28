@@ -1,11 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Site.Infrastructure", "Source\Site.Infrastructure.csproj", "{4C54B801-D01E-44ED-909F-711290E26BBB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{089D3573-E033-4A74-A779-11D1DE4EDCD2}"
+	ProjectSection(SolutionItems) = preProject
+		gulp-config.js = gulp-config.js
+		gulpfile.js = gulpfile.js
+		package.json = package.json
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Site.Web", "Site.Web\Site.Web.csproj", "{979A1D24-ABF5-450B-9E4D-47541A558611}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Foundation", "Foundation", "{B828FDAD-88E5-4F9C-9ADE-363767C0C734}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DynamicPlaceholders", "DynamicPlaceholders", "{B8547425-6763-4E4C-B470-AD7FF16A0349}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Foundation.DynamicPlaceholders", "Foundation\DynamicPlaceholders\Sitecore.Foundation.DynamicPlaceholders\Sitecore.Foundation.DynamicPlaceholders.csproj", "{AAE00874-48A9-4C21-89D3-E37EC2B16224}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +22,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C54B801-D01E-44ED-909F-711290E26BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C54B801-D01E-44ED-909F-711290E26BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C54B801-D01E-44ED-909F-711290E26BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C54B801-D01E-44ED-909F-711290E26BBB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{979A1D24-ABF5-450B-9E4D-47541A558611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{979A1D24-ABF5-450B-9E4D-47541A558611}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{979A1D24-ABF5-450B-9E4D-47541A558611}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{979A1D24-ABF5-450B-9E4D-47541A558611}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAE00874-48A9-4C21-89D3-E37EC2B16224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAE00874-48A9-4C21-89D3-E37EC2B16224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAE00874-48A9-4C21-89D3-E37EC2B16224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAE00874-48A9-4C21-89D3-E37EC2B16224}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8547425-6763-4E4C-B470-AD7FF16A0349} = {B828FDAD-88E5-4F9C-9ADE-363767C0C734}
+		{AAE00874-48A9-4C21-89D3-E37EC2B16224} = {B8547425-6763-4E4C-B470-AD7FF16A0349}
 	EndGlobalSection
 EndGlobal
