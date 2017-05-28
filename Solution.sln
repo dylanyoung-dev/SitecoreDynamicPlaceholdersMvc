@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{089D3573-E033-4A74-A779-11D1DE4EDCD2}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,15 +14,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Foundation", "Foundation", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{3743D908-45FB-4851-8A30-14CD46718C88}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{ADF93880-92E2-42C1-8CDD-DBC910D48173}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DynamicPlaceholders", "DynamicPlaceholders", "{B8547425-6763-4E4C-B470-AD7FF16A0349}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Foundation.DynamicPlaceholders.Infrastructure", "Sitecore.Foundation.DynamicPlaceholders\Sitecore.Foundation.DynamicPlaceholders.Infrastructure.csproj", "{F3F9289D-F18C-4389-B1BD-2E1893169274}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{8299CFCD-1432-494A-AA2E-B743ECAC5B1B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{8196266A-FA2B-4E44-B4B9-79E66EDF1A19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Project.Example", "Project\Example\Sitecore.Project.Example\Sitecore.Project.Example.csproj", "{30E5B881-6AF9-4037-8DF5-5496CC32A85F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Foundation.DynamicPlaceholders.Web", "Sitecore.Foundation.DynamicPlaceholders.Web\Sitecore.Foundation.DynamicPlaceholders.Web.csproj", "{9A6382E3-A106-4C8A-9E2C-15755F697223}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Project.Example.Tests", "Project\Example\Sitecore.Project.Example.Tests\Sitecore.Project.Example.Tests.csproj", "{CED5A35B-8EB3-4A71-8723-508BDB9F2345}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serialization", "Serialization", "{29DFFD21-9456-43CA-A03F-1BAA1CF3B67C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Foundation.Serialization", "Sitecore.Foundation.Serialization\Sitecore.Foundation.Serialization.csproj", "{64EE61A5-C4DE-435F-97A3-5998C10EC8C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Foundation.ORM", "Foundation\ORM\Sitecore.Foundation.ORM\Sitecore.Foundation.ORM.csproj", "{E6023A24-0DC8-40F3-A432-65C82FEA3F9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ORM", "ORM", "{876AABD6-5178-47E9-96EE-DD7137ACF6BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Foundation.DynamicPlaceholders", "Foundation\DynamicPlaceholders\Sitecore.Foundation.DynamicPlaceholders\Sitecore.Foundation.DynamicPlaceholders.csproj", "{AAE00874-48A9-4C21-89D3-E37EC2B16224}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,22 +38,39 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F3F9289D-F18C-4389-B1BD-2E1893169274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3F9289D-F18C-4389-B1BD-2E1893169274}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3F9289D-F18C-4389-B1BD-2E1893169274}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3F9289D-F18C-4389-B1BD-2E1893169274}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9A6382E3-A106-4C8A-9E2C-15755F697223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A6382E3-A106-4C8A-9E2C-15755F697223}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A6382E3-A106-4C8A-9E2C-15755F697223}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A6382E3-A106-4C8A-9E2C-15755F697223}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30E5B881-6AF9-4037-8DF5-5496CC32A85F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E5B881-6AF9-4037-8DF5-5496CC32A85F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30E5B881-6AF9-4037-8DF5-5496CC32A85F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30E5B881-6AF9-4037-8DF5-5496CC32A85F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CED5A35B-8EB3-4A71-8723-508BDB9F2345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CED5A35B-8EB3-4A71-8723-508BDB9F2345}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CED5A35B-8EB3-4A71-8723-508BDB9F2345}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CED5A35B-8EB3-4A71-8723-508BDB9F2345}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64EE61A5-C4DE-435F-97A3-5998C10EC8C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64EE61A5-C4DE-435F-97A3-5998C10EC8C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64EE61A5-C4DE-435F-97A3-5998C10EC8C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64EE61A5-C4DE-435F-97A3-5998C10EC8C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6023A24-0DC8-40F3-A432-65C82FEA3F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6023A24-0DC8-40F3-A432-65C82FEA3F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6023A24-0DC8-40F3-A432-65C82FEA3F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6023A24-0DC8-40F3-A432-65C82FEA3F9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAE00874-48A9-4C21-89D3-E37EC2B16224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAE00874-48A9-4C21-89D3-E37EC2B16224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAE00874-48A9-4C21-89D3-E37EC2B16224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAE00874-48A9-4C21-89D3-E37EC2B16224}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B8547425-6763-4E4C-B470-AD7FF16A0349} = {B828FDAD-88E5-4F9C-9ADE-363767C0C734}
-		{F3F9289D-F18C-4389-B1BD-2E1893169274} = {B8547425-6763-4E4C-B470-AD7FF16A0349}
-		{8196266A-FA2B-4E44-B4B9-79E66EDF1A19} = {3743D908-45FB-4851-8A30-14CD46718C88}
-		{9A6382E3-A106-4C8A-9E2C-15755F697223} = {B8547425-6763-4E4C-B470-AD7FF16A0349}
+		{8299CFCD-1432-494A-AA2E-B743ECAC5B1B} = {3743D908-45FB-4851-8A30-14CD46718C88}
+		{30E5B881-6AF9-4037-8DF5-5496CC32A85F} = {8299CFCD-1432-494A-AA2E-B743ECAC5B1B}
+		{CED5A35B-8EB3-4A71-8723-508BDB9F2345} = {8299CFCD-1432-494A-AA2E-B743ECAC5B1B}
+		{29DFFD21-9456-43CA-A03F-1BAA1CF3B67C} = {B828FDAD-88E5-4F9C-9ADE-363767C0C734}
+		{64EE61A5-C4DE-435F-97A3-5998C10EC8C6} = {29DFFD21-9456-43CA-A03F-1BAA1CF3B67C}
+		{E6023A24-0DC8-40F3-A432-65C82FEA3F9E} = {876AABD6-5178-47E9-96EE-DD7137ACF6BF}
+		{876AABD6-5178-47E9-96EE-DD7137ACF6BF} = {B828FDAD-88E5-4F9C-9ADE-363767C0C734}
+		{AAE00874-48A9-4C21-89D3-E37EC2B16224} = {B8547425-6763-4E4C-B470-AD7FF16A0349}
 	EndGlobalSection
 EndGlobal

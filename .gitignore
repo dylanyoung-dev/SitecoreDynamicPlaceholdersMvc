@@ -12,3 +12,8 @@
 /Sitecore.Foundation.DynamicPlaceholders.Web/obj
 *.user
 /Source/obj/Debug
+/Project/Example/Sitecore.Project.Example.Tests/obj/Debug
+/Project/Example/Sitecore.Project.Example/bin
+/Project/Example/Sitecore.Project.Example/obj/Debug
+/Foundation/DynamicPlaceholders/Sitecore.Foundation.DynamicPlaceholders/bin
+/Foundation/DynamicPlaceholders/Sitecore.Foundation.DynamicPlaceholders/obj/Debug
