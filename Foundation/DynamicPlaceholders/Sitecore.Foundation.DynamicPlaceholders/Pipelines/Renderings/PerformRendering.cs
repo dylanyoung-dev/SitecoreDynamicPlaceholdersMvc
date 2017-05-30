@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Source.Pipelines.Renderings
+namespace Sitecore.Foundation.DynamicPlaceholders.Pipelines.Renderings
 {
     public class PerformRendering : RenderPlaceholderProcessor
     {
@@ -65,13 +65,13 @@ namespace Source.Pipelines.Renderings
             }
             else
             {
-                string placeholderPath = StringExtensions.OrEmpty(ObjectExtensions.ValueOrDefault<PlaceholderContext, string>(PlaceholderContext.Current, (Func<PlaceholderContext, string>)(context => context.PlaceholderPath)));
+                string placeholderPath = Sitecore.Mvc.Extensions.StringExtensions.OrEmpty(ObjectExtensions.ValueOrDefault<PlaceholderContext, string>(PlaceholderContext.Current, (Func<PlaceholderContext, string>)(context => context.PlaceholderPath)));
                 childRenderings = Enumerable.Where<Rendering>((IEnumerable<Rendering>)args.PageContext.PageDefinition.Renderings, (Func<Rendering, bool>)(r =>
                 {
                     if (!(r.DeviceId == deviceId))
                         return false;
-                    if (!StringExtensions.EqualsText(r.Placeholder, placeholderName))
-                        return StringExtensions.EqualsText(r.Placeholder, placeholderPath);
+                    if (!Sitecore.Mvc.Extensions.StringExtensions.EqualsText(r.Placeholder, placeholderName))
+                        return Sitecore.Mvc.Extensions.StringExtensions.EqualsText(r.Placeholder, placeholderPath);
                     return true;
                 })).ToList();
             }

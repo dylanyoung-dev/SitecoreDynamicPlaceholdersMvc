@@ -1,11 +1,11 @@
 module.exports = function () {
-    var sitecoreRoot = "C:\\Sitecore\\Example-82";
+    var sitecoreRoot = "C:\\Sitecore\\placeholders";
     var config = {
         websiteRoot: sitecoreRoot + "\\Website",
         sitecoreLibraries: sitecoreRoot + "\\Website\\bin",
-        solutionName: "Example-82",
+        solutionName: "Solution",
         licensePath: sitecoreRoot + "\\Data\\license.xml",
         runCleanBuilds: false
     };
     return config;
-}
+};

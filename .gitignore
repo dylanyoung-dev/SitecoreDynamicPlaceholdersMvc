@@ -17,3 +17,6 @@
 /Project/Example/Sitecore.Project.Example/obj/Debug
 /Foundation/DynamicPlaceholders/Sitecore.Foundation.DynamicPlaceholders/bin
 /Foundation/DynamicPlaceholders/Sitecore.Foundation.DynamicPlaceholders/obj/Debug
+/.vs
+/Foundation/DynamicPlaceholders/Sitecore.Foundation.DynamicPlaceholders/obj/Release
+/gulp-config.js

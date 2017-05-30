@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Source.Pipelines.Renderings
+namespace Sitecore.Foundation.DynamicPlaceholders.Pipelines.Renderings
 {
     public class InsertRendering
     {
