@@ -20,9 +20,9 @@ This dynamic placeholder logic however doesn't rely on any additional increments
 @Html.Sitecore().DynamicPlaceholder("Key");
 ```
 
-That's it, once you have placed the Dynamic Placeholder helper, you can start placing rendering using the hierarchy that makes sense for your project.
+That's it, once you have placed the Dynamic Placeholder helper, you can start placing renderings using the hierarchy that makes sense for your project.
 
-We recommend that you only using the Dynamic Placeholder, rather than mixing the traditional Sitecore placeholder with the next 'Dynamic Placeholder' logic.
+We recommend that you only use the Dynamic Placeholder, rather than mixing the traditional Sitecore placeholder with the 'Dynamic Placeholder' logic.
 
 This has been tested with Sitecore 8.0+
 
