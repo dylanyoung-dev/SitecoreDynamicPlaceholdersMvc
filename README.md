@@ -1,3 +1,5 @@
+[![NuGet](https://img.shields.io/nuget/dt/SitecoreMaster.TrueDynamicPlaceholders.svg)]()
+
 # Sitecore Dynamic Placeholders for Mvc
 
 This module allows you to build complex Sitecore sites with the use of Dynamic Placeholders.  This project is built using Helix best practices and currently exists on the Sitecore Marketplace: 
