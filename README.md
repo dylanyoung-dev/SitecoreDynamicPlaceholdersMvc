@@ -1,4 +1,4 @@
-[![NuGet](https://img.shields.io/nuget/dt/SitecoreMaster.TrueDynamicPlaceholders.svg)]()
+[![NuGet](https://img.shields.io/nuget/v/SitecoreMaster.TrueDynamicPlaceholders.svg)]() [![NuGet](https://img.shields.io/nuget/dt/SitecoreMaster.TrueDynamicPlaceholders.svg)]()
 
 # Sitecore Dynamic Placeholders for Mvc
 
