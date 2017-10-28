@@ -1,0 +1,48 @@
+{
+  "version": 2,
+  "targets": {
+    ".NETFramework,Version=v4.6": {},
+    ".NETFramework,Version=v4.6/win": {},
+    ".NETFramework,Version=v4.6/win-x64": {},
+    ".NETFramework,Version=v4.6/win-x86": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6": []
+  },
+  "packageFolders": {
+    "C:\\Users\\tempe\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\git\\SitecoreDynamicPlaceholdersMvc\\Foundation\\DynamicPlaceholders\\Sitecore.Foundation.DynamicPlaceholders\\Sitecore.Foundation.DynamicPlaceholders.csproj",
+      "projectName": "Sitecore.Foundation.DynamicPlaceholders",
+      "projectPath": "C:\\git\\SitecoreDynamicPlaceholdersMvc\\Foundation\\DynamicPlaceholders\\Sitecore.Foundation.DynamicPlaceholders\\Sitecore.Foundation.DynamicPlaceholders.csproj",
+      "outputPath": "C:\\git\\SitecoreDynamicPlaceholdersMvc\\Foundation\\DynamicPlaceholders\\Sitecore.Foundation.DynamicPlaceholders\\obj\\",
+      "projectStyle": "PackageReference",
+      "originalTargetFrameworks": [
+        "net46"
+      ],
+      "frameworks": {
+        "net46": {
+          "projectReferences": {}
+        }
+      }
+    },
+    "frameworks": {
+      "net46": {}
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}

@@ -20,3 +20,4 @@
 /.vs
 /Foundation/DynamicPlaceholders/Sitecore.Foundation.DynamicPlaceholders/obj/Release
 /gulp-config.js
+*.pubxml.user

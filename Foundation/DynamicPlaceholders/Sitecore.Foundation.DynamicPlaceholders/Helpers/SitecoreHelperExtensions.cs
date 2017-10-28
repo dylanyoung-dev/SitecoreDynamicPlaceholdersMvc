@@ -9,7 +9,7 @@ namespace Sitecore.Foundation.DynamicPlaceholders.Helpers
 {
     public static class SitecoreHelperExtensions
     {
-        public static IHtmlString DynamicPlaceholder(this SitecoreHelper sitecoreHelper, string placeholderName)
+        public static IHtmlString TrueDynamicPlaceholder(this SitecoreHelper sitecoreHelper, string placeholderName)
         {
             Rendering currentRendering = RenderingContext.Current.Rendering;
 
