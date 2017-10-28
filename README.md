@@ -1,3 +1,5 @@
+[![NuGet](https://img.shields.io/nuget/v/SitecoreMaster.TrueDynamicPlaceholders.svg)]() [![NuGet](https://img.shields.io/nuget/dt/SitecoreMaster.TrueDynamicPlaceholders.svg)]()
+
 # Sitecore Dynamic Placeholders for Mvc
 
 This module allows you to build complex Sitecore sites with the use of Dynamic Placeholders.  This project is built using Helix best practices and currently exists on the Sitecore Marketplace: 
@@ -10,14 +12,20 @@ This dynamic placeholder logic however doesn't rely on any additional increments
 
 # Installation
 
-1. Download the latest source from the Sitecore marketplace here and install like you would with any other module (or using the Sitecore Instance Manager).
+1. Download the latest Sitecore package below from the Sitecore marketplace here and install like you would with any other module (or using the Sitecore Instance Manager).
 
    <https://marketplace.sitecore.net/en/Modules/T/True_Dynamic_Placeholders.aspx>
 
-2. Define areas of your page to use the Dynamic Placeholders by using the unique html helper:
+2. In your project/solution, use NuGet to pull in the required references, so that you can use the helper methods within your views.
 
 ```csharp
-@Html.Sitecore().DynamicPlaceholder("Key");
+Install-Package SitecoreMaster.TrueDynamicPlaceholders -Version 1.0.4
+```
+
+3. Define areas of your page to use the Dynamic Placeholders by using the unique html helper:
+
+```csharp
+@Html.Sitecore().TrueDynamicPlaceholder("Key");
 ```
 
 That's it, once you have placed the Dynamic Placeholder helper, you can start placing renderings using the hierarchy that makes sense for your project.
