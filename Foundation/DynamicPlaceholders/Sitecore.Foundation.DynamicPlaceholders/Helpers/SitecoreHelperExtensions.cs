@@ -15,5 +15,16 @@ namespace Sitecore.Foundation.DynamicPlaceholders.Helpers
 
             return sitecoreHelper.Placeholder(string.Format("{0}|{1}", placeholderName, currentRendering.UniqueId.ToString()));
         }
+
+        /// <summary>
+        /// Here for Backwards compatibility
+        /// </summary>
+        /// <param name="sitecoreHelper"></param>
+        /// <param name="placeholderName"></param>
+        /// <returns></returns>
+        public static IHtmlString DynamicPlaceholder(this SitecoreHelper sitecoreHelper, string placeholderName)
+        {
+            return TrueDynamicPlaceholder(sitecoreHelper, placeholderName);
+        }
     }
 }
