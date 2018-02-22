@@ -61,7 +61,7 @@ namespace Sitecore.Foundation.DynamicPlaceholders.Pipelines.Renderings
                 {
                     RenderingDefinition rendering = device.Renderings[index] as RenderingDefinition;
 
-                    if (rendering.UniqueId == uniqueId)
+                    if (rendering.UniqueId.Equals(uniqueId, StringComparison.InvariantCultureIgnoreCase))
                     {
                         device.Insert(index + 1, renderingDefinition);
                     }
